@@ -10,7 +10,6 @@ body {
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
-
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
   position: absolute;
@@ -131,4 +130,11 @@ body {
   .featurette-heading {
     margin-top: 120px;
   }
+}
+.register {
+	
+}
+.register  a{
+    color: #F9F7F9;
+    text-decoration: none;
 }
