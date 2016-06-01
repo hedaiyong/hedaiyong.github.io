@@ -138,3 +138,7 @@ body {
     color: #F9F7F9;
     text-decoration: none;
 }
+.register  a:hover{
+    color: #038BFF;
+    text-decoration: none;
+}
