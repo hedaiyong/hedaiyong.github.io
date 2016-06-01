@@ -132,7 +132,7 @@ body {
   }
 }
 .register {
-	
+	float: right;
 }
 .register  a{
     color: #F9F7F9;
