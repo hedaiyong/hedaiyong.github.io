@@ -9,7 +9,7 @@ article_app.value('froalaConfig', {
     fileUploadParam: 'upfile',
 
     // Set the file upload URL.
-    fileUploadURL: 'http://localhost:8080/api/editorFileUpload',
+    fileUploadURL: 'http://114.55.42.174:9090/api/editorFileUpload',
 
     // Additional upload params.
     fileUploadParams: {id: 'my_editor'},
@@ -27,7 +27,7 @@ article_app.value('froalaConfig', {
     imageUploadParam: 'upfile',
 
     // Set the image upload URL.
-    imageUploadURL: 'http://localhost:8080/api/editorFileUpload',
+    imageUploadURL: 'http://114.55.42.174:9090/api/editorFileUpload',
 
     // Additional upload params.
     imageUploadParams: {id: 'my_editor'},
