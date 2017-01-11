@@ -717,3 +717,14 @@
     border-radius: 0px;
     height: 60px;
 }
+
+.footer-default{
+    color: #999;
+    font-size: 13px;
+    display: inline-block;
+    margin: 5px;
+}
+
+.footer-color {
+    background-color: #e8e8df;
+}
