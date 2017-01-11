@@ -1,0 +1,36 @@
+<div class="col-sm-6">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title index-inline-block">24小时热门</h3>
+            <a class="stao-index-house-detail" href="./html/forum/article_list/article_list.html">更多</a>
+        </div>
+        <div class="panel-body">
+            <div ng-repeat="item in top.hotArticles">
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object img-circle media-object-img" ng-src="{{item.userURL}}" alt="64x64">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <div class="index-inline-block fn-right ft-fade">
+                            <span class="list-hot-plate">{{(item.plateName.tags.id1 == 1)?(item.plateName.tags.name3 + '/' +item.plateName.tags.name4) : item.plateName.tags.name2}}</span>
+                                <span><b
+                                        class="article-level1">{{item.commentCount}}</b> 回帖</span> &nbsp;•&nbsp;
+                            <span><span class="article-level1">{{item.readCount}}</span> 浏览</span> &nbsp;•&nbsp;
+                            <span class="article-level4">{{dateUtil.timeUtil.elapsedTime(item.articleCreateDate)}} </span>
+                        </div>
+                        <div class="index-inline-block text-omit text-omit-index-hot-article">
+                            <a data-id="1462843800092" data-type="0" rel="bookmark" title="{{item.articleTitle}}"
+                               ng-href='{{"html/forum/article/article_show/article_show.html?articleID=" + item.articleID}}'>
+                                {{item.articleTitle}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <hr ng-if="$index < (top.hotArticles.length -1)">
+            </div>
+
+        </div>
+    </div>
+</div>

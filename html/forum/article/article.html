@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="article-app">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://js.cdnbee.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/angular.js/1.5.8/angular.min.js"></script>
+    <!--<script src="http://localhost:8080/api/cdn?fileName=angular-route.min.js"></script>-->
+    <script src="https://js.cdnbee.com/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
+    <link rel="stylesheet" href="https://js.cdnbee.com/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://js.cdnbee.com/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://114.55.42.174:9090/api/cdn?fileName=ui-bootstrap-csp.css"/>
+    <link rel="stylesheet" href="../../../css/stao.css"/>
+
+    <!-- Include Froala Editor styles -->
+    <link rel="stylesheet" href="https://js.cdnbee.com/libs/froala-editor/2.3.4/css/froala_editor.min.css"/>
+    <link rel="stylesheet" href="https://js.cdnbee.com/libs/froala-editor/2.3.4/css/froala_style.min.css"/>
+
+    <!-- Include Froala Editor Plugins styles -->
+    <link rel="stylesheet" href="https://js.cdnbee.com/libs/froala-editor/2.3.4/css/plugins/char_counter.css">
+    <link rel="stylesheet" href="https://js.cdnbee.com/libs/froala-editor/2.3.4/css/plugins/code_view.css">
+    <link rel="stylesheet" href="https://js.cdnbee.com/libs/froala-editor/2.3.4/css/plugins/colors.css">
+    <link rel="stylesheet" href="https://js.cdnbee.com/libs/froala-editor/2.3.4/css/plugins/emoticons.css">
+    <link rel="stylesheet" href="https://js.cdnbee.com/libs/froala-editor/2.3.4/css/plugins/file.css">
+    <link rel="stylesheet" href="https://js.cdnbee.com/libs/froala-editor/2.3.4/css/plugins/fullscreen.css">
+    <link rel="stylesheet" href="https://js.cdnbee.com/libs/froala-editor/2.3.4/css/plugins/image_manager.css">
+    <link rel="stylesheet" href="https://js.cdnbee.com/libs/froala-editor/2.3.4/css/plugins/image.css">
+    <link rel="stylesheet" href="https://js.cdnbee.com/libs/froala-editor/2.3.4/css/plugins/line_breaker.css">
+    <link rel="stylesheet" href="https://js.cdnbee.com/libs/froala-editor/2.3.4/css/plugins/table.css">
+    <link rel="stylesheet" href="https://js.cdnbee.com/libs/froala-editor/2.3.4/css/plugins/video.css">
+
+    <!-- Include Froala Editor -->
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/froala_editor.min.js"></script>
+
+    <!-- Include Froala Editor Plugins -->
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/align.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/char_counter.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/code_beautifier.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/code_view.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/colors.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/emoticons.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/entities.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/file.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/font_family.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/font_size.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/fullscreen.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/image.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/image_manager.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/inline_style.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/line_breaker.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/link.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/lists.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/paragraph_format.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/paragraph_style.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/quote.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/save.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/table.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/plugins/video.min.js"></script>
+    <!-- End Froala -->
+
+    <script src="http://114.55.42.174:9090/api/cdn?fileName=angular-froala.js"></script>
+    <!-- Include Froala language -->
+    <script src="https://js.cdnbee.com/libs/froala-editor/2.3.4/js/languages/zh_cn.js"></script>
+    <!--include ui-select js-->
+    <script src="https://js.cdnbee.com/libs/angular-sanitize/1.5.8/angular-sanitize.min.js"></script>
+    <script src="https://js.cdnbee.com/libs/angular-ui-select/0.19.4/select.min.js"></script>
+    <link rel="stylesheet" href="https://js.cdnbee.com/libs/angular-ui-select/0.19.4/select.min.css"/>
+    <link rel="icon" href="../../../favicon.ico"/>
+    <title>筑这儿-发帖</title>
+</head>
+<body >
+<!--头部-->
+<ng-include src="'../../../tpl/index/index_head.html'"></ng-include>
+<div class="container theme-showcase stao-index-container" ng-controller="article_ctrl" role="main">
+    <div class="forum-article-content">
+        <div ng-include="'../../../tpl/forum/article/article_select.html'"></div>
+        <textarea froala="article.froalaOptions" ng-model="article.content"></textarea>
+        <div class="forum-article-btn">
+            <div class="btn-group btn-group-justified" role="group">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-primary" ng-click="article.cancel()">取消</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-primary" ng-click="article.saveDraft()">保存为草稿</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-primary" ng-click="article.release()">发布</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://js.cdnbee.com/libs/ng-dialog/0.6.4/js/ngDialog.min.js"></script>
+<link rel="stylesheet" href="http://114.55.42.174:9090/api/cdn?fileName=ngDialog.min.css"/>
+<link rel="stylesheet" href="http://114.55.42.174:9090/api/cdn?fileName=ngDialog-theme-default.css"/>
+<link rel="stylesheet" href="http://114.55.42.174:9090/api/cdn?fileName=ngDialog-theme-success.css"/>
+<script src="../../../js/common/module.js"></script>
+<script src="app.js"></script>
+<script src="ctrl.js"></script>
+<script src="module.js"></script>
+</html>

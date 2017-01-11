@@ -1,0 +1,79 @@
+<div class="col-sm-12">
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title index-inline-block">二手房</h3>
+                <a class="stao-index-house-detail"
+                   href="html/house/data/region_chart.html">成交走势</a>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th ng-repeat="(objName, item) in second_hand_house_tbl.theadConfig.sortBuffer">
+                            <div>
+                                <span ng-bind="item.name"></span>
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in second_hand_house_tbl.sales"
+                        ng-if="second_hand_house_tbl.sales.length>0">
+                        <td ng-bind="item.region"></td>
+                        <td ng-bind="item.soldArea"></td>
+                        <td ng-bind="item.soldCount"></td>
+                        <!--<td ng-bind="item.openDate | dateFilter:'yyyy-MM-dd'"></td>-->
+                        <!--<td ng-bind="item.managers.length>0?(item.managers.join('，')):'- -'"-->
+                        <!--ng-class="item.managers.length>0?'':'msgInvalid'"></td>-->
+                    </tr>
+                    <tr ng-if="second_hand_house_tbl.sales.length==0">
+                        <td class="table-empty" colspan="3">
+                            <span>暂无相关信息</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title index-inline-block">新房</h3>
+                <a class="stao-index-house-detail"
+                   href="html/house/data/region_chart.html">成交/房价走势</a>
+            </div>
+            <div class="panel-body">
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th ng-repeat="(objName, item) in newHouse_region_tbl.theadConfig.sortBuffer">
+                            <div>
+                                <span ng-bind="item.name"></span>
+
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in newHouse_region_tbl.sales"
+                        ng-if="newHouse_region_tbl.sales.length>0">
+                        <td ng-bind="item.region"></td>
+                        <td ng-bind="item.soldArea"></td>
+                        <td ng-bind="item.soldCount"></td>
+                        <td ng-bind="item.soldPrice"></td>
+                        <td ng-bind="item.allCount"></td>
+                    </tr>
+                    <tr ng-if="newHouse_region_tbl.sales.length==0">
+                        <td class="table-empty" colspan="5">
+                            <span>暂无相关信息</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

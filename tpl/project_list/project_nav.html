@@ -1,0 +1,37 @@
+<div class="col-sm-3 col-md-2 sidebar">
+    <ul id="main-nav" class="nav nav-tabs nav-stacked" style="">
+        <li>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="page.name" placeholder="楼盘">
+                  <span class="input-group-btn" ng-click="pageChanged(page.name, '')">
+                    <button class="btn btn-default"  type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                  </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+        </li>
+        <li>
+            <a href="#selling" class="nav-header collapsed" data-toggle="collapse">
+                <i class="fa fa-hourglass-half" aria-hidden="true"></i>
+                已开盘
+                <span class="pull-right glyphicon glyphicon-chevron-toggle"></span>
+            </a>
+            <ul id="selling" class="nav collapse in secondmenu">
+                <li><a ng-click="pageChanged('','')" href="#">全市</a></li>
+                <li><a ng-click="pageChanged('','龙岗')" href="#">龙岗</a></li>
+                <li><a ng-click="pageChanged('','宝安')" href="#">宝安</a></li>
+                <li><a ng-click="pageChanged('','南山')" href="#">南山</a></li>
+                <li><a ng-click="pageChanged('','福田')" href="#">福田</a></li>
+                <li><a ng-click="pageChanged('','盐田')" href="#">盐田</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="./plans.html">
+                <i class="fa fa-hourglass" aria-hidden="true"></i>
+                即将开盘
+            </a>
+        </li>
+    </ul>
+</div>

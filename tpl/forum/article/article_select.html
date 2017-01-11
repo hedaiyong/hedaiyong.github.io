@@ -1,0 +1,67 @@
+<div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">标题</span>
+        <input type="text" class="form-control" ng-focus="article.articleFocus()" ng-model="article.title" placeholder="输入标题"
+               aria-describedby="basic-addon1">
+    </div>
+    <div ng-show="article.isShowTitleNoEmpty">
+        <p class="alert alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{article.showTitleNoEmptyMsg}}</p>
+    </div>
+    <div class="row forum-article-plate">
+
+        <div class="col-md-3">
+            <div class="input-group">
+                <span class="input-group-addon">板块</span>
+
+                <ui-select on-select="selectPlate($item)" ng-model="plate.selected"
+                           theme="bootstrap">
+                    <ui-select-match placeholder="选择/搜索板块...">{{$select.selected.name}}
+                    </ui-select-match>
+                    <ui-select-choices group-by="'plate'"
+                                       repeat="item in plates | filter: $select.search">
+                        <span ng-bind-html="item.name | highlight: $select.search"></span>
+                    </ui-select-choices>
+                    <ui-select-no-choice>
+                        {{ui_select_no_choice}}
+                    </ui-select-no-choice>
+                </ui-select>
+
+            </div><!-- /input-group -->
+            <div>
+            </div>
+        </div><!-- /.col-lg-6 -->
+        <div class="col-md-3">
+            <div class="forum-article-community" ng-show="showCommunity">
+                <ui-select on-select="selectCommunity($item)" ng-model="community.selected"
+                           theme="bootstrap">
+                    <ui-select-match placeholder="选择/搜索板块...">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices
+                            repeat="item in communities | filter: $select.search">
+                        <span ng-bind-html="item.name | highlight: $select.search"></span>
+                    </ui-select-choices>
+                    <ui-select-no-choice>
+                        {{ui_select_no_choice}}
+                    </ui-select-no-choice>
+                </ui-select>
+            </div>
+        </div><!-- /.col-lg-6 -->
+        <div class="col-md-3">
+            <div class="forum-article-community" ng-show="showCommunity">
+                <ui-select on-select="selectCommunity($item)" ng-model="community_plate.selected"
+                           theme="bootstrap">
+                    <ui-select-match placeholder="选择/搜索板块...">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices
+                            repeat="item in community_plates | filter: $select.search">
+                        <span ng-bind-html="item.name | highlight: $select.search"></span>
+                    </ui-select-choices>
+                    <ui-select-no-choice>
+                        {{ui_select_no_choice}}
+                    </ui-select-no-choice>
+                </ui-select>
+            </div>
+        </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+    <div class="forum-article-alert" ng-show="article.isShowPlateNoSelect">
+        <p class="alert alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{article.showPlateNoSelectMsg}}</p>
+    </div>
+</div>

@@ -1,0 +1,156 @@
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="LoginController">
+
+    <div class="container">
+        <div class="navbar-header">
+            <a class="stao-navbar-brand" href="#">
+                <img alt="Brand" height="32" width="32" src="/stao-web/app/static/src/ico.png">
+                <p class="stao-navbar-text">住这2</p>
+            </a>
+
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="全网搜索">
+                </div>
+            </form>
+        </div>
+        <span class="stao-navbar-right" ng-if="!user.isLogin" >
+            <!-- Simple dropdown -->
+            <span uib-dropdown auto-close="outsideClick">
+              <a href id="simple-dropdown" uib-dropdown-toggle>
+                登录
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu aria-labelledby="simple-dropdown">
+                  <div class="stao-navbar-login">
+                      <form name="loginForm"
+                            ng-submit="login(credentials, false)" >
+                          <div class="input-group">
+                              <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
+                              <input placeholder="用户名或手机号" aria-describedby="sizing-addon2" ng-focus="msg.isLoginError = false" class="form-control" type="text" name="phone"
+                                     ng-model="credentials.phone" required="required">
+                          </div>
+                          <div class="login-error-msg" ng-show="loginForm.$submitted || loginForm.phone.$touched">
+                                  <div ng-show="loginForm.phone.$error.required"><p class="alert-login-error alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{msg.NoEmpty}}</p></div>
+                          </div>
+                          <div class="input-group" style="padding-top: 4px;" >
+                              <span class="input-group-addon"><i class="fa fa-lock fa-lg" style="width: 15px;" aria-hidden="true"></i></span>
+                              <input placeholder="密码" aria-describedby="sizing-addon2" ng-focus="msg.isLoginError = false" class="form-control" type="password" name="userpassword"
+                                     ng-model="credentials.password" required="required">
+                          </div>
+                          <div class="login-error-msg" ng-show="loginForm.$submitted || loginForm.userpassword.$touched">
+                                  <div ng-show="loginForm.userpassword.$error.required"><p class="alert-login-error alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{msg.NoEmpty}}</p></div>
+                          </div>
+                          <div class="login-error-msg" ng-show="msg.isLoginError">
+                                  <div><p class="alert-login-error alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{msg.loginError}}</p></div>
+                          </div>
+
+                          <div class="btn-group stao-index-head-sign-btn" role="group">
+                              <button class="stao-index-body-btn" type="submit">登录</button>
+                              <button class="stao-index-body-btn"
+                                      onclick="window.location.href = 'https://hacpai.com/forget-pwd'">忘记密码</button>
+                          </div>
+                       </form>
+                  </div>
+              </ul>
+            </span>
+            | <a href="/stao-web/app/static/src/html/sign/sign_up.html">注册</a>
+        </span>
+
+        <ul class="nav nav-pills stao-navbar-right-user" role="tablist" ng-if="user.isLogin">
+            <li role="presentation" class="active"><!-- Single button -->
+                <!-- Single button -->
+                <div class="btn-group" uib-dropdown is-open="user.loginOut">
+                    <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                        {{user.nickname}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                        <li role="menuitem"><a href="/stao-web/app/static/src/html/forum/user/user.html">个人信息</a></li>
+                        <li role="menuitem"><a href="#">我的评论 <span class="badge stao-index-house-detail">3</span></a></li>
+                        <li role="menuitem"><a href="#">我的帖子 <span class="badge stao-index-house-detail">3</span></a></li>
+                        <li role="menuitem"><a href="/stao-web/app/static/src/html/forum/article/article.html">发表新帖</a></li>
+                        <li class="divider"></li>
+                        <li role="menuitem"><a ng-click="signOut()" href="#">退出</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li role="presentation"><a href="#">消息 <span class="badge">3</span></a></li>
+        </ul>
+    </div>
+    <!--弹出登录和注册界面-->
+    <script type="text/ng-template" id="signInOrSignUpDialog">
+        <div class="ngdialog-message">
+            <h5><i class="fa fa-info-circle" aria-hidden="true"></i>还没有登录哦</h5>
+            <uib-tabset active="active">
+                <uib-tab index="0" heading="登录">
+                        <form class="sign-dialog-top" name="loginForm"
+                              ng-submit="login(credentials, true)" >
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
+                                <input placeholder="用户名或手机号" aria-describedby="sizing-addon2" ng-focus="msg.isLoginError = false" class="form-control" type="text" name="phone"
+                                       ng-model="credentials.phone" required="required">
+                            </div>
+                            <div class="login-error-msg" ng-show="loginForm.$submitted || loginForm.phone.$touched">
+                                <div ng-show="loginForm.phone.$error.required"><p class="alert-login-error alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{msg.NoEmpty}}</p></div>
+                            </div>
+                            <div class="input-group" style="padding-top: 4px;" >
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" style="width: 15px;" aria-hidden="true"></i></span>
+                                <input placeholder="密码" aria-describedby="sizing-addon2" ng-focus="msg.isLoginError = false" class="form-control" type="password" name="userpassword"
+                                       ng-model="credentials.password" required="required">
+                            </div>
+                            <div class="login-error-msg" ng-show="loginForm.$submitted || loginForm.userpassword.$touched">
+                                <div ng-show="loginForm.userpassword.$error.required"><p class="alert-login-error alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{msg.NoEmpty}}</p></div>
+                            </div>
+                            <div class="login-error-msg" ng-show="msg.isLoginError">
+                                <div><p class="alert-login-error alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{msg.loginError}}</p></div>
+                            </div>
+
+                            <div class="btn-group sign-dialog-btn" role="group">
+                                <button class="stao-index-body-btn" type="submit">登录</button>
+                                <button class="stao-index-body-btn"
+                                        onclick="window.location.href = 'https://hacpai.com/forget-pwd'">忘记密码</button>
+                            </div>
+                        </form>
+                </uib-tab>
+                <uib-tab index="1"  heading="注册">
+                    <form class="sign-dialog-top" name="loginForm"
+                          ng-submit="signUp(credentials, true)">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
+                            <input placeholder="昵称" aria-describedby="sizing-addon2" class="form-control" type="text"
+                                   name="nickname"
+                                   ng-model="credentials.nickname" required="required">
+
+                        </div>
+                        <div class="input-group list-sign-top">
+                            <span class="input-group-addon"><i class="fa fa-address-book fa-lg" aria-hidden="true"></i></span>
+                            <input placeholder="手机号" aria-describedby="sizing-addon2" class="form-control" type="text"
+                                   name="phone"
+                                   ng-model="credentials.phone" required="required">
+                        </div>
+
+                        <div class="input-group list-sign-top">
+                    <span class="input-group-addon"><i class="fa fa-envelope-square fa-lg"
+                                                       aria-hidden="true"></i></span>
+                            <input placeholder="短信验证码" aria-describedby="sizing-addon2" class="form-control" type="text"
+                                   name="vercode"
+                                   ng-model="credentials.vercode" required="required">
+                        </div>
+
+                        <div class="input-group list-sign-top">
+                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" style="width: 15px;"
+                                                       aria-hidden="true"></i></span>
+                            <input placeholder="密码" aria-describedby="sizing-addon2" class="form-control" type="password"
+                                   name="userpassword"
+                                   ng-model="credentials.password" required="required">
+                        </div>
+
+                        <div class="btn-group sign-dialog-btn" role="group">
+                            <button class="stao-index-body-btn" type="submit">注册</button>
+                        </div>
+                    </form>
+                </uib-tab>
+
+            </uib-tabset>
+        </div>
+
+    </script>
+</nav>

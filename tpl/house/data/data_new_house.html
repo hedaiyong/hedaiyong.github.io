@@ -1,0 +1,48 @@
+<!--新房数据-->
+<div class="sign-dialog-top" ng-controller="NewHouseChartCtrl">
+
+    <h3>新房成交数据</h3>
+    <hr>
+    <div class="col-sm-12">
+        <div class="col-sm-5">
+            <div class="btn-group " role="group" aria-label="...">
+                <button type="button" ng-click="switchTab(1)" ng-class="{'active':(new_house.dataType == 1)}" class="btn btn-default">成交价格</button>
+                <button type="button" ng-click="switchTab(2)"  ng-class="{'active':(new_house.dataType == 2)}" class="btn btn-default">成交套数</button>
+                <button type="button" ng-click="switchTab(3)"  ng-class="{'active':(new_house.dataType == 3)}" class="btn btn-default">成交面积</button>
+                <button type="button" ng-click="switchTab(4)" ng-class="{'active':(new_house.dataType == 4)}" class="btn btn-default">未成交套数</button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                       ng-model="new_house.time.startTime"
+                       is-open="new_house.time.startOpen" datepicker-options="new_house.time.startOptions" ng-required="true"
+                       close-on-date-selection="true"
+                       alt-input-formats="altInputFormats" show-button-bar="false" placeholder="{{new_house.time.startTime}}"
+                       title="选择开始时间"/>
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="new_house.time.openStart()"><i
+                                    class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+            </p>
+        </div>
+        <div class="col-md-3">
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup ng-model="new_house.time.endTime"
+                       is-open="new_house.time.endOpen" datepicker-options="new_house.time.endOptions" ng-required="true"
+                       close-on-date-selection="true"
+                       alt-input-formats="altInputFormats" show-button-bar="false" placeholder="{{new_house.time.endTime}}"
+                       title="选择结束时间"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="new_house.time.openEnd()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </p>
+        </div>
+        <div class="col-md-1">
+            <button type="button" class="btn  btn-primary" ng-click="queryNewHouseRegion()">查询</button>
+        </div>
+    </div>
+    <ng-echarts class="article-ds-replybox col-md-12 echarts" ec-config="new_house.charts.config"
+                ec-option="new_house.charts.option"></ng-echarts>
+</div>

@@ -1,0 +1,35 @@
+<div ng-controller="TplArticleListCtrl">
+    <div ng-repeat="item in article.list">
+        <div class="media">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object img-circle media-object-img" ng-src="{{item.userURL}}" alt="64x64">
+                </a>
+            </div>
+            <div class="media-body">
+                <div class="index-inline-block fn-right ft-fade">
+                    <span class="list-hot-plate">{{(item.plateName.tags.id1 == 1)?(item.plateName.tags.name3 + '/' +item.plateName.tags.name4) : item.plateName.tags.name2}}</span>
+                                <span><b
+                                        class="article-level1">{{item.commentCount}}</b> 回帖</span> &nbsp;•&nbsp;
+                    <span><span class="article-level1">{{item.readCount}}</span> 浏览</span> &nbsp;•&nbsp;
+                    <span class="article-level4">{{dateUtil.timeUtil.elapsedTime(item.articleCreateDate)}} </span>
+                </div>
+                <div class="index-inline-block text-omit text-omit-article-list">
+                    <a data-id="1462843800092" data-type="0" rel="bookmark" title="{{item.articleTitle}}"
+                       ng-href='{{"../../../html/forum/article/article_show/article_show.html?articleID=" + item.articleID}}'>
+                        {{item.articleTitle}}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <hr ng-if="$index < (article.list.length -1)">
+    </div>
+
+    <div class="stao-project-page">
+        <ul uib-pagination total-items="article.page.totalItems" ng-model="article.page.curPage" max-size="article.page.maxSize"
+            items-per-page="article.page.pageSize" last-text="{{article.page.last_text}}" next-text="{{article.page.next_text}}"
+            previous-text="{{article.page.previous_text}}"
+            class="pagination-sm pull-right" boundary-links="true" ng-change="getArticleListOpen()"
+            first-text="{{article.page.first_text}}"></ul>
+    </div>
+</div>

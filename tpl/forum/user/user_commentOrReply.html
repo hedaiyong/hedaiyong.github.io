@@ -1,0 +1,87 @@
+<div class="project-detail-house-list" ng-controller="UserCommentOrReplyCtrl">
+    <uib-tabset>
+        <uib-tab index="0" select="getComments()">
+            <uib-tab-heading>
+                评论
+            </uib-tab-heading>
+            <div class="project-detail-house-list">
+                <div ng-repeat="item in comment.list">
+                    <div class="media">
+                        <div class="media-left">
+                            <div class="comment-list-left"></div>
+                        </div>
+                        <div class="media-body">
+                            <dt title="{{item.articleTitle}}" class="text-omit text-omit-index-comment-list">
+                                <a ng-href='{{"../../../html/forum/article/article_show/article_show.html?articleID=" + item.articleID}}'
+                                   target="_blank" rel="nofollow">
+                                    {{item.articleTitle}}
+                                </a>
+                            </dt>
+                            <dt>{{item.commentContent}}</dt>
+                            <dd class="comment-list-label">
+                                {{dateUtil.timeUtil.elapsedTime(item.commentDate)}}
+                                <a href="/news/item.php?id=4653">评论
+                                </a>
+                            </dd>
+                            <div class="list-comment-num">
+                                <a href="#" title="评论数"><span class="badge">{{item.commentCount}}</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr ng-if="$index < (comment.list.length -1)">
+                </div>
+                <div class="stao-project-page">
+                    <ul uib-pagination total-items="comment.page.totalItems" ng-model="comment.page.curPage"
+                        max-size="comment.page.maxSize"
+                        items-per-page="comment.page.pageSize" last-text="{{comment.page.last_text}}"
+                        next-text="{{comment.page.next_text}}"
+                        previous-text="{{comment.page.previous_text}}"
+                        class="pagination-sm pull-right" boundary-links="true" ng-change="getComments()"
+                        first-text="{{comment.page.first_text}}"></ul>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab select="getReplys()" index="1">
+            <uib-tab-heading>
+                回复
+            </uib-tab-heading>
+            <div class="project-detail-house-list">
+                <div ng-repeat="item in reply.list">
+                    <div class="media">
+                        <div class="media-left">
+                            <div class="comment-list-left"></div>
+                        </div>
+                        <div class="media-body">
+                            <dt title="{{item.articleTitle}}" class="text-omit text-omit-index-comment-list">
+                                <a ng-href='{{"../../../html/forum/article/article_show/article_show.html?articleID=" + item.articleID}}'
+                                   target="_blank" rel="nofollow">
+                                    {{item.articleTitle}}
+                                </a>
+                            </dt>
+                            <dt>{{item.commentContent}}</dt>
+                            <dd class="comment-list-label">
+                                {{dateUtil.timeUtil.elapsedTime(item.commentDate)}}
+                                <a href="/news/item.php?id=4653">回复
+                                </a>
+                            </dd>
+                            <div class="list-comment-num">
+                                <a href="#" title="评论数"><span class="badge">{{item.commentCount}}</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr ng-if="$index < (reply.list.length -1)">
+                </div>
+
+                <div class="stao-project-page">
+                    <ul uib-pagination total-items="reply.page.totalItems" ng-model="reply.page.curPage"
+                        max-size="reply.page.maxSize"
+                        items-per-page="reply.page.pageSize" last-text="{{reply.page.last_text}}"
+                        next-text="{{reply.page.next_text}}"
+                        previous-text="{{reply.page.previous_text}}"
+                        class="pagination-sm pull-right" boundary-links="true" ng-change="getReplys()"
+                        first-text="{{reply.page.first_text}}"></ul>
+                </div>
+            </div>
+        </uib-tab>
+    </uib-tabset>
+</div>

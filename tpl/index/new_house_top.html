@@ -1,0 +1,58 @@
+<div ng-controller="NewHouseYestSaleCtrl">
+    <div class="comment-list-label">
+        <div class="btn-group " role="group" aria-label="...">
+            <button type="button" ng-click="switchTab(1)" ng-class="{'active':(newHouse_tbl.dataType == 1)}" class="btn btn-default">天</button>
+            <button type="button" ng-click="switchTab(2)"  ng-class="{'active':(newHouse_tbl.dataType == 2)}" class="btn btn-default">周</button>
+            <button type="button" ng-click="switchTab(3)"  ng-class="{'active':(newHouse_tbl.dataType == 3)}" class="btn btn-default">月</button>
+        </div>
+        <div class="index-new-house-more-detail"><a class="btn btn-primary" href="html/projectList/project.html">更多信息</a></div>
+    </div>
+    <table  class="table">
+        <thead>
+        <tr>
+            <th>排名</th>
+            <th ng-repeat="(objName, item) in newHouse_tbl.theadConfig.sortBuffer">
+                <div>
+                    <span ng-bind="item.name"></span>
+                </div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- 楼盘成交top10数据-->
+        <tr ng-repeat="item in newHouse_tbl.top10"
+            ng-if="newHouse_tbl.top10.length>0">
+            <td>{{$index + 1 + newHouse_tbl.page.pageSize * (newHouse_tbl.page.curPage-1)}}</td>
+            <td ng-bind="item.projectName"></td>
+            <td ng-bind="item.projectRegion"></td>
+            <td ng-bind="item.saleCountByTime"></td>
+            <td ng-bind="item.salePriceByTime"></td>
+            <td ng-bind="item.saleAreaByTime"></td>
+            <td ng-bind="item.soldCountByAll"></td>
+            <td ng-bind="item.soldPriceByAll"></td>
+            <!--<td ng-bind="item.openDate | dateFilter:'yyyy-MM-dd'"></td>-->
+            <!--<td ng-bind="item.managers.length>0?(item.managers.join('，')):'- -'"-->
+            <!--ng-class="item.managers.length>0?'':'msgInvalid'"></td>-->
+        </tr>
+        <tr ng-if="newHouse_tbl.top10.length==0">
+            <td class="table-empty" colspan="8">
+                <span>暂无相关信息</span>
+            </td>
+        </tr>
+        <tr ng-if="newHouse_tbl.top10.length!=0">
+            <td colspan="8">
+                <div class="stao-project-page">
+                    <ul uib-pagination total-items="newHouse_tbl.page.totalItems"
+                        ng-model="newHouse_tbl.page.curPage" max-size="newHouse_tbl.page.maxSize"
+                        items-per-page="newHouse_tbl.page.pageSize" last-text="{{newHouse_tbl.page.last_text}}"
+                        next-text="{{newHouse_tbl.page.next_text}}"
+                        previous-text="{{newHouse_tbl.page.previous_text}}"
+                        class="pagination-sm pull-right" boundary-links="true"
+                        ng-change="newHouse_tbl.getNewHouseTopSaleList()"
+                        first-text="{{newHouse_tbl.page.first_text}}"></ul>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

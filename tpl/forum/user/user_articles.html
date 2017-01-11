@@ -1,0 +1,81 @@
+<div class="project-detail-house-list" ng-controller="UserArticlesCtrl">
+    <!--<div class="panel panel-default">-->
+        <!-- Default panel contents -->
+        <!--<div class="panel-heading">帖子列表</div>-->
+        <div class="row sign-dialog-top">
+            <div class="col-md-6 layout-right">
+                <div class="col-md-4">
+                        <ui-select on-select="articles.selectState()" ng-model="articles.searchState"
+                                   theme="bootstrap">
+                            <ui-select-match  placeholder="选择状态">
+                                {{$select.selected.name}}
+                            </ui-select-match>
+                            <ui-select-choices repeat="item in articles.status | filter: $select.search">
+                                <span ng-bind-html="item.name | highlight: $select.search"></span>
+                            </ui-select-choices>
+                            <ui-select-no-choice>
+                                {{articles.noSelectText}}
+                            </ui-select-no-choice>
+                        </ui-select>
+                </div>
+                <div class="col-md-8">
+                    <div class="input-group">
+                    <input type="text" ng-model="articles.page.key" class="form-control" placeholder="搜索标题...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" ng-click="getArticles()" type="button"><i
+                                        class="fa fa-search lg" aria-hidden="true"></i></button>
+                                </span>
+                    </div>
+                </div><!-- /input-group -->
+            </div><!-- /.row -->
+        </div><!-- /.row -->
+        <!-- Table -->
+        <table class="table">
+            <thead>
+            <tr>
+                <th ng-repeat="(objName, item) in articles.thead">
+                    <div>
+                        <span ng-bind="item.name"></span></i>
+                    </div>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in articles.list"
+                ng-if="articles.list.length>0">
+                <td>{{$index  + 1 + articles.page.pageSize * (articles.page.curPage-1)}}</td>
+                <td title="{{item.articleTitle}}" class="text-omit text-omit-user-article"><a ng-href='{{"./../../../html/forum/article/article_show/article_show.html?articleID=" + item.articleID}}'
+                       ng-bind="item.articleTitle"></a></td>
+                <td>{{(item.plateName.tags.id1 == 1)?(item.plateName.tags.name3 + '/' +item.plateName.tags.name4) :
+                    item.plateName.tags.name2}}
+                </td>
+                <td>{{(item.articleState == 1)?'草稿':'已发布'}}</td>
+                <td class="text-right"><span title="评论"><b class="article-level1"><i class="fa fa-comment-o" aria-hidden="true"></i> {{item.commentCount}}</b></span>
+                    <span title="收藏"><b class="article-level1"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{item.collectCount}}</b> </span>
+                    <span title="点赞"><b class="article-level1"><i class="fa fa-star-o" aria-hidden="true"></i> {{item.likeCount}}</b></span>
+                    <span title="浏览"><span class="article-level1"><i class="fa fa-eye" aria-hidden="true"></i> {{item.readCount}}</span></span>
+                    <span title="发帖日期" class="article-level4"><i class="fa fa-clock-o" aria-hidden="true"></i> {{item.articleCreateDate}}</span>
+                </td>
+            </tr>
+            <tr ng-if="articles.list.length==0">
+                <td class="table-empty" colspan="5">
+                    <span>暂无相关信息</span>
+                </td>
+            </tr>
+            <tr ng-if="articles.list.length!=0">
+                <td colspan="8">
+                    <div class="stao-project-page">
+                        <ul uib-pagination total-items="articles.page.totalItems"
+                            ng-model="articles.page.curPage" max-size="articles.page.maxSize"
+                            items-per-page="articles.page.pageSize" last-text="{{articles.page.last_text}}"
+                            next-text="{{articles.page.next_text}}"
+                            previous-text="{{articles.page.previous_text}}"
+                            class="pagination-sm pull-right" boundary-links="true"
+                            ng-change="getArticles()" first-text="{{articles.page.first_text}}"></ul>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+<!--</div>-->

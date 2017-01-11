@@ -1,0 +1,49 @@
+<div class="project-detail-house-list" ng-controller="UserInfoCtrl">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">我的信息</div>
+
+
+        <!-- List group -->
+        <ul class="list-group">
+            <li class="list-group-item">
+                <h4>头像</h4>
+                <div class="meta-right"><a>修改</a></div>
+                <div class="meta-content"><img class="media-object-img"  ng-src="{{user.profilePhotoURL}}"></div>
+            </li>
+            <li class="list-group-item">
+                <h4>昵称</h4>
+                <div class="meta-right"><span>不可修改</span></div>
+                <div class="meta-content">{{user.nickname}}</div>  <!--不可修改-->
+            </li>
+            <li class="list-group-item">
+                <h4>性别</h4>
+                <div class="meta-right"><a>修改</a></div>
+                <div class="meta-content">{{user.gender}}</div>
+            </li>
+            <li class="list-group-item">
+                <h4>积分</h4>
+                <div class="meta-right">
+                    <span>发一次贴得10分，回复一次得1分</span>
+                    <a>详情</a>
+                </div>
+                <div class="meta-content">{{user.points}}</div>
+            </li>
+            <li class="list-group-item">
+                <h4>手机号</h4>
+                <div class="meta-right"><a>更换</a></div>
+                <div class="meta-content">{{user.phone}}</div>
+            </li>
+            <li class="list-group-item">
+                <h4>职业</h4>
+                <div class="meta-right">(已认证/未认证/去认证/认证中) <a>认证</a></div>
+                <div class="meta-content">房屋中介 <i ng-class="{'fa fa-check-circle fa-lg':true}" style="color:#f57f02" aria-hidden="true"></i></div>
+            </li>
+            <li class="list-group-item">
+                <h4>个人介绍</h4>
+                <div class="meta-right"><span>不可出现联系方式或网址</span> <a>编辑</a></div>
+                <div class="meta-content">{{user.selfIntroduction}}</div>
+            </li>
+        </ul>
+    </div>
+</div>

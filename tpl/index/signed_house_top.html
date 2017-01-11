@@ -1,0 +1,41 @@
+<table ng-controller="NewHouseYestSignCtrl" class="table">
+    <thead>
+    <tr>
+        <th ng-repeat="(objName, item) in signed_house_tbl.theadConfig">
+            <div>
+                <span ng-bind="item.name"></span>
+            </div>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- 楼盘成交top10数据-->
+    <tr ng-repeat="item in signed_house_tbl.data"
+        ng-if="signed_house_tbl.data.length>0">
+        <td>{{$index  + 1 + signed_house_tbl.page.pageSize * (signed_house_tbl.page.curPage-1)}}</td>
+        <td ng-bind="item.projectName"></td>
+        <td ng-bind="item.signCount"></td>
+        <!--<td ng-bind="item.openDate | dateFilter:'yyyy-MM-dd'"></td>-->
+        <!--<td ng-bind="item.managers.length>0?(item.managers.join('，')):'- -'"-->
+        <!--ng-class="item.managers.length>0?'':'msgInvalid'"></td>-->
+    </tr>
+    <tr ng-if="signed_house_tbl.data.length==0">
+        <td class="table-empty" colspan="3">
+            <span>暂无相关信息</span>
+        </td>
+    </tr>
+    <tr ng-if="signed_house_tbl.data.length!=0">
+        <td colspan="3">
+            <div class="stao-project-page">
+                <ul uib-pagination total-items="signed_house_tbl.page.totalItems"
+                    ng-model="signed_house_tbl.page.curPage" max-size="signed_house_tbl.page.maxSize"
+                    items-per-page="signed_house_tbl.page.pageSize" last-text="{{signed_house_tbl.page.last_text}}"
+                    next-text="{{signed_house_tbl.page.next_text}}"
+                    previous-text="{{signed_house_tbl.page.previous_text}}"
+                    class="pagination-sm pull-right" boundary-links="true"
+                    ng-change="querySignHouseTop()" first-text="{{signed_house_tbl.page.first_text}}"></ul>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

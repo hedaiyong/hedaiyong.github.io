@@ -1,0 +1,33 @@
+<div>
+    <div class="stao-project-content">
+        <div class="project-list">
+            <div class="media stao-project-list" ng-repeat="item in project_list.data">
+                <div class="media-left">
+                    <a ng-href="{{'./projectDetail/projectDetail.html?projectSalesID='+ item.projectSalesID + '&projectName='+ item.projectName}}">
+                        <!--<a ui-sref="project({projectSalesID: 1, projectName: 2})">-->
+                        <img class="media-object" ng-src="{{item.photoURL}}" alt="64x64"
+                             style="width: 64px; height: 64px;">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <a ng-href="{{'./projectDetail/projectDetail.html?projectSalesID='+ item.projectSalesID + '&projectName='+ item.projectName}}"
+                       class="media-heading stao-project-title">{{item.projectName}}</a>
+                    <span class=""><span class="stao-project-span">区域：</span>{{item.projectRegion}}</span>
+                    <!--<span class=""><span class="stao-project-span">昨日成交：</span>{{item.saleCountByTime}}套</span>-->
+                    <!--<span class=""><span class="stao-project-span">昨日均价：</span>{{item.salePriceByTime}}元</span>-->
+                    <span class=""><span class="stao-project-span">总成交：</span>{{item.soldCountByAll}}套</span>
+                    <span class=""><span class="stao-project-span">总均价：</span>{{item.soldPriceByAll}}元</span>
+                    <span class=""><span class="stao-project-span">撤销备案：</span>{{item.undoSold}}套</span>
+
+                </div>
+            </div>
+            <div class="stao-project-page">
+                <ul uib-pagination total-items="page.totalItems" ng-model="page.curPage" max-size="page.maxSize"
+                    items-per-page="page.pageSize" last-text="{{page.last_text}}" next-text="{{page.next_text}}"
+                    previous-text="{{page.previous_text}}"
+                    class="pagination-sm pull-right" boundary-links="true" ng-change="pageChanged('', '')"
+                    first-text="{{page.first_text}}"></ul>
+            </div>
+        </div>
+    </div>
+</div>

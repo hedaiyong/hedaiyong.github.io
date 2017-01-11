@@ -1,0 +1,517 @@
+<style type="text/css">/**
+* Duoshuo Comments Style for Amaze UI
+* by Minwe
+*/
+
+#ds-thread #ds-reset .ds-meta {
+    border-bottom-color: #eee;
+}
+
+/* Like button */
+
+#ds-thread #ds-reset a.ds-like-thread-button {
+    border: 1px solid #ddd;
+    background: #f8f8f8;
+    border-radius: 2px;
+}
+
+/* Comments counter */
+
+#ds-thread #ds-reset li.ds-tab a.ds-current {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+    border-radius: 2px;
+}
+
+#ds-thread #ds-reset #ds-hot-posts {
+    border-color: #eee;
+    border-width: 0 0 1px;
+    margin: 10px 0;
+    padding-bottom: 15px;
+    border-radius: 0;
+}
+
+/* Main avatar */
+
+#ds-reset .ds-avatar img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    padding: 1px;
+    background-color: #fff;
+}
+
+/* Comments list */
+
+#ds-thread #ds-reset .ds-comments {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0 20px;
+    margin-bottom: 5px;
+}
+
+#ds-thread #ds-reset li.ds-post {
+    border-top: none;
+}
+
+#ds-thread #ds-reset .ds-post-self {
+    padding: 10px 2px;
+}
+
+#ds-thread #ds-reset .ds-comment-body {
+    position: relative;
+    margin-left: 62px;
+    border: 1px solid #ddd;
+    padding: 0 10px 10px !important;
+    border-radius: 2px;
+}
+
+#ds-thread #ds-reset .ds-comment-body:before,
+#ds-thread #ds-reset .ds-comment-body:after {
+    position: absolute;
+    top: 8px;
+    left: -8px;
+    right: 100%;
+    width: 0;
+    height: 0;
+    display: block;
+    content: " ";
+    border-color: transparent;
+    border-style: solid solid dotted;
+    border-width: 8px 8px 8px 0;
+    pointer-events: none;
+}
+
+#ds-thread #ds-reset .ds-comment-body:before {
+    border-right-color: #dedede;
+    z-index: 1;
+}
+
+#ds-thread #ds-reset .ds-comment-body:after {
+    border-right-color: #f8f8f8;
+    margin-left: 1px;
+    z-index: 2;
+}
+
+#ds-thread #ds-reset .ds-comment-header {
+    background-color: #f8f8f8;
+    padding: 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    border-bottom: 1px solid #eee;
+    font-weight: 500;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+#ds-thread #ds-reset .ds-comment-body p {
+    font-size: 14px;
+}
+
+#ds-thread #ds-reset .ds-comment-footer {
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+/* Nested */
+
+#ds-thread #ds-reset #ds-ctx {
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+#ds-reset #ds-ctx .ds-ctx-entry .ds-avatar {
+    border-radius: 50%;
+}
+
+/* Comment textarea */
+
+#ds-thread #ds-reset .ds-textarea-wrapper {
+    background-image: none;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+    border-color: #ddd;
+}
+
+#ds-reset .ds-gradient-bg {
+    background: #f8f8f8;
+}
+
+#ds-thread #ds-reset .ds-post-options {
+    border-bottom-left-radius: 2px;
+    border-color: #ddd;
+    height: 36px;
+}
+
+#ds-thread #ds-reset .ds-sync {
+    line-height: 34px;
+}
+
+#ds-thread #ds-reset .ds-toolbar-buttons {
+    top: 8px;
+    left: 10px;
+}
+
+#ds-thread #ds-reset .ds-textarea-wrapper textarea {
+    font-size: 14px;
+}
+
+/* Post Butoon */
+
+#ds-thread #ds-reset .ds-post-button {
+    border-bottom-right-radius: 2px;
+    background: #3bb4f2;
+    color: #fff;
+    text-shadow: none;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    height: 38px;
+}
+
+#ds-thread #ds-reset .ds-post-button:hover {
+    background: #0f9ae0;
+    color: #fff;
+    text-shadow: none;
+}
+
+#ds-thread #ds-reset .ds-post-button:focus,
+#ds-thread #ds-reset .ds-post-button:active {
+    outline: 0;
+}
+
+#ds-thread #ds-reset .ds-paginator {
+    margin-bottom: 20px;
+}
+
+#ds-thread #ds-reset .ds-paginator a:hover,
+#ds-thread #ds-reset .ds-paginator a.ds-current {
+    border-radius: 2px;
+    border-color: #ddd;
+}
+
+/** Icon - Dependence FontAwesome */
+
+.ds-icon:before,
+.ds-add-emote:before,
+.ds-toolbar-button:before {
+    display: inline-block;
+    font-family: "FontAwesome";
+    font-weight: normal;
+    font-style: normal;
+    vertical-align: baseline;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.ds-icon-heart,
+.ds-icon-reply,
+.ds-icon-like,
+.ds-icon-share,
+.ds-icon-report,
+.ds-icon-delete,
+.ds-icon-settings {
+    line-height: 13px !important;
+    background-image: none !important;
+}
+
+.ds-icon-heart:before {
+    content: "\f004";
+    color: #dd514c;
+}
+
+.ds-icon-reply:before {
+    content: "\f112";
+}
+
+.ds-icon-like:before {
+    content: "\f08a";
+}
+
+.ds-icon-share:before {
+    content: "\f064";
+}
+
+.ds-icon-report:before {
+    content: "\f06a";
+}
+
+.ds-icon-delete:before {
+    content: "\f00d";
+}
+
+.ds-icon-settings {
+    font-size: 12px !important;
+}
+
+.ds-icon-settings:before {
+    content: "\f013";
+}
+
+.ds-add-emote,
+.ds-toolbar-button {
+    line-height: 19px !important;
+    background: none !important;
+    font-size: 18px !important;
+}
+
+.ds-add-emote:before {
+    content: "\f118";
+}
+
+.ds-add-image:before {
+    content: "\f03e";
+}
+
+/* Narrow */
+#ds-thread.ds-narrow #ds-reset .ds-comment-body {
+    margin-left: 45px;
+}
+</style>
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/api/cdn?fileName=embed.default.css">
+<link type="text/css" rel="stylesheet" href="http://localhost:8080/api/cdn?fileName=jquery-sinaEmotion-2.1.0.min.css">
+<script src="http://localhost:8080/api/cdn?fileName=jquery-sinaEmotion-2.1.0.min.js"></script>
+<script src="http://localhost:8080/api/cdn?fileName=load-image.all.min.js"></script>
+<script src="http://localhost:8080/api/cdn?fileName=uploadImage.js"></script>
+
+
+<div id="ds-thread" ng-controller="forum_comment_ctrl">
+    <div class="article-comment-tool">
+        <button class="btn btn-default" title="评论" ng-click="comment.showComment()" type="button"><i class="fa" ng-class="{'fa-comment':comment.isShow,'fa-comment-o':!comment.isShow}" aria-hidden="true"></i> 评论</button>
+        <button class="btn btn-default comment-like-btn" title="点赞" ng-click="comment.articleSupport()" type="button"><i class="fa" ng-class="{'fa-thumbs-up':comment.isSupport,'fa-thumbs-o-up':!comment.isSupport}" aria-hidden="true"></i> {{comment.supportText}}</button>
+        <button class="btn btn-default comment-like-btn" title="收藏" ng-click="comment.userCollect()" type="button"><i class="fa" ng-class="{'fa-star':comment.isCollection,'fa-star-o':!comment.isCollection}" aria-hidden="true"></i> {{comment.collectText}}</button>
+    </div>
+
+    <div id="ds-reset" class="project-detail-house-list article-ds-replybox">
+        <div id="dsReplyBoxBlock" class="ds-replybox" ng-show="comment.isShow">
+            <ds-avatar-visitor><a class="ds-avatar" onclick="" target="_blank" title="设置头像"
+                                  href="http://duoshuo.com/settings/avatar/">
+                <ds-avatar-image size=""><img
+                        src="http://q.qlogo.cn/qqapp/100229475/5789E8C14BFA5ABC9A77C97E7D8D95C7/100"
+                        alt="两只蚂蚁">
+                </ds-avatar-image>
+            </a></ds-avatar-visitor>
+            <ng-form>
+                <div class="ds-textarea-wrapper ds-rounded-top"><textarea name="message"
+                                                                          ng-model="comment.content"
+                                                                          title="Ctrl + Enter 快捷提交"
+                                                                          placeholder="我要来评论..."></textarea>
+                    <pre class="ds-hidden-text"></pre>
+                </div>
+                <div class="ds-post-toolbar">
+                    <div class="ds-post-options ds-gradient-bg"></div>
+                    <button name="submit" ng-click="addComment()" class="ds-post-button"> {{comment.submitText}}
+                    </button>
+                    <div class="ds-toolbar-buttons"><a style="font-size:12pt;"
+                                                       class="ds-toolbar-button ds-add-emote face"
+                                                       title="插入表情"></a>
+                        <a ng-model="file" class="ds-toolbar-button ds-add-image" title="插入图片"></a></div>
+                </div>
+            </ng-form>
+        </div>
+
+        <ds-comments normal="true">
+            <ds-comments-tab>
+                <div class="ds-comments-info">
+                    <div class="ds-sort">
+                        <a data-v="desc" data-type="order" class="ds-order-desc ds-current">最新</a><a
+                            data-v="asc" data-type="order" class="ds-order-asc ">最早</a><a data-v="hot" data-type="order"
+                                                                                          class="ds-order-hot ">最热</a>
+                        <a data-v="desc" data-type="order" class="ds-order-desc">只看楼主</a>
+                    </div>
+                    <ul class="ds-comments-tabs" id="dsCommentsTabs">
+                        <li class="ds-tab"><a href="javascript:void(0);" data-type="source" data-v="duoshuo"
+                                              class="ds-comments-tab-duoshuo ds-current"><span
+                                class="ds-highlight">{{comment.page.totalItems}}</span>
+                            条评论</a></li>
+                    </ul>
+                </div>
+            </ds-comments-tab>
+            <ul class="ds-comments" style="opacity: 1;">
+                <li class="ds-post" ng-repeat="item in comment.list">
+                    <div class="ds-post-self" data-source="duoshuo">
+                        <div class="ds-avatar" data-user-id="{{curUser.userID}}"><a rel="nofollow author"
+                                                                                    target="_blank"
+                                                                                    ng-href="http://www.zhuzhe2.com/user.html?userID={{item.commentUserID}}"
+                                                                                    title="{{item.commentUserName}}"><img
+                                ng-src="{{item.commentUserURL}}" alt="{{item.commentUserName}}"></a></div>
+                        <div class="ds-comment-body">
+                            <div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account=""
+                                                              ng-href="http://www.zhuzhe2.com/user.html?userID={{item.commentUserID}}"
+                                                              rel="nofollow" target="_blank" data-user-id="4549843">{{item.commentUserName}}</a>
+                            </div>
+                            <p>{{item.commentContent}}</p>
+                            <ol id="ds-ctx">
+                                <li class="ds-ctx-entry" ng-if="item.replys.length > 0"
+                                    ng-repeat="reply in item.replys | limitTo:1 ">
+                                    <div class="ds-avatar"><a rel="nofollow author" target="_blank"
+                                                              ng-href="http://www.zhuzhe2.com/user.html?userID={{reply.fromUserID}}"
+                                                              title="{{reply.fromUserName}}"><img
+                                            ng-src="{{reply.fromUserURL}}"
+                                            alt="{{reply.fromUserName}}"></a></div>
+                                    <div class="ds-ctx-body">
+                                        <div class="ds-ctx-head">
+                                            <a rel="nofollow author" target="_blank"
+                                               ng-href="http://www.zhuzhe2.com/user.html?userID={{reply.fromUserID}}">{{reply.fromUserName}}</a>
+                                            <a href="undefined" target="_blank" rel="nofollow" class="ds-time"
+                                               datetime="{{reply.replyDate}}"
+                                               title="{{dateUtil.timeUtil.fullTime(reply.replyDate)}}">{{dateUtil.timeUtil.elapsedTime(reply.replyDate)}}</a>
+                                            <div class="ds-ctx-nth"
+                                                 title="{{dateUtil.timeUtil.fullTime(reply.replyDate)}}">2楼
+                                            </div>
+                                        </div>
+                                        <div class="ds-ctx-content">
+                                            {{reply.content}}
+
+                                            <div class="ds-comment-actions">
+                                                <a class="ds-post-likes" ng-click="commentSupport(reply.replyID,2,1)"><i
+                                                        class="fa fa-thumbs-o-up" aria-hidden="true"></i> 赞</a>
+                                                <a class="ds-post-repost"
+                                                   ng-click="commentSupport(reply.replyID,2,2)"><i
+                                                        class="fa fa-thumbs-o-down" aria-hidden="true"></i> 呸</a>
+                                                <a class="ds-post-reply"
+                                                   ng-click="openReply($event, item.commentID,2,reply.replyID,reply.fromUserID,reply.fromUserName,(item.replys.length + 1))"
+                                                   href="javascript:void(0);"><span
+                                                        class="ds-icon ds-icon-reply"></span>回复</a>
+                                                <a class="ds-post-delete" ng-if="curUser.userID == reply.fromUserID"
+                                                   ng-click="deleteComment(reply.replyID, 2)"
+                                                   href="javascript:void(0);"><span
+                                                        class="ds-icon ds-icon-delete"></span>删除</a>
+                                                <a class="ds-post-report" href="javascript:void(0);"><span
+                                                        class="ds-icon ds-icon-report"></span>举报</a>
+                                                <!--<li role="menuitem"><a href="#">垃圾营销</a></li>-->
+                                                <!--<li role="menuitem"><a href="#">不实消息</a></li>-->
+                                                <!--<li role="menuitem"><a href="#">有害信息</a></li>-->
+                                                <!--<li role="menuitem"><a href="#">违法信息</a></li>-->
+                                                <!--<li role="menuitem"><a href="#">淫秽色情</a></li>-->
+                                                <!--<li role="menuitem"><a href="#">人身攻击我</a></li>-->
+                                                <!--<li role="menuitem"><a href="#">抄袭我的内容</a></li>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li ng-if="item.replys.length > 2" class="ds-ctx-entry"
+                                    data-comment="{{item.commentID}}"><a ng-click="expendReply(item.commentID)"
+                                                                         class="ds-expand">还有{{item.replys.length -
+                                    2}}条评论</a></li>
+                                <li class="ds-ctx-entry" ng-if="item.replys.length > 2" style="display:none"
+                                    data-comment="{{item.commentID}}"
+                                    ng-repeat="reply in item.replys | limitTo:(item.replys.length -2) : 1 ">
+                                    <div class="ds-avatar"><a rel="nofollow author" target="_blank"
+                                                              ng-href="http://www.zhuzhe2.com/user.html?userID={{reply.fromUserID}}"
+                                                              title="{{reply.fromUserName}}"><img
+                                            ng-src="{{reply.fromUserURL}}" alt="{{reply.fromUserName}}"></a>
+                                    </div>
+                                    <div class="ds-ctx-body">
+                                        <div class="ds-ctx-head"><a rel="nofollow author" target="_blank"
+                                                                    ng-href="http://www.zhuzhe2.com/user.html?userID={{reply.fromUserID}}">{{reply.fromUserName}}</a>
+                                            <div class="stao-inline-block" ng-if="reply.replyType == 2"> 回复 <a
+                                                    rel="nofollow author" target="_blank"
+                                                    ng-href="http://www.zhuzhe2.com/user.html?userID={{reply.toUserID}}">{{reply.toUserName}}</a>
+                                            </div>
+                                            <a href="undefined" target="_blank" rel="nofollow" class="ds-time"
+                                               datetime="{{reply.replyDate}}"
+                                               title="{{dateUtil.timeUtil.fullTime(reply.replyDate)}}">{{dateUtil.timeUtil.elapsedTime(reply.replyDate)}}</a>
+                                            <div class="ds-ctx-nth"
+                                                 title="{{dateUtil.timeUtil.fullTime(reply.replyDate)}}">{{$index+3}}楼
+                                            </div>
+                                        </div>
+                                        <div class="ds-ctx-content">{{reply.content}}
+                                            <div class="ds-comment-actions">
+                                                <a class="ds-post-likes" ng-click="commentSupport(reply.replyID,2,1)"><i
+                                                        class="fa fa-thumbs-o-up" aria-hidden="true"></i> 赞</a>
+                                                <a class="ds-post-repost"
+                                                   ng-click="commentSupport(reply.replyID,2,2)"><i
+                                                        class="fa fa-thumbs-o-down" aria-hidden="true"></i> 呸</a>
+                                                <a class="ds-post-reply"
+                                                   ng-click="openReply($event,item.commentID,2,reply.replyID,reply.fromUserID,reply.fromUserName,(item.replys.length + 1))"
+                                                   href="javascript:void(0);"><span
+                                                        class="ds-icon ds-icon-reply"></span>回复</a>
+                                                <a class="ds-post-delete" ng-if="reply.fromUserID == curUser.userID"
+                                                   ng-click="deleteComment(reply.replyID, 2)"
+                                                   href="javascript:void(0);"><span
+                                                        class="ds-icon ds-icon-delete"></span>删除</a>
+                                                <a class="ds-post-report" href="javascript:void(0);"><span
+                                                        class="ds-icon ds-icon-report"></span>举报</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="ds-ctx-entry" ng-if="item.replys.length > 1"
+                                    ng-repeat="reply in item.replys | limitTo:1:(item.replys.length-1)">
+                                    <div class="ds-avatar"><a rel="nofollow author" target="_blank"
+                                                              ng-href="http://www.zhuzhe2.com/user.html?userID={{reply.fromUserID}}"
+                                                              title="{{reply.fromUserName}}"><img
+                                            ng-src="{{reply.fromUserURL}}" alt="{{reply.fromUserName}}"></a>
+                                    </div>
+                                    <div class="ds-ctx-body">
+                                        <div class="ds-ctx-head"><a rel="nofollow author" target="_blank"
+                                                                    ng-href="http://www.zhuzhe2.com/user.html?userID={{reply.fromUserID}}">{{reply.fromUserName}}</a>
+                                            <div class="stao-inline-block" ng-if="reply.replyType == 2"> 回复 <a
+                                                    rel="nofollow author" target="_blank"
+                                                    ng-href="http://www.zhuzhe2.com/user.html?userID={{reply.toUserID}}">{{reply.toUserName}}</a>
+                                            </div>
+                                            <a href="undefined" target="_blank" rel="nofollow" class="ds-time"
+                                               datetime="{{reply.replyDate}}"
+                                               title="{{dateUtil.timeUtil.fullTime(reply.replyDate)}}">{{dateUtil.timeUtil.elapsedTime(reply.replyDate)}}</a>
+                                            <div class="ds-ctx-nth"
+                                                 title="{{dateUtil.timeUtil.fullTime(reply.replyDate)}}">
+                                                {{item.replys.length + 1}}楼
+                                            </div>
+                                        </div>
+                                        <div class="ds-ctx-content">{{reply.content}}
+                                            <div class="ds-comment-actions">
+                                                <a class="ds-post-likes" ng-click="commentSupport(reply.replyID,2,1)"><i
+                                                        class="fa fa-thumbs-o-up" aria-hidden="true"></i> 赞</a>
+                                                <a class="ds-post-repost"
+                                                   ng-click="commentSupport(reply.replyID,2,2)"><i
+                                                        class="fa fa-thumbs-o-down" aria-hidden="true"></i> 呸</a>
+                                                <a class="ds-post-reply"
+                                                   ng-click="openReply($event,item.commentID,2,reply.replyID, reply.fromUserID,reply.fromUserName,(item.replys.length + 1) )"
+                                                   href="javascript:void(0);"><span
+                                                        class="ds-icon ds-icon-reply"></span>回复</a>
+                                                <a class="ds-post-delete" ng-if="reply.fromUserID == curUser.userID"
+                                                   ng-click="deleteComment(reply.replyID, 2)"
+                                                   href="javascript:void(0);"><span
+                                                        class="ds-icon ds-icon-delete"></span>删除</a>
+                                                <a class="ds-post-report" href="javascript:void(0);"><span
+                                                        class="ds-icon ds-icon-report"></span>举报</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+
+                            <div class="ds-comment-footer ds-comment-actions"><span class="ds-time"
+                                                                                    datetime="{{item.commentDate}}"
+                                                                                    title="{{dateUtil.timeUtil.fullTime(item.commentDate)}}">{{dateUtil.timeUtil.elapsedTime(item.commentDate)}}</span>
+                                <a class="ds-post-likes" ng-click="commentSupport(item.commentID,1,1)"><i
+                                        class="fa fa-thumbs-o-up" aria-hidden="true"></i> 赞</a>
+                                <a class="ds-post-repost" ng-click="commentSupport(item.commentID,1,2)"><i
+                                        class="fa fa-thumbs-o-down" aria-hidden="true"></i> 呸</a>
+                                <a class="ds-post-reply"
+                                   ng-click="openReply($event, item.commentID, 1, '\'\'', item.commentUserID, item.commentUserName,(item.replys.length + 1))"
+                                   href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a>
+                                <a class="ds-post-delete" ng-if="item.commentUserID == curUser.userID"
+                                   ng-click="deleteComment(item.commentID, 1)"><span
+                                        class="ds-icon ds-icon-delete"></span>删除</a>
+                                <a class="ds-post-report" href="javascript:void(0);"><span
+                                        class="ds-icon ds-icon-report"></span>举报</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </ds-comments>
+    </div>
+    <div class="stao-project-page">
+        <ul uib-pagination total-items="comment.page.totalItems" ng-model="comment.page.curPage"
+            max-size="comment.page.maxSize"
+            items-per-page="comment.page.pageSize" last-text="{{comment.page.last_text}}"
+            next-text="{{comment.page.next_text}}" previous-text="{{comment.page.previous_text}}"
+            class="pagination-sm pull-right" boundary-links="true" ng-change="comment.pageChanged()"
+            first-text="{{comment.page.first_text}}"></ul>
+    </div>
+</div>

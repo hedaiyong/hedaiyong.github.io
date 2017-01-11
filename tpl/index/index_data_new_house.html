@@ -1,0 +1,23 @@
+<div class="col-sm-12">
+    <uib-tabset active="activeForm">
+        <uib-tab index="0" select="getRegionHouse()">
+            <uib-tab-heading>
+                二手房/新房成交
+            </uib-tab-heading>
+            <div class="project-detail-house-list" ng-include="'tpl/index/index_data_region.html'"></div>
+        </uib-tab>
+        <uib-tab select="getNewHouseTopSaleList()" index="1">
+            <uib-tab-heading>
+                成交套数排行
+            </uib-tab-heading>
+            <div class="project-detail-house-list" ng-include="'tpl/index/new_house_top.html'"></div>
+        </uib-tab>
+        <uib-tab index="2" select="querySignHouseTop()">
+            <uib-tab-heading>
+                签约套数排行
+            </uib-tab-heading>
+            <div ng-include="'tpl/index/signed_house_top.html'" class="project-detail-house-list"></div>
+        </uib-tab>
+    </uib-tabset>
+
+</div>

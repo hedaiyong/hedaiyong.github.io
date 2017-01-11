@@ -1,0 +1,46 @@
+<!--二手房成交数据-->
+<div class="house-charts-top" ng-controller="SecondHandHouseChartCtrl">
+
+    <h3 class="house-charts-top">二手房成交数据</h3>
+    <hr>
+    <div class="col-sm-12">
+        <div class="col-sm-5">
+            <div class="btn-group " role="group" aria-label="...">
+                <button type="button" ng-click="switchTab(1)"  ng-class="{'active':(second_hand_house.dataType == 1)}" class="btn btn-default">成交套数</button>
+                <button type="button" ng-click="switchTab(2)"  ng-class="{'active':(second_hand_house.dataType == 2)}" class="btn btn-default">成交面积</button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                       ng-model="second_hand_house.time.startTime"
+                       is-open="second_hand_house.time.startOpen" datepicker-options="second_hand_house.time.startOptions" ng-required="true"
+                       close-on-date-selection="true"
+                       alt-input-formats="altInputFormats" show-button-bar="false" placeholder="{{second_hand_house.time.startTime}}"
+                       title="选择开始时间"/>
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="second_hand_house.time.openStart()"><i
+                                    class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+            </p>
+        </div>
+        <div class="col-md-3">
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup ng-model="second_hand_house.time.endTime"
+                       is-open="second_hand_house.time.endOpen" datepicker-options="second_hand_house.time.endOptions" ng-required="true"
+                       close-on-date-selection="true"
+                       alt-input-formats="altInputFormats" show-button-bar="false" placeholder="{{second_hand_house.time.endTime}}"
+                       title="选择结束时间"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="second_hand_house.time.openEnd()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </p>
+        </div>
+        <div class="col-md-1">
+            <button type="button" class="btn  btn-primary" ng-click="querySecondHandHouseRegion()">查询</button>
+        </div>
+    </div>
+    <ng-echarts class="article-ds-replybox col-md-12 echarts" ec-config="second_hand_house.charts.config"
+                ec-option="second_hand_house.charts.option"></ng-echarts>
+</div>
