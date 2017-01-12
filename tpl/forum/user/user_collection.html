@@ -1,3 +1,35 @@
-<div ng-controller="UserCollectionCtrl">
-    <p>user-info</p>
+<div class="project-detail-house-list" ng-controller="UserCollectionCtrl">
+    <div ng-repeat="item in collect.list">
+        <div class="media">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object img-circle media-object-img" ng-src="{{item.userURL}}" alt="64x64">
+                </a>
+            </div>
+            <div class="media-body">
+                <div class="index-inline-block fn-right ft-fade">
+                    <span class="list-hot-plate">收藏时间 <span class="article-level1">{{dateUtil.timeUtil.elapsedTime(item.collectDate)}}</span></span>
+                    <span>作者 <b
+                                        class="article-level1">{{item.userName}}</b> </span> &nbsp;•&nbsp;
+                    <span>发帖时间 <span class="article-level1">{{dateUtil.timeUtil.elapsedTime(item.articleDate)}}</span> </span>
+
+                </div>
+                <div class="index-inline-block text-omit text-omit-article-list">
+                    <a data-id="1462843800092" data-type="0" rel="bookmark" title="{{item.articleTitle}}"
+                       ng-href='{{"../../../html/forum/article/article_show/article_show.html?articleID=" + item.articleID}}'>
+                        {{item.articleTitle}}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <hr ng-if="$index < (collect.list.length -1)">
+    </div>
+
+    <div class="stao-project-page">
+        <ul uib-pagination total-items="collect.page.totalItems" ng-model="collect.page.curPage" max-size="collect.page.maxSize"
+            items-per-page="collect.page.pageSize" last-text="{{collect.page.last_text}}" next-text="{{collect.page.next_text}}"
+            previous-text="{{collect.page.previous_text}}"
+            class="pagination-sm pull-right" boundary-links="true" ng-change="getCollects()"
+            first-text="{{collect.page.first_text}}"></ul>
+    </div>
 </div>

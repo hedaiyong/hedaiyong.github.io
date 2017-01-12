@@ -289,7 +289,45 @@ user_app.config(function ($httpProvider, $urlRouterProvider, $stateProvider) {
             });
         };
     })
-    .controller('UserCollectionCtrl', function ($scope, $window, $rootScope, $http, $timeout, GLOBAL_CONFIG) {
+    //用户收藏的文章
+    .controller('UserCollectionCtrl', function ($scope, $window, $rootScope, $http, $timeout, GLOBAL_CONFIG, UtilService) {
+        $scope.dateUtil = UtilService;
+
+        $scope.collect = {
+            list:[],
+            page: {
+                key: '',
+                totalPage: 1,
+                totalItems: 1,
+                pageSize: 10,
+                curPage: 1,
+                maxSize: 5,
+                first_text: '首页',
+                last_text: '尾页',
+                next_text: '下页',
+                previous_text: '上页'
+            }
+        };
+
+        $scope.getCollects = function () {
+            $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/getCollectedArticlesWeb?&pageSize=' + $scope.collect.page.pageSize
+                + '&curPage=' + $scope.collect.page.curPage
+                + '&key=' + $scope.collect.page.key
+            )
+                .success(function (ret) {
+                    if (ret.code == '000') {
+                        $scope.collect.page.totalItems = ret.data.totalItems;
+                        $scope.collect.page.curPage = ret.data.curPage;
+                        $scope.collect.list = ret.data.data;
+                    } else {
+                        // $window.location = '../../common/error/500.html';
+                    }
+                }).error(function (msg) {
+                // $window.location = '../../common/error/500.html';
+            });
+        };
+
+        $scope.getCollects();
 
     })
     .controller('UserMsgCtrl', function ($scope, $window, $rootScope, $http, $timeout, GLOBAL_CONFIG) {
