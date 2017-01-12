@@ -660,7 +660,9 @@
 .layout-right {
     float: right;
 }
-
+.layout-left {
+    float: left;
+}
 .text-right {
     text-align: right;
 }
