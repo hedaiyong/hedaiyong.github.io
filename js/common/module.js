@@ -8,6 +8,7 @@ staoModule.constant('GLOBAL_CONFIG', {
         STATUS_PUBLISHED: 2   //已发布
     },
     url: {
+        domain:window.location.host,
         'ip': (function () {
             return '114.55.42.174';
         })(),
@@ -17,6 +18,7 @@ staoModule.constant('GLOBAL_CONFIG', {
     }
 });
 staoModule.value('GLOBAL_VALUE', {
+    domain:window.location.host,
     isLogin: false,
     userName: ""
 });
@@ -531,7 +533,9 @@ staoModule.constant('AUTH_EVENTS', {
     .controller('LoginController', function ($scope, $window, $http, $rootScope,$interval, AUTH_EVENTS, AuthService, GLOBAL_CONFIG, Session, Md5, GLOBAL_VALUE,ngDialog) {
         var signIn =  '<p style="color: #337ab7"><i class="fa fa-check-square  fa-lg" aria-hidden="true"></i> 登录成功</p>';
         var signUp =  '<p style="color: #337ab7"><i class="fa fa-check-square  fa-lg" aria-hidden="true"></i> 注册成功</p>';
-
+        
+        $scope.common = GLOBAL_CONFIG.url;
+        
         $scope.user = {
             loginOut: false,
             isLogin: true,

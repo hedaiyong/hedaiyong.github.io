@@ -63,10 +63,10 @@
                         {{user.nickname}} <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                        <li role="menuitem"><a href="http://zuze2.com/html/forum/user/user.html">个人信息</a></li>
+                        <li role="menuitem"><a ng-href="{{'http://' + common.domain + '/html/forum/user/user.html'}}">个人信息</a></li>
                         <li role="menuitem"><a href="#">我的评论 <span class="badge stao-index-house-detail">3</span></a></li>
                         <li role="menuitem"><a href="#">我的帖子 <span class="badge stao-index-house-detail">3</span></a></li>
-                        <li role="menuitem"><a href="http://zuze2.com/html/forum/article/article.html">发表新帖</a></li>
+                        <li role="menuitem"><a ng-href="{{'http://' + common.domain + '/html/forum/article/article.html'}}">发表新帖</a></li>
                         <li class="divider"></li>
                         <li role="menuitem"><a ng-click="signOut()" href="#">退出</a></li>
                     </ul>
