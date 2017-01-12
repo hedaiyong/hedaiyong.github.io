@@ -4,7 +4,10 @@
 'use strict';
 article_app.config(function ($httpProvider) {
     $httpProvider.defaults.withCredentials = true;
-}).controller('article_ctrl', function ($scope,$window, $rootScope, $http, $timeout, GLOBAL_CONFIG) {
+}).controller('article_ctrl', function ($scope,$window, $rootScope, $http, $timeout, GLOBAL_CONFIG, UtilService) {
+    var saveDraftText =  '<p style="color: #337ab7"><i class="fa fa-check-square  fa-lg" aria-hidden="true"></i> 保存成功</p>';
+    var releaseText =  '<p style="color: #337ab7"><i class="fa fa-check-square  fa-lg" aria-hidden="true"></i> 发布成功</p>';
+    var failText =  '<p style="color: #b71223"><i class="fa fa-times-circle  fa-lg" aria-hidden="true"></i>失败了..</p>';
 
     $rootScope.ip = GLOBAL_CONFIG.url.ip;
     $rootScope.port = GLOBAL_CONFIG.url.port;
@@ -23,15 +26,20 @@ article_app.config(function ($httpProvider) {
         content: '<div>Lorem ipsum dolor sit amet,<strong>consectetur</strong>adipiscing elit<del>Praesent lacus diam</del>, fermentum et venenatis quis, suscipit sed nisi. In pharetra sem eget orci posuere pretium.<em>Integer</em>non eros<strong><em>scelerisque</em></strong>, consequat lacus id, rutrum felis. Nulla elementum felis urna, at placerat arcu ultricies in.</div><ul><li>Proin elementum sollicitudin sodales.</li><li>Nam id erat nec nibh dictum cursus.</li></ul><blockquote>In et urna eros. Fusce molestie, orci vel laoreet tempus, sem justo blandit magna, at volutpat velit lacus id turpis.<br>Quisque malesuada sem at interdum congue. Aenean dapibus fermentum orci eu euismod.</blockquote><div></div>',
         //取消
         cancel:function () {
-
+            
         },
         //保存为草稿
         saveDraft:function () {
-            $scope.addArticle(GLOBAL_CONFIG.article.STATUS_DRAFT);
+            if (UtilService.openSignDialog(ngDialog)){
+                $scope.addArticle(GLOBAL_CONFIG.article.STATUS_DRAFT);
+            }
         },
         //发布
         release:function () {
-            $scope.addArticle(GLOBAL_CONFIG.article.STATUS_PUBLISHED);
+            if (UtilService.openSignDialog(ngDialog)){
+                $scope.addArticle(GLOBAL_CONFIG.article.STATUS_PUBLISHED);
+            }
+            
         },
         articleFocus:function () {
             $scope.article.isShowTitleNoEmpty=false;
@@ -72,7 +80,21 @@ article_app.config(function ($httpProvider) {
                 };
             $http.post(url, params, postCfg)
                 .success(function(ret){
-                    console.log(ret);
+                    if(ret.code == '000'){
+                        if (status == GLOBAL_CONFIG.article.STATUS_DRAFT){
+                            UtilService.openMessage(saveDraftText, ngDialog, function () {
+                                $window.location.href = "http://" + GLOBAL_CONFIG.url.domain + "/html/forum/article/article.html?articleID=" + ret.data;
+                            });
+                        }else if (status == GLOBAL_CONFIG.article.STATUS_PUBLISHED){
+                            UtilService.openMessage(releaseText, ngDialog, function () {
+                                $window.location.href = "http://" + GLOBAL_CONFIG.url.domain + "/html/forum/user/user.html#/user_articles"
+                            });
+                        }
+                    }else {
+                        UtilService.openMessage(failText, ngDialog, null);
+                    }
+
+
                 });
         }
     };

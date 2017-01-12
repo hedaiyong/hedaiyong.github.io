@@ -144,7 +144,23 @@ staoModule.constant('AUTH_EVENTS', {
         return true;
 
     };
-    this.getUrlParameter = function (sParam) {
+    self.openMessage = function (content,ngDialog, callback) {
+        var dialog = ngDialog.open({
+            template: content,
+            plain: true,
+            className: 'ngDialog-theme-success',
+            closeByDocument: true,
+            closeByEscape: true
+        });
+        setTimeout(function () {
+            dialog.close();
+            $window.location.reload();
+            if (callback != null){
+                callback();
+            }
+        }, 1000);
+    };
+    self.getUrlParameter = function (sParam) {
         var sPageURL = decodeURIComponent(window.location.search.substring(1)),
             sURLVariables = sPageURL.split('&'),
             sParameterName,
@@ -586,7 +602,7 @@ staoModule.constant('AUTH_EVENTS', {
                 $window.location.reload();
                 if (isClose){
                     ngDialog.close();
-                    $scope.openMessage(signUp);
+                    UtilService.openMessage(signUp, ngDialog, null);
                 }
             }, function () {
                 $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
@@ -607,7 +623,7 @@ staoModule.constant('AUTH_EVENTS', {
                     $scope.user.isLogin = true;
                     if (isClose){
                         ngDialog.close();
-                        $scope.openMessage(signIn);
+                        UtilService.openMessage(signIn, ngDialog, null);
                     }else {
                         $window.location.reload();
                     }
@@ -616,20 +632,6 @@ staoModule.constant('AUTH_EVENTS', {
                     $scope.msg.isLoginError = true;
                 }
             });
-        };
-
-        $scope.openMessage = function (content) {
-            var dialog = ngDialog.open({
-                template: content,
-                plain: true,
-                className: 'ngDialog-theme-success',
-                closeByDocument: true,
-                closeByEscape: true
-            });
-            setTimeout(function () {
-                dialog.close();
-                $window.location.reload();
-            }, 1000);
         };
 
         //退出登录
