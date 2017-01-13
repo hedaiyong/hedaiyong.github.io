@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://js.cdnbee.com/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="http://114.55.42.174:9090/api/cdn?fileName=ui-bootstrap-csp.css"/>
     <link rel="stylesheet" href="http://114.55.42.174:9090/api/src?fileName=css/stao.css"/>
+
     <link rel="icon" href="../../favicon.ico"/>
     <title>筑这儿-注册</title>
 
@@ -32,7 +33,7 @@
         </div>
     </div>
 </nav>
-<div class="container theme-showcase stao-index-container background-white" role="main">
+<div class="container theme-showcase stao-index-container background-white" role="main" >
     <div class="col-sm-12" style="padding-top: 35px">
         <div class="col-sm-3">
             <form style="margin-top: 31px" name="loginForm"
@@ -58,16 +59,17 @@
                     <div ng-show="common.phone.showError"><p class="alert-login-error alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{common.phone.msg}}</p></div>
                 </div>
                 <div class="input-group list-sign-top">
-                    <input placeholder="图片验证码" aria-describedby="sizing-addon2" ng-focus="common.tvercode.showError = false" class="form-control" type="text"
+                    <input placeholder="点击图片更换验证码" aria-describedby="sizing-addon2" ng-focus="common.tvercode.showError = false" class="form-control" type="text"
                            name="tvercode"
                            ng-model="credentials.vercode" required="required">
-                    <span class="display-table-cell"><img src="http://114.55.42.174:9090/api/getVerCodeOpen" title="点击换验证码" onclick="this.src='http://114.55.42.174:9090/api/getVerCodeOpen?'+Math.random();" ></span>
+
+                    <p class="display-table-cell"><img class="vercode-layout" src="http://114.55.42.174:9090/api/getVerCodeOpen" title="点击换验证码" onclick="this.src='http://114.55.42.174:9090/api/getVerCodeOpen?'+Math.random();" ></p>
 
                 </div>
                 <div class="login-error-msg" ng-show="loginForm.$submitted || loginForm.tvercode.$touched">
                     <div ng-show="common.tvercode.showError"><p class="alert-login-error alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{common.tvercode.msg}}</p></div>
                 </div>
-                <div class="input-group list-sign-top">
+                <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-envelope-square fa-lg"
                                                        aria-hidden="true"></i></span>
                     <input placeholder="短信验证码" ng-focus="common.vercode.showError = false" aria-describedby="sizing-addon2" class="form-control" type="text"
@@ -107,6 +109,12 @@
 </div>
 <ng-include src="'../../tpl/common/footer.html'"></ng-include>
 </body>
+
+<script src="https://js.cdnbee.com/libs/ng-dialog/0.6.4/js/ngDialog.min.js"></script>
+<link rel="stylesheet" href="http://114.55.42.174:9090/api/cdn?fileName=ngDialog.min.css"/>
+<link rel="stylesheet" href="http://114.55.42.174:9090/api/cdn?fileName=ngDialog-theme-default.css"/>
+<link rel="stylesheet" href="http://114.55.42.174:9090/api/cdn?fileName=ngDialog-theme-success.css"/>
+
 <script src="http://114.55.42.174:9090/api/src?fileName=js/common/module.js"></script>
 <script src="http://114.55.42.174:9090/api/src?fileName=html/sign/app.js"></script>
 <script src="http://114.55.42.174:9090/api/src?fileName=html/sign/ctrl.js"></script>

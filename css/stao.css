@@ -737,3 +737,11 @@
 .footer-color {
     background-color: #e8e8df;
 }
+
+.margin-zero{
+    margin: 0;
+}
+.vercode-layout{
+    vertical-align: baseline;
+    height: 34px;
+}
