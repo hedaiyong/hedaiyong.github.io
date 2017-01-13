@@ -75,7 +75,7 @@
                     <input placeholder="短信验证码" ng-focus="common.vercode.showError = false" aria-describedby="sizing-addon2" class="form-control" type="text"
                            name="vercode"
                            ng-model="credentials.vercode" required="required">
-                    <span class="input-group-addon" ng-click="common.sendCode()">{{common.vercode.text}}</span>
+                    <span class="btn btn-default display-table-cell border-radius-zero" ng-click="common.sendCode()">{{common.vercode.text}}</span>
                 </div>
                 <div class="login-error-msg" ng-show="loginForm.$submitted || loginForm.vercode.$touched">
                     <div ng-show="common.vercode.showError"><p class="alert-login-error alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{common.vercode.msg}}</p></div>

@@ -40,9 +40,8 @@ signUp_project_app.controller('signUp_project_ctrl', function ($window,$scope, $
     };
     //发送手机验证码
     $scope.common.sendCode = function () {
-        var phoneReg = /^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,2,3,5-9]))\\d{8}$/;
 
-        if (!phoneReg.test($scope.credentials.phone)){
+        if ($scope.credentials.phone == '' || $scope.credentials.phone == null || $scope.credentials.tvercode.phone != 11){
             $scope.common.phone.showError = true;
             $scope.common.phone.msg = "手机号格式不正确哦";
         }else if ($scope.credentials.tvercode == '' || $scope.credentials.tvercode == null || $scope.credentials.tvercode.length != 4){
