@@ -44,21 +44,40 @@
                            ng-model="credentials.nickname" required="required">
 
                 </div>
+                <div class="login-error-msg" ng-show="loginForm.$submitted || loginForm.nickname.$touched">
+                    <div ng-show="common.nickname.showError"><p class="alert-login-error alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{common.nickname.msg}}</p></div>
+                </div>
                 <div class="input-group list-sign-top">
                     <span class="input-group-addon"><i class="fa fa-address-book fa-lg" aria-hidden="true"></i></span>
                     <input placeholder="手机号" aria-describedby="sizing-addon2" class="form-control" type="text"
                            name="phone"
                            ng-model="credentials.phone" required="required">
-                </div>
 
+                </div>
+                <div class="login-error-msg" ng-show="loginForm.$submitted || loginForm.phone.$touched">
+                    <div ng-show="common.phone.showError"><p class="alert-login-error alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{common.phone.msg}}</p></div>
+                </div>
+                <div class="input-group list-sign-top">
+                    <input placeholder="图片验证码" aria-describedby="sizing-addon2" class="form-control" type="text"
+                           name="tvercode"
+                           ng-model="credentials.vercode" required="required">
+                    <span class="display-table-cell"><img src="http://114.55.42.174:9090/api/getVerCodeOpen" title="点击换验证码" onclick="this.src='http://114.55.42.174:9090/api/getVerCodeOpen?'+Math.random();" ></span>
+
+                </div>
+                <div class="login-error-msg" ng-show="loginForm.$submitted || loginForm.tvercode.$touched">
+                    <div ng-show="common.tvercode.showError"><p class="alert-login-error alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{common.tvercode.msg}}</p></div>
+                </div>
                 <div class="input-group list-sign-top">
                     <span class="input-group-addon"><i class="fa fa-envelope-square fa-lg"
                                                        aria-hidden="true"></i></span>
                     <input placeholder="短信验证码" aria-describedby="sizing-addon2" class="form-control" type="text"
                            name="vercode"
                            ng-model="credentials.vercode" required="required">
+                    <span class="input-group-addon">发送验证码</span>
                 </div>
-
+                <div class="login-error-msg" ng-show="loginForm.$submitted || loginForm.vercode.$touched">
+                    <div ng-show="common.vercode.showError"><p class="alert-login-error alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{common.vercode.msg}}</p></div>
+                </div>
                 <div class="input-group list-sign-top">
                     <span class="input-group-addon"><i class="fa fa-lock fa-lg" style="width: 15px;"
                                                        aria-hidden="true"></i></span>
@@ -66,7 +85,9 @@
                            name="userpassword"
                            ng-model="credentials.password" required="required">
                 </div>
-
+                <div class="login-error-msg" ng-show="loginForm.$submitted || loginForm.password.$touched">
+                    <div ng-show="common.password.showError"><p class="alert-login-error alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{common.password.msg}}</p></div>
+                </div>
                 <div class="btn-group stao-index-head-sign-btn" role="group">
                     <button class="stao-index-body-btn" type="submit">注册</button>
                 </div>
@@ -76,8 +97,9 @@
             <h3 style="text-align: center;">欢迎来到筑这儿</h3>
             <div class="welcome-desc">
                 <blockquote>
-                    <p>住这儿-筑这儿 来了就是深圳人，在这落户、恋爱、结婚、买房生子，经验分享生活服务平台。这里是程序员和设计师的聚集地，汇聚了严谨求实的工程师和富有创意的设计师。</p>
-                    <p>我们正在构建一个活跃的小众社区。大家在这里相互信任，以平等 • 自由 • 奔放的价值观进行分享交流。最终，希望大家能够找到与自己志同道合的伙伴，共同成长。</p>
+                    <p></p>
+                    <p>住这儿-筑这儿 来了深圳，我们在这里找工作、落户、恋爱、结婚、买房生子，我们不仅仅住这儿，其实是筑这儿。筑这儿是活跃的生活服务平台，我们可以吐槽邻里关系，家庭琐事，也可以查询到各种房价数据。</p>
+                    <p>我们正在构建一个值得信任、畅所欲言的社区。最终，希望为大家提供各种服务，共同成长。</p>
                 </blockquote>
             </div>
         </div>
