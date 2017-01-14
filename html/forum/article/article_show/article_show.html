@@ -42,16 +42,14 @@
                                          class="img-circle" style="width: 117px;height: 117px;">
                                     <div class="caption">
 
-                                        <p class="word-box text-center" style="font-size: 12px" title="hello_world">
-                                            hello_worldhhh</p>
-                                        <p style="font-size: 12px;" class="text-center">房产中介<i
+                                        <p class="word-box text-center" style="font-size: 12px" title="{{user.info.nickname}}">
+                                            {{user.info.nickname}}</p>
+                                        <p style="font-size: 12px;" class="text-center">{{user.jobs[user.info.type]}}<i
                                                 ng-class="{'fa fa-check-circle fa-lg':true}" style="color:#f57f02"
                                                 aria-hidden="true"></i></p>
-                                        <span class="word-box">积分：900000</span>
-                                        <span class="word-box">性别：<i class="fa fa-female" aria-hidden="true"></i> <i
-                                                class="fa fa-male" aria-hidden="true"></i></span>
-                                        <span class="word-box">帖子：<a>3</a></span>
-                                        <span class="word-box">回帖：<a>3000</a></span>
+                                        <span class="word-box">性别：<i class="fa" ng-class="{'fa-female':(user.info.sex==2),'fa-male':(user.info.sex==1)}" aria-hidden="true"></i> </span>
+                                        <!--<span class="word-box">帖子：<a>3</a></span>-->
+                                        <!--<span class="word-box">回帖：<a>3000</a></span>-->
                                     </div>
                                 </div>
                             </div>
