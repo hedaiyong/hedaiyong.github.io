@@ -46,13 +46,13 @@
                           <div class="btn-group stao-index-head-sign-btn" role="group">
                               <button class="stao-index-body-btn" type="submit">登录</button>
                               <button class="stao-index-body-btn"
-                                      onclick="window.location.href = 'https://hacpai.com/forget-pwd'">忘记密码</button>
+                                      onclick="window.location.href = '#'">忘记密码</button>
                           </div>
                        </form>
                   </div>
               </ul>
             </span>
-            | <a href="http://zuze2.com/html/sign/sign_up.html">注册</a>
+            | <a ng-href="{{'http://' + common.domain + '/html/sign/sign_up.html'}}">注册</a>
         </span>
 
         <ul class="nav nav-pills stao-navbar-right-user" role="tablist" ng-if="user.isLogin">
@@ -78,7 +78,7 @@
     <!--弹出登录和注册界面-->
     <script type="text/ng-template" id="signInOrSignUpDialog">
         <div class="ngdialog-message">
-            <h5><i class="fa fa-info-circle" aria-hidden="true"></i>还没有登录哦</h5>
+            <h5><i class="fa fa-info-circle" aria-hidden="true"></i>还没有登录哦 <a ng-href="{{'http://' + common.domain + '/html/sign/sign_up.html'}}">注册</a></h5>
             <uib-tabset active="active">
                 <uib-tab index="0" heading="登录">
                         <form class="sign-dialog-top" name="loginForm"
@@ -106,49 +106,10 @@
                             <div class="btn-group sign-dialog-btn" role="group">
                                 <button class="stao-index-body-btn" type="submit">登录</button>
                                 <button class="stao-index-body-btn"
-                                        onclick="window.location.href = 'https://hacpai.com/forget-pwd'">忘记密码</button>
+                                        onclick="window.location.href = '#'">忘记密码</button>
                             </div>
                         </form>
                 </uib-tab>
-                <uib-tab index="1"  heading="注册">
-                    <form class="sign-dialog-top" name="loginForm"
-                          ng-submit="signUp(credentials, true)">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
-                            <input placeholder="昵称" aria-describedby="sizing-addon2" class="form-control" type="text"
-                                   name="nickname"
-                                   ng-model="credentials.nickname" required="required">
-
-                        </div>
-                        <div class="input-group list-sign-top">
-                            <span class="input-group-addon"><i class="fa fa-address-book fa-lg" aria-hidden="true"></i></span>
-                            <input placeholder="手机号" aria-describedby="sizing-addon2" class="form-control" type="text"
-                                   name="phone"
-                                   ng-model="credentials.phone" required="required">
-                        </div>
-
-                        <div class="input-group list-sign-top">
-                    <span class="input-group-addon"><i class="fa fa-envelope-square fa-lg"
-                                                       aria-hidden="true"></i></span>
-                            <input placeholder="短信验证码" aria-describedby="sizing-addon2" class="form-control" type="text"
-                                   name="vercode"
-                                   ng-model="credentials.vercode" required="required">
-                        </div>
-
-                        <div class="input-group list-sign-top">
-                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" style="width: 15px;"
-                                                       aria-hidden="true"></i></span>
-                            <input placeholder="密码" aria-describedby="sizing-addon2" class="form-control" type="password"
-                                   name="userpassword"
-                                   ng-model="credentials.password" required="required">
-                        </div>
-
-                        <div class="btn-group sign-dialog-btn" role="group">
-                            <button class="stao-index-body-btn" type="submit">注册</button>
-                        </div>
-                    </form>
-                </uib-tab>
-
             </uib-tabset>
         </div>
 

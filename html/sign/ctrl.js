@@ -2,7 +2,7 @@
  * Created by hedy02 on 2016/9/19.
  */
 'use strict';
-signUp_project_app.controller('signUp_project_ctrl', function ($window,$scope, $http, AUTH_EVENTS, $rootScope,AuthService, GLOBAL_CONFIG) {
+signUp_project_app.controller('signUp_project_ctrl', function ($window,$scope, $http, AUTH_EVENTS, $rootScope,AuthService, GLOBAL_CONFIG,Session) {
     
     $scope.credentials = {
         nickname:'',
@@ -85,21 +85,30 @@ signUp_project_app.controller('signUp_project_ctrl', function ($window,$scope, $
         $scope.common.password.showError = false;
         $scope.common.vercode.text = '发送验证码';
     };
-    
-    $scope.setCurrentUser = function (user) {
-        $window.localStorage['userID']=user.id;
-        $window.localStorage['nickname']=user.nickname;
-        $window.localStorage['userType']=user.type;
-    };
+
     $scope.signUp = function (credentials) {
-        AuthService.signUp(credentials).then(function (user) {
-            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-            $scope.setCurrentUser(user);
-            $scope.common.init();
-            $window.location.href = 'http://' + GLOBAL_CONFIG.url.domain + '/html/forum/user/user.html'
-        }, function () {
-            $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-        });
+
+            var params = {
+                password: Md5.hex_md5(credentials.password),
+                nickname: credentials.nickname,
+                phone: credentials.phone,
+                vercode:credentials.vercode
+            };
+            return $http.post('http://' + GLOBAL_CONFIG.url.ip + ":" + GLOBAL_CONFIG.url.port + '/api/signUp', params).then(function (res) {
+                if (res.data.code == '000') {
+                    Session.create(res.data.data);
+                    GLOBAL_VALUE.isLogin = true;
+                    $scope.common.init();
+                    $window.location.href = 'http://' + GLOBAL_CONFIG.url.domain + '/html/forum/user/user.html'
+                }else if (res.data.code == '110'){
+                    $scope.common.vercode.showError = true;
+                    $scope.common.vercode.msg = "验证码不对哦";
+                }else if (res.data.code == '111'){
+                    $scope.common.vercode.showError = true;
+                    $scope.common.vercode.msg = "手机号不一致";
+                }
+
+            });
     };
 });
 
