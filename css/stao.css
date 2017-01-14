@@ -750,3 +750,7 @@
 .border-radius-zero{
     border-radius:0px;
 }
+
+.alarm-padding{
+    padding: 5px;
+}

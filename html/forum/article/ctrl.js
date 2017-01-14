@@ -4,7 +4,7 @@
 'use strict';
 article_app.config(function ($httpProvider) {
     $httpProvider.defaults.withCredentials = true;
-}).controller('article_ctrl', function ($scope,$window, $rootScope, $http, $timeout, GLOBAL_CONFIG, UtilService) {
+}).controller('article_ctrl', function ($scope,$window, $rootScope, $http, $timeout, GLOBAL_CONFIG, UtilService,ngDialog) {
     var saveDraftText =  '<p style="color: #337ab7"><i class="fa fa-check-square  fa-lg" aria-hidden="true"></i> 保存成功</p>';
     var releaseText =  '<p style="color: #337ab7"><i class="fa fa-check-square  fa-lg" aria-hidden="true"></i> 发布成功</p>';
     var failText =  '<p style="color: #b71223"><i class="fa fa-times-circle  fa-lg" aria-hidden="true"></i>失败了..</p>';
@@ -23,7 +23,7 @@ article_app.config(function ($httpProvider) {
             //     ,"html","selectAll","undo","redo","fullscreen"]
         },
         title: undefined,
-        content: '<div>Lorem ipsum dolor sit amet,<strong>consectetur</strong>adipiscing elit<del>Praesent lacus diam</del>, fermentum et venenatis quis, suscipit sed nisi. In pharetra sem eget orci posuere pretium.<em>Integer</em>non eros<strong><em>scelerisque</em></strong>, consequat lacus id, rutrum felis. Nulla elementum felis urna, at placerat arcu ultricies in.</div><ul><li>Proin elementum sollicitudin sodales.</li><li>Nam id erat nec nibh dictum cursus.</li></ul><blockquote>In et urna eros. Fusce molestie, orci vel laoreet tempus, sem justo blandit magna, at volutpat velit lacus id turpis.<br>Quisque malesuada sem at interdum congue. Aenean dapibus fermentum orci eu euismod.</blockquote><div></div>',
+        content: '',
         //取消
         cancel:function () {
             
