@@ -44,10 +44,10 @@
 
                                         <p class="word-box text-center" style="font-size: 12px" title="{{user.info.nickname}}">
                                             {{user.info.nickname}}</p>
-                                        <p style="font-size: 12px;" class="text-center">{{user.jobs[user.info.type]}}<i
+                                        <p style="font-size: 12px;" class="text-center">{{user.jobs[user.info.type - 1]}}<i
                                                 ng-class="{'fa fa-check-circle fa-lg':true}" style="color:#f57f02"
                                                 aria-hidden="true"></i></p>
-                                        <span class="word-box">性别：<i class="fa" ng-class="{'fa-female':(user.info.sex==2),'fa-male':(user.info.sex==1)}" aria-hidden="true"></i> </span>
+                                        <span class="word-box text-center">性别：<i class="fa" ng-class="{'fa-female':(user.info.sex==2),'fa-male':(user.info.sex==1)}" aria-hidden="true"></i> </span>
                                         <!--<span class="word-box">帖子：<a>3</a></span>-->
                                         <!--<span class="word-box">回帖：<a>3000</a></span>-->
                                     </div>
