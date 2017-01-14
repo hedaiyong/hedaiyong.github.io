@@ -61,12 +61,12 @@
                 <div class="input-group list-sign-top">
                     <input placeholder="点击图片更换验证码" aria-describedby="sizing-addon2" ng-focus="common.tvercode.showError = false" class="form-control" type="text"
                            name="tvercode"
-                           ng-model="credentials.vercode" required="required">
+                           ng-model="credentials.tvercode" required="required">
 
                     <p class="display-table-cell"><img class="vercode-layout" src="http://114.55.42.174:9090/api/getVerCodeOpen" title="点击换验证码" onclick="this.src='http://114.55.42.174:9090/api/getVerCodeOpen?'+Math.random();" ></p>
 
                 </div>
-                <div class="login-error-msg" ng-show="loginForm.$submitted || loginForm.tvercode.$touched">
+                <div class="login-error-msg" ng-show="loginForm.$submitted || loginForm.tvercode.$touched || common.tvercode.showError">
                     <div ng-show="common.tvercode.showError"><p class="alert-login-error alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{common.tvercode.msg}}</p></div>
                 </div>
                 <div class="input-group">
@@ -75,7 +75,7 @@
                     <input placeholder="短信验证码" ng-focus="common.vercode.showError = false" aria-describedby="sizing-addon2" class="form-control" type="text"
                            name="vercode"
                            ng-model="credentials.vercode" required="required">
-                    <span class="btn btn-default display-table-cell border-radius-zero" ng-click="common.sendCode()">{{common.vercode.text}}</span>
+                    <span class="btn btn-default display-table-cell border-radius-zero" ng-disabled ="common.vercode.disabled" ng-click="common.sendCode()">{{common.vercode.text}}</span>
                 </div>
                 <div class="login-error-msg" ng-show="loginForm.$submitted || loginForm.vercode.$touched">
                     <div ng-show="common.vercode.showError"><p class="alert-login-error alert-danger positioned"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> {{common.vercode.msg}}</p></div>
