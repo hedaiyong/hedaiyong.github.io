@@ -2,7 +2,7 @@
  * Created by hedy02 on 2016/9/19.
  */
 'use strict';
-signUp_project_app.controller('signUp_project_ctrl', function ($window,$scope, $http, AUTH_EVENTS, $rootScope,AuthService, GLOBAL_CONFIG,Session) {
+signUp_project_app.controller('signUp_project_ctrl', function ($window,$scope, $http, AUTH_EVENTS, $rootScope,AuthService, GLOBAL_CONFIG,Session,Md5) {
     
     $scope.credentials = {
         nickname:'',
