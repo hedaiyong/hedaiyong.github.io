@@ -25,7 +25,7 @@
                             ng-submit="login(credentials, false)" >
                           <div class="input-group">
                               <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
-                              <input placeholder="用户名或手机号" aria-describedby="sizing-addon2" ng-focus="msg.isLoginError = false" class="form-control" type="text" name="phone"
+                              <input placeholder="手机号" aria-describedby="sizing-addon2" ng-focus="msg.isLoginError = false" class="form-control" type="text" name="phone"
                                      ng-model="credentials.phone" required="required">
                           </div>
                           <div class="login-error-msg" ng-show="loginForm.$submitted || loginForm.phone.$touched">
