@@ -8,7 +8,7 @@
         <ul class="list-group">
             <li class="list-group-item">
                 <h4>头像</h4>
-                <div class="meta-right"><a ng-click="updatePicture()">修改</a></div>
+                <div class="meta-right"><a href="#" ng-click="updatePicture()">修改</a></div>
                 <div class="meta-content"><img class="media-object-img" ng-src="{{user.profilePhotoURL}}"></div>
             </li>
             <li class="list-group-item">
@@ -18,7 +18,7 @@
             </li>
             <li class="list-group-item">
                 <h4>性别</h4>
-                <div class="meta-right"><a>修改</a></div>
+                <div class="meta-right"><a  href="#">修改</a></div>
                 <div class="meta-content">{{user.gender}}</div>
             </li>
             <li class="list-group-item">
@@ -36,14 +36,14 @@
             </li>
             <li class="list-group-item">
                 <h4>职业</h4>
-                <div class="meta-right"><a>{{user_status[user.status - 1]}}</a></div>
+                <div class="meta-right"><a  href="#">{{user_status[user.status - 1]}}</a></div>
                 <div class="meta-content">{{user_jobs[user.type - 1]}} <i ng-class="{'fa fa-check-circle fa-lg':true}"
                                                                           style="color:#f57f02" aria-hidden="true"></i>
                 </div>
             </li>
             <li class="list-group-item">
                 <h4>个人介绍</h4>
-                <div class="meta-right"><span>不可出现联系方式或网址</span> <a>编辑</a></div>
+                <div class="meta-right"><span>不可出现联系方式或网址</span> <a  href="#">编辑</a></div>
                 <div class="meta-content">{{user.selfIntroduction}}</div>
             </li>
         </ul>
@@ -51,10 +51,10 @@
     <script type="text/ng-template" id="updatePictureDialog">
         <div class="ngdialog-message">
             <input type="file" nv-file-select="" uploader="uploaderImg" />
-            <div ng-show="uploaderImg.isHTML5" ng-thumb="{ file: uploader.queue[0]._file, height: 100 }"></div>
+            <div ng-show="uploaderImg.isHTML5" ng-thumb="{ file: uploaderImg.queue[0]._file, height: 100 }"></div>
             <div ng-show="uploaderImg.isHTML5">
                 <div class="progress" style="margin-bottom: 0;">
-                    <div class="progress-bar" role="progressbar" ng-style="{ 'width':  uploader.queue[0].progress + '%' }"></div>
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width':  uploaderImg.queue[0].progress + '%' }"></div>
                 </div>
             </div>
         </div>
