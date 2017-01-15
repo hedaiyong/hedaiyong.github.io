@@ -15,7 +15,7 @@
         </ui-select>
     </div>
     <uib-accordion close-others="oneAtATime">
-        <div uib-accordion-group class="panel-primary" is-open="project.open">
+        <div uib-accordion-group class="panel-default" is-open="project.open">
             <uib-accordion-heading>
                 <i class="fa fa-bars" aria-hidden="true"></i> {{projectName}} <i class="pull-right glyphicon"
                                                                                  ng-class="{'glyphicon-chevron-down': project.open, 'glyphicon-chevron-right': !project.open}"></i>
@@ -33,7 +33,7 @@
                 <span class="col-md-8 col-sm-4">开发商：{{project.selected.developers}}</span>
             </div>
         </div>
-        <div uib-accordion-group class="panel-primary" is-open="sales.open">
+        <div uib-accordion-group class="panel-default" is-open="sales.open">
             <uib-accordion-heading>
                 <div ng-click="querySales()"><i class="fa fa-line-chart" aria-hidden="true"></i> 成交详情 <i class="pull-right glyphicon"
                                                                             ng-class="{'glyphicon-chevron-down': sales.open, 'glyphicon-chevron-right': !sales.open}"></i>
@@ -44,7 +44,7 @@
 
         </div>
 
-        <div uib-accordion-group class="panel-primary" is-open="houses.open">
+        <div uib-accordion-group class="panel-default" is-open="houses.open">
             <uib-accordion-heading>
                 <div ng-click="houses.selectFloor()"><i class="fa fa-print" aria-hidden="true"></i> 签约户型详情 <i
                         class="pull-right glyphicon"
