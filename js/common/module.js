@@ -559,12 +559,12 @@ staoModule.constant('AUTH_EVENTS', {
         $scope.user = {
             loginOut: false,
             isLogin: true,
-            nickname: ''
+            nickname:  $window.localStorage['nickname']
         };
         //检查用户是否登录
         $scope.checkLogin = function () {
             if (!($window.localStorage['userID'] == undefined || $window.localStorage['userID'] == null || $window.localStorage['userID'] == 'null')) {
-                if (($window.sessionStorage.getItem("userID") == null) || (new Date().getTime() - $window.localStorage['lt']) > 1000 * 60 * 60 * 24 * 7) {
+                if (($window.sessionStorage.getItem("userID") == null) || (new Date().getTime() - $window.localStorage['lt']) > 1000 * 60 * 60 * 24 * 2) {
                     $http.get('http://' + GLOBAL_CONFIG.url.ip + ":" + GLOBAL_CONFIG.url.port + '/api/checkLogin?userID=' + $window.localStorage['userID']
                         + "&nickname=" + $window.localStorage['nickname']
                         + "&lt=" + $window.localStorage['lt']

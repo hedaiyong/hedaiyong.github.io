@@ -147,6 +147,9 @@ user_app.config(function ($httpProvider, $urlRouterProvider, $stateProvider) {
         };
 
         $scope.getUserInfo();
+
+        //修改头像
+
     })
     .controller('UserArticlesCtrl', function ($scope, $window, $rootScope, $http, $timeout, GLOBAL_CONFIG, UtilService) {
         $scope.dateUtil = UtilService;
