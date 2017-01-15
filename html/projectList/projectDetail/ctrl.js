@@ -10,7 +10,7 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
     $scope.projectName = UtilService.getUrlParameter('projectName');
     $scope.project = {
         noSelectText:'未选择项目',
-        open: false
+        open: true
     };
     $scope.open_project = function (projectSalesID) {
         $http.get('http://' + $rootScope.ip + ':' + $rootScope.port + '/api/getProjectDetailOpen?projectSalesID=' + projectSalesID
@@ -55,7 +55,7 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
 
         //切换后初始化内容
         $scope.project.open= true;
-        $scope.houses.open = false;
+        $scope.houses.open = true;
         $scope.houses.page.curPage = 1;
         $scope.queryHouseDay();
             
@@ -73,7 +73,7 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
             next_text: '下页',
             previous_text: '上页'
         },
-        open: false,
+        open: true,
         start: {
             opened: false,
             date: ''
@@ -208,7 +208,7 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
             next_text: '下页',
             previous_text: '上页'
         },
-        open: false,
+        open: true,
         start: {
             opened: false,
             date:''

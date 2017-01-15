@@ -113,8 +113,10 @@ user_app.config(function ($httpProvider, $urlRouterProvider, $stateProvider) {
     .controller('UserInfoCtrl', function ($scope, $window, $location, $http, $timeout, GLOBAL_CONFIG) {
         if ($window.localStorage['userID'] == 'null' || $window.localStorage['userID'] == null || $window.localStorage['userID'] == undefined) {
             $window.location = '../../common/error/500.html';
-        }
-        ;
+        };
+
+        $scope.user_jobs = GLOBAL_CONFIG.user.jobs;
+        $scope.user_status = GLOBAL_CONFIG.user.status;
 
         $scope.user = {
             userID: $window.localStorage['userID'],

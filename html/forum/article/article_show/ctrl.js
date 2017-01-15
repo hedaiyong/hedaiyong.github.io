@@ -8,7 +8,7 @@ article_show_app.controller('article_show_ctrl', function ($scope,$window, $loca
         id:UtilService.getUrlParameter('articleID')
     };
     $scope.user = {
-        jobs:['内部管理员','论坛管理员','普通用户','房产中介','房产销售','房屋装修','贷款专员'],
+        jobs:GLOBAL_CONFIG.user.jobs,
         sex:['男','女'],
         info:''
     };

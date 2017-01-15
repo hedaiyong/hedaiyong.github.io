@@ -36,8 +36,8 @@
             </li>
             <li class="list-group-item">
                 <h4>职业</h4>
-                <div class="meta-right">(已认证/未认证/去认证/认证中) <a>认证</a></div>
-                <div class="meta-content">房屋中介 <i ng-class="{'fa fa-check-circle fa-lg':true}" style="color:#f57f02" aria-hidden="true"></i></div>
+                <div class="meta-right"><a>{{user_status[user.status - 1]}}</a></div>
+                <div class="meta-content">{{user_jobs[user.type - 1]}} <i ng-class="{'fa fa-check-circle fa-lg':true}" style="color:#f57f02" aria-hidden="true"></i></div>
             </li>
             <li class="list-group-item">
                 <h4>个人介绍</h4>

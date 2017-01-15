@@ -7,6 +7,10 @@ staoModule.constant('GLOBAL_CONFIG', {
         STATUS_DRAFT: 1,   //草稿
         STATUS_PUBLISHED: 2   //已发布
     },
+    user:{
+        jobs:['内部管理员','论坛管理员','普通用户','房产中介','房产销售','房屋装修','贷款专员','律师'],
+        status:['未认证','认证中','已认证','认证失败']
+    },
     url: {
         domain:window.location.host,
         'ip': (function () {
