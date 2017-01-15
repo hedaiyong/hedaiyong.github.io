@@ -754,3 +754,8 @@
 .alarm-padding{
     padding: 5px;
 }
+
+.house-detail-head{
+    background-color: #337ab7;
+    color: #fff;
+}

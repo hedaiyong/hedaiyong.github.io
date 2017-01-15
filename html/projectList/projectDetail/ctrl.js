@@ -57,8 +57,9 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
         $scope.project.open= true;
         $scope.houses.open = true;
         $scope.houses.page.curPage = 1;
+        $scope.querySales();
         $scope.queryHouseDay();
-            
+        $scope.houses.selectFloor();
     };
 
     $scope.sales = {
