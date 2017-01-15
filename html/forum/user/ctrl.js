@@ -110,7 +110,7 @@ user_app.config(function ($httpProvider, $urlRouterProvider, $stateProvider) {
 
 
     })
-    .controller('UserInfoCtrl', function ($scope, $window, $location, $http, $timeout, GLOBAL_CONFIG) {
+    .controller('UserInfoCtrl', function ($scope, $window, $location, $http, $timeout, GLOBAL_CONFIG,ngDialog,FileUploader) {
         if ($window.localStorage['userID'] == 'null' || $window.localStorage['userID'] == null || $window.localStorage['userID'] == undefined) {
             $window.location = '../../common/error/500.html';
         };
@@ -148,8 +148,72 @@ user_app.config(function ($httpProvider, $urlRouterProvider, $stateProvider) {
 
         $scope.getUserInfo();
 
-        //修改头像
+        //上传图片
+        var uploaderImg = $scope.uploaderImg = new FileUploader({
+            url: 'http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/uploadImgWeb',
+            alias:'img',
+            queueLimit :1,
+            withCredentials :true,
+            autoUpload:true
+        });
 
+        // FILTERS
+
+        uploaderImg.filters.push({
+            name: 'imageFilter',
+            fn: function(item /*{File|FileLikeObject}*/, options) {
+                var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+                return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+            }
+        });
+
+        // CALLBACKS
+
+        uploaderImg.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+            console.info('onWhenAddingFileFailed', item, filter, options);
+        };
+        uploaderImg.onAfterAddingFile = function(fileItem) {
+            console.info('onAfterAddingFile', fileItem);
+        };
+        uploaderImg.onAfterAddingAll = function(addedFileItems) {
+            console.info('onAfterAddingAll', addedFileItems);
+        };
+        uploaderImg.onBeforeUploadItem = function(item) {
+            console.info('onBeforeUploadItem', item);
+        };
+        uploaderImg.onProgressItem = function(fileItem, progress) {
+            console.info('onProgressItem', fileItem, progress);
+        };
+        uploaderImg.onProgressAll = function(progress) {
+            console.info('onProgressAll', progress);
+        };
+        uploaderImg.onSuccessItem = function(fileItem, response, status, headers) {
+            console.info('onSuccessItem', fileItem, response, status, headers);
+        };
+        uploaderImg.onErrorItem = function(fileItem, response, status, headers) {
+            console.info('onErrorItem', fileItem, response, status, headers);
+        };
+        uploaderImg.onCancelItem = function(fileItem, response, status, headers) {
+            console.info('onCancelItem', fileItem, response, status, headers);
+        };
+        uploaderImg.onCompleteItem = function(fileItem, response, status, headers) {
+            console.info('onCompleteItem', fileItem, response, status, headers);
+        };
+        uploaderImg.onCompleteAll = function() {
+            console.info('onCompleteAll');
+        };
+
+        console.info('uploader', uploader);
+        //修改头像
+        $scope.updatePicture = function () {
+            ngDialog.open({
+                template: 'updatePictureDialog',
+                className: 'ngdialog-theme-default',
+                controller: 'UserInfoCtrl',
+                showClose: true,
+                closeByDocument: true
+            });
+        }
     })
     .controller('UserArticlesCtrl', function ($scope, $window, $rootScope, $http, $timeout, GLOBAL_CONFIG, UtilService) {
         $scope.dateUtil = UtilService;

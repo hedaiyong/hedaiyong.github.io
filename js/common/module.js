@@ -447,40 +447,45 @@ staoModule.constant('AUTH_EVENTS', {
 
         //点赞OR点呸
         $scope.commentSupport = function (commentOrReplyID, replyType, supportType) {
-            $http.get('http://' + GLOBAL_CONFIG.url.ip + ":" + GLOBAL_CONFIG.url.port + '/api/commentOrReplySupportWeb?commentOrReplyID=' + commentOrReplyID
-                + "&replyType=" + replyType
-                + "&supportType=" + supportType
-            ).then(function (res) {
-                if (res.data.code == '000') {
-                    console.log(res.data.data);
-                } else {
-                    console.log(res.data);
-                }
-            });
+            if (UtilService.openSignDialog(ngDialog)){
+                $http.get('http://' + GLOBAL_CONFIG.url.ip + ":" + GLOBAL_CONFIG.url.port + '/api/commentOrReplySupportWeb?commentOrReplyID=' + commentOrReplyID
+                    + "&replyType=" + replyType
+                    + "&supportType=" + supportType
+                ).then(function (res) {
+                    if (res.data.code == '000') {
+                        console.log(res.data.data);
+                    } else {
+                        console.log(res.data);
+                    }
+                });
+            }
         };
 
         //回复
         $scope.addReply = function (commentID, replyID, replyType, toUserID, toUserName, floorNum) {
-            $scope.comment.reply.submitText = '正在回复';
-            $http.get('http://' + GLOBAL_CONFIG.url.ip + ":" + GLOBAL_CONFIG.url.port + '/api/replyWeb?commentID=' + commentID
-                + "&replyID=" + replyID
-                + "&articleID=" + $scope.article.id
-                + "&replyType=" + replyType
-                + "&toUserID=" + toUserID
-                + "&toUserName=" + toUserName
-                + "&content=" + $scope.comment.reply.content
-            ).then(function (res) {
-                if (res.data.code == '000') {
-                    //正在评论，转圈的图片
-                    $scope.comment.reply.submitText = '回复';
-                    $scope.initReplyText();
-                    //将回复增加到对话框下面
-                    var newReply = res.data.data;
-                    $scope.appendReply(replyType, commentID, newReply.id, newReply.fromUserID, newReply.fromUserName, newReply.fromUserURL, newReply.toUserID, newReply.toUserName, floorNum, newReply.content, newReply.createDate);
-                } else {
-                    $scope.comment.reply.submitText = '回复失败';
-                }
-            });
+            if(UtilService.openSignDialog(ngDialog)){
+                $scope.comment.reply.submitText = '正在回复';
+                $http.get('http://' + GLOBAL_CONFIG.url.ip + ":" + GLOBAL_CONFIG.url.port + '/api/replyWeb?commentID=' + commentID
+                    + "&replyID=" + replyID
+                    + "&articleID=" + $scope.article.id
+                    + "&replyType=" + replyType
+                    + "&toUserID=" + toUserID
+                    + "&toUserName=" + toUserName
+                    + "&content=" + $scope.comment.reply.content
+                ).then(function (res) {
+                    if (res.data.code == '000') {
+                        //正在评论，转圈的图片
+                        $scope.comment.reply.submitText = '回复';
+                        $scope.initReplyText();
+                        //将回复增加到对话框下面
+                        var newReply = res.data.data;
+                        $scope.appendReply(replyType, commentID, newReply.id, newReply.fromUserID, newReply.fromUserName, newReply.fromUserURL, newReply.toUserID, newReply.toUserName, floorNum, newReply.content, newReply.createDate);
+                    } else {
+                        $scope.comment.reply.submitText = '回复失败';
+                    }
+                });
+            }
+
         };
 
         //回复后添加html到末尾，分两种，一种是回复评论的，一种是回复回复的
