@@ -157,6 +157,8 @@ user_app.config(function ($httpProvider, $urlRouterProvider, $stateProvider) {
             autoUpload:true
         });
 
+        $scope.imgFile = {};
+
         // FILTERS
 
         uploaderImg.filters.push({
@@ -176,7 +178,10 @@ user_app.config(function ($httpProvider, $urlRouterProvider, $stateProvider) {
             console.info('onAfterAddingFile', fileItem);
         };
         uploaderImg.onAfterAddingAll = function(addedFileItems) {
-            console.info('onAfterAddingAll', addedFileItems);
+            $scope.imgFile = addedFileItems._file;
+        };
+        $scope.clearItems = function () {
+            uploaderImg.clearQueue();
         };
         uploaderImg.onBeforeUploadItem = function(item) {
             console.info('onBeforeUploadItem', item);
@@ -199,11 +204,14 @@ user_app.config(function ($httpProvider, $urlRouterProvider, $stateProvider) {
         uploaderImg.onCompleteItem = function(fileItem, response, status, headers) {
             console.info('onCompleteItem', fileItem, response, status, headers);
         };
+        //上传完成
         uploaderImg.onCompleteAll = function() {
-            console.info('onCompleteAll');
+            //对话框关闭
+            // ngDialog.close();
+            
         };
 
-        console.info('uploader', uploader);
+        console.info('uploader', uploaderImg);
         //修改头像
         $scope.updatePicture = function () {
             ngDialog.open({
