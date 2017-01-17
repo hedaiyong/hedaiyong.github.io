@@ -139,10 +139,13 @@ user_app.config(function ($httpProvider, $urlRouterProvider, $stateProvider) {
                         }
 
                     } else {
-                        $window.location = '../../common/error/500.html';
+                        $window.location = '../../index.html';
                     }
-                }).error(function (msg) {
-                $window.location = '../../common/error/500.html';
+                }).error(function (data) {
+                    //还未完成
+                    $window.location = '../../index.html';
+
+
             });
         };
 
@@ -157,7 +160,12 @@ user_app.config(function ($httpProvider, $urlRouterProvider, $stateProvider) {
             autoUpload:true
         });
 
-        $scope.imgFile = {};
+        $scope.imgFile = {
+            file:'',
+            progress:0,
+            showProgress:false,
+            upload_success:false
+        };
 
         // FILTERS
 
@@ -170,45 +178,27 @@ user_app.config(function ($httpProvider, $urlRouterProvider, $stateProvider) {
         });
 
         // CALLBACKS
-
-        uploaderImg.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-            console.info('onWhenAddingFileFailed', item, filter, options);
-        };
-        uploaderImg.onAfterAddingFile = function(fileItem) {
-            console.info('onAfterAddingFile', fileItem);
-        };
         uploaderImg.onAfterAddingAll = function(addedFileItems) {
-            $scope.imgFile = addedFileItems._file;
+            $scope.imgFile.file = addedFileItems[0]._file;
         };
         $scope.clearItems = function () {
             uploaderImg.clearQueue();
-        };
-        uploaderImg.onBeforeUploadItem = function(item) {
-            console.info('onBeforeUploadItem', item);
+            $scope.imgFile.upload_success = false;
         };
         uploaderImg.onProgressItem = function(fileItem, progress) {
-            console.info('onProgressItem', fileItem, progress);
+            $scope.imgFile.showProgress = true;
         };
         uploaderImg.onProgressAll = function(progress) {
-            console.info('onProgressAll', progress);
-        };
-        uploaderImg.onSuccessItem = function(fileItem, response, status, headers) {
-            console.info('onSuccessItem', fileItem, response, status, headers);
-        };
-        uploaderImg.onErrorItem = function(fileItem, response, status, headers) {
-            console.info('onErrorItem', fileItem, response, status, headers);
-        };
-        uploaderImg.onCancelItem = function(fileItem, response, status, headers) {
-            console.info('onCancelItem', fileItem, response, status, headers);
-        };
-        uploaderImg.onCompleteItem = function(fileItem, response, status, headers) {
-            console.info('onCompleteItem', fileItem, response, status, headers);
+            $scope.imgFile.progress = progress;
         };
         //上传完成
         uploaderImg.onCompleteAll = function() {
-            //对话框关闭
-            // ngDialog.close();
-            
+            $scope.imgFile.upload_success = true;
+
+            setTimeout(function () {
+                ngDialog.close();
+                $window.location.reload();
+            }, 1300);
         };
 
         console.info('uploader', uploaderImg);

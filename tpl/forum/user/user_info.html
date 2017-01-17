@@ -8,7 +8,7 @@
         <ul class="list-group">
             <li class="list-group-item">
                 <h4>头像</h4>
-                <div class="meta-right"><a href="#" >修改</a></div>
+                <div class="meta-right"><a href="#" ng-click="updatePicture()">修改</a></div>
                 <div class="meta-content"><img class="media-object-img" ng-src="{{user.profilePhotoURL}}"></div>
             </li>
             <li class="list-group-item">
@@ -52,22 +52,24 @@
         <div class="ngdialog-message">
             <div class="">
                 <div class="dialog-upload-content">
-                    <label>请选择图片：</label><span class="small-tip">只支持1M以内哦</span>
                     <div class="dialog-upload-image">
-                        <input class="file-name stao-inline-block" type="text" readonly="readonly" ng-model="imgFile.name"/>
+                        <input class="file-name stao-inline-block" type="text" readonly="readonly" ng-model="imgFile.file.name"/>
                         <a href="javascript:;" class="stao-inline-block">
-                            <input type="file" class="upload stao-inline-block" name="certificate" nv-file-select uploader="uploaderImg" ng-click="clearItems()"/>浏览
+                            <input type="file" class="upload stao-inline-block" name="certificate"  nv-file-select uploader="uploaderImg" ng-click="clearItems()"/> <span class="btn btn-default">浏览</span>
                         </a>
                     </div>
-                </div>
-                <!--<div ng-show="uploaderImg.isHTML5" ng-thumb="{ file: uploaderImg.queue[0]._file, height: 100 }"></div>-->
-                <div ng-show="uploaderImg.isHTML5">
-                    <div class="progress" style="width:186px;margin-bottom: 0;">
-                        <div class="progress-bar" role="progressbar"
-                             ng-style="{ 'width':  uploaderImg.queue[0].progress + '%' }"></div>
+
+                    <div style="margin-top: 6px" ng-show="imgFile.showProgress&&uploaderImg.isHTML5">
+                        <div class="progress" style="width:217px;margin-bottom: 0;">
+                            <div class="progress-bar" role="progressbar"
+                                 ng-style="{ 'width':  uploaderImg.queue[0].progress + '%' }">
+                                <div ng-show="imgFile.upload_success" style="color: #1bf503"><i class="fa fa-check-circle-o fa-lg" aria-hidden="true"></i> 修改成功</div></div>
+                        </div>
                     </div>
                 </div>
-                <span>修改成功</span>
+
+                <!--<div ng-show="uploaderImg.isHTML5" ng-thumb="{ file: uploaderImg.queue[0]._file, height: 100 }"></div>-->
+
             </div>
         </div>
     </script>

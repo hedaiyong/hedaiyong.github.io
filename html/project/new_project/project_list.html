@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="stao-project-app">
+<html lang="en" ng-app="stao-project-list-app">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=1100px,initial-scale=1.0,minimum-scale=0.1,user-scalable=yes">
     <!--浏览器适配-->
@@ -13,21 +13,24 @@
     <link rel="stylesheet" href="https://js.cdnbee.com/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://js.cdnbee.com/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="http://114.55.42.174:9090/api/cdn?fileName=ui-bootstrap-csp.css"/>
-    <link rel="stylesheet" href="http://114.55.42.174:9090/api/src?fileName=css/stao.css"/>
-    <link rel="icon" href="../../favicon.ico"/>
+
+    <!--<link rel="stylesheet" href="http://114.55.42.174:9090/api/src?fileName=css/stao.css"/>-->
+    <link rel="stylesheet" href="../../../css/stao.css"/>
+
+    <link rel="icon" href="http://114.55.42.174:9090/api/src?fileName=favicon.ico"/>
     <title>楼盘列表</title>
 
 </head>
-<body ng-controller="stao_project_ctrl">
+<body ng-controller="stao_project_list_ctrl">
 <!--头部-->
-<ng-include src="'../../tpl/index/index_head.html'"></ng-include>
+<ng-include src="'../../../tpl/index/index_head.html'"></ng-include>
 <div class="container theme-showcase stao-index-container" role="main">
     <div class="stao-project-detail row">
-        <ng-include src="'../../tpl/project_list/project_nav.html'"></ng-include>
-        <ng-include class="col-sm-9 col-sm-offset-1" src="'../../tpl/project_list/project_list.html'"></ng-include>
+        <ng-include src="'../../../tpl/project/new_project/project_nav.html'"></ng-include>
+        <ng-include class="col-sm-9 col-sm-offset-1" src="'../../../tpl/project/new_project/project_list.html'"></ng-include>
     </div>
 </div>
-<ng-include src="'../../tpl/common/footer.html'"></ng-include>
+<ng-include src="'../../../tpl/common/footer.html'"></ng-include>
 </body>
 
 <script src="https://js.cdnbee.com/libs/ng-dialog/0.6.4/js/ngDialog.min.js"></script>
@@ -36,7 +39,10 @@
 <link rel="stylesheet" href="http://114.55.42.174:9090/api/cdn?fileName=ngDialog-theme-success.css"/>
 
 <script src="http://114.55.42.174:9090/api/src?fileName=js/common/module.js"></script>
-<script src="http://114.55.42.174:9090/api/src?fileName=html/projectList/app.js"></script>
-<script src="http://114.55.42.174:9090/api/src?fileName=html/projectList/ctrl.js"></script>
-<script src="http://114.55.42.174:9090/api/src?fileName=html/projectList/module.js"></script>
+<!--<script src="http://114.55.42.174:9090/api/src?fileName=html/project/new_project/app.js"></script>-->
+<!--<script src="http://114.55.42.174:9090/api/src?fileName=html/project/new_project/ctrl.js"></script>-->
+<!--<script src="http://114.55.42.174:9090/api/src?fileName=html/project/new_project/module.js"></script>-->
+<script src="app.js"></script>
+<script src="ctrl.js"></script>
+<script src="module.js"></script>
 </html>
