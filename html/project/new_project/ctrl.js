@@ -3,11 +3,6 @@
  */
 'use strict';
 stao_project_list_app.controller('stao_project_list_ctrl', function ($scope, $rootScope, $http, GLOBAL_CONFIG, GLOBAL_VALUE) {
-    $scope.isLogin = GLOBAL_VALUE.isLogin;
-    $rootScope.ip = GLOBAL_CONFIG.url.ip;
-    $rootScope.port = GLOBAL_CONFIG.url.port;
-    $scope.pageSize = 12;
-
 
     $scope.page = {
         name:'',
@@ -30,7 +25,7 @@ stao_project_list_app.controller('stao_project_list_ctrl', function ($scope, $ro
     };
     $scope.project_list = {
         getProjectList: function (name, region,  pageSize, curPage) {
-            $http.get('http://' + $rootScope.ip + ':' + $rootScope.port + '/api/qProjectSalesListOpen?pageSize=' + pageSize
+            $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/queryProjectListOpen?pageSize=' + pageSize
                 + '&region=' + region
                 + '&curPage=' + curPage
                 + '&name=' + name

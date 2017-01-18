@@ -1,83 +1,47 @@
+<div name="sale-table">
+    <!--户型签约详情-->
+    <table class="table">
+        <thead>
+        <tr>
+            <th ng-repeat="(objName, item) in house_list.theadConfig">
+                <div>
+                    <span ng-bind="item.name"></span> <i ng-if="item.isStore"  aria-hidden="true" ng-class="{'fa':true, ' fa-sort':(item.clickState=='noClick'), 'fa-sort-asc':(item.clickState=='asc'), ' fa-sort-desc':(item.clickState=='desc')}" ng-click="house_list.priceSort()"></i>
 
-<div class="row">
+                </div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in house_list.data"
+            ng-if="house_list.data.length>0">
+            <td><a  ng-href="{{'http://ris.szpl.gov.cn/bol/building.aspx?id=' + item.buildingID}}" >{{item.projectDetail}}</a></td>
+            <td ng-bind="item.buildNO"></td>
+            <td ><a ng-href="{{'http://ris.szpl.gov.cn/bol/housedetail.aspx?id=' + item.id}}">{{item.houseNo}}</a></td>
+            <td ng-bind="item.useType"></td>
+            <td ng-bind="item.type"></td>
+            <td ng-bind="item.price"></td>
+            <td ng-bind="item.buildArea"></td>
+            <td ng-bind="item.indoorArea"></td>
+        </tr>
+        <tr ng-if="house_list.data.length==0">
+            <td class="table-empty" colspan="8">
+                <span>暂无相关信息</span>
+            </td>
+        </tr>
+        <tr ng-if="house_list.data.length!=0">
+            <td colspan="8">
+                <div class="stao-project-page">
+                    <ul uib-pagination total-items="house_list.page.totalItems"
+                        ng-model="house_list.page.curPage" max-size="house_list.page.maxSize"
+                        items-per-page="house_list.page.pageSize" last-text="{{house_list.page.last_text}}"
+                        next-text="{{house_list.page.next_text}}"
+                        previous-text="{{house_list.page.previous_text}}"
+                        class="pagination-sm pull-right" boundary-links="true"
+                        ng-change="queryNoSignHouse()" first-text="{{house_list.page.first_text}}"></ul>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-    <div class="col-md-4">
-        <p class="input-group">
-            <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
-                   ng-model="houses.start.date"
-                   is-open="houses.start.opened" datepicker-options="startOptions" ng-required="true"
-                   close-on-date-selection="true"
-                   alt-input-formats="altInputFormats" show-button-bar="false" placeholder="{{houses.start.date}}"
-                   title="请选择时间"/>
-                          <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="openHousesStart()"><i
-                                    class="glyphicon glyphicon-calendar"></i></button>
-                          </span>
-        </p>
-    </div>
-
-    <div class="col-md-4">
-        <p class="input-group">
-            <input type="text" class="form-control" uib-datepicker-popup ng-model="houses.end.date"
-                   is-open="houses.end.opened" datepicker-options="endOptions" ng-required="true"
-                   close-on-date-selection="true"
-                   alt-input-formats="altInputFormats" show-button-bar="false" placeholder="{{houses.end.date}}"
-                   title="请选择时间"/>
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="openHousesEnd()"><i
-                    class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-        </p>
-    </div>
-    <div class="col-md-1">
-        <button type="button" class="btn  btn-primary" ng-click="queryHouseDay()">查询</button>
-    </div>
-    <div name="sale-table">
-        <!--户型签约详情-->
-        <table class="table">
-            <thead>
-            <tr>
-                <th ng-repeat="(objName, item) in house_tbl.theadConfig">
-                    <div>
-                        <span ng-bind="item.name"></span>
-                    </div>
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="item in house_tbl.data"
-                ng-if="house_tbl.data.length>0">
-                <td>{{item.updateDate | limitTo:10}}</td>
-                <td><a  ng-href="{{'http://ris.szpl.gov.cn/bol/building.aspx?id=' + item.buildingID}}" >{{item.projectDetail}}</a></td>
-                <td ng-bind="item.buildNO"></td>
-                <td ><a ng-href="{{'http://ris.szpl.gov.cn/bol/housedetail.aspx?id=' + item.id}}">{{item.houseNo}}</a></td>
-                <td ng-bind="item.useType"></td>
-                <td ng-bind="item.type"></td>
-                <td ng-bind="item.price"></td>
-                <td ng-bind="item.buildArea"></td>
-                <td ng-bind="item.indoorArea"></td>
-                <td >{{house_tbl.stateList[item.state - 1]}}</td>
-            </tr>
-            <tr ng-if="house_tbl.data.length==0">
-                <td class="table-empty" colspan="10">
-                    <span >暂无相关信息</span>
-                </td>
-            </tr>
-            <tr ng-if="house_tbl.data.length!=0">
-                <td colspan="10">
-                    <div class="stao-project-page">
-                        <ul uib-pagination total-items="houses.page.totalItems"
-                            ng-model="houses.page.curPage" max-size="houses.page.maxSize"
-                            items-per-page="houses.page.pageSize" last-text="{{houses.page.last_text}}"
-                            next-text="{{houses.page.next_text}}"
-                            previous-text="{{houses.page.previous_text}}"
-                            class="pagination-sm pull-right" boundary-links="true"
-                            ng-change="queryHouseDay()" first-text="{{houses.page.first_text}}"></ul>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-    </div>
 </div>

@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="http://114.55.42.174:9090/api/src?fileName=html/house/data/app.css"/>
+
+
+<div  ng-if="project.useType.length > 0">
+    <h4>{{project.useType[0].useType}} <small >{{project.useType[0].count}}套</small> <small>均价：{{project.useType[0].area}} 元/平米</small></h4>
+    <hr>
+
+    <ng-echarts class="article-ds-replybox col-md-12 echarts" ec-config="house_price_0.charts.config"
+                ec-option="house_price_0.charts.option"></ng-echarts>
+</div>
+<div class="price-charts-top" ng-if="project.useType.length > 1">
+    <h4>{{project.useType[1].useType}} <small>{{project.useType[1].count}}套</small> <small>均价：{{project.useType[1].area}} 元/平米</small></h4>
+    <hr>
+
+    <ng-echarts class="article-ds-replybox col-md-12 echarts" ec-config="house_price_1.charts.config"
+                ec-option="house_price_1.charts.option"></ng-echarts>
+</div>
+<div ng-if="project.useType.length > 2">
+    <h4>{{project.useType[2].useType}} <small>{{project.useType[2].count}}套</small> <small>均价：{{project.useType[2].area}} 元/平米</small></h4>
+    <hr>
+
+    <ng-echarts class="article-ds-replybox col-md-12 echarts" ec-config="house_price_2.charts.config"
+                ec-option="house_price_2.charts.option"></ng-echarts>
+</div>
+<div ng-if="project.useType.length > 3">
+    <h4>{{project.useType[3].useType}} <small>{{project.useType[3].count}}套</small> <small>均价：{{project.useType[3].area}} 元/平米</small></h4>
+    <hr>
+
+    <ng-echarts class="article-ds-replybox col-md-12 echarts" ec-config="house_price_3.charts.config"
+                ec-option="house_price_3.charts.option"></ng-echarts>
+</div>
+<div ng-if="project.useType.length > 4">
+    <h4>{{project.useType[4].useType}} <small >{{project.useType[4].count}}套</small> <small>均价：{{project.useType[4].area}} 元/平米</small></h4>
+    <hr>
+
+    <ng-echarts class="article-ds-replybox col-md-12 echarts" ec-config="house_price_4.charts.config"
+                ec-option="house_price_4.charts.option"></ng-echarts>
+</div>

@@ -1,19 +1,4 @@
 <div class="sign-dialog-top">
-    <div class="project-detail-head">
-        <ui-select on-select="selectProject($item)" ng-model="project.selected"
-                   theme="bootstrap">
-            <ui-select-match  placeholder="选择项目...">
-                {{$select.selected.projectName}}
-            </ui-select-match>
-            <ui-select-choices repeat="item in project.list">
-                <span ng-bind-html="item.projectName"></span>
-                <small><span ng-bind-html="item.approvalDate"></span></small>
-            </ui-select-choices>
-            <ui-select-no-choice>
-                {{project.noSelectText}}
-            </ui-select-no-choice>
-        </ui-select>
-    </div>
     <uib-accordion close-others="oneAtATime">
         <div uib-accordion-group class="panel-default" is-open="project.open">
             <uib-accordion-heading>
@@ -21,32 +6,33 @@
                                                                                  ng-class="{'glyphicon-chevron-down': project.open, 'glyphicon-chevron-right': !project.open}"></i>
             </uib-accordion-heading>
             <div class="project-detail">
-                <span class="col-md-4 col-sm-4"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 区域：{{project.selected.projectRegion}}</span>
-                <span class="col-md-8 col-sm-4">地址：{{project.selected.projectDetailAddress}}</span>
-                <span class="col-md-4 col-sm-4"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 批地时间：{{project.selected.transferDate.split(" ")[0]}}</span>
-                <span class="col-md-8 col-sm-4">土地出让合同：{{project.selected.transferNo}}</span>
-                <span class="col-md-4 col-sm-4"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 预售总套数：{{project.selected.projectCount}}</span>
-                <span class="col-md-8 col-sm-4">房产证编号：{{project.selected.housePropertyCard}}</span>
-                <span class="col-md-4 col-sm-4"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 使用年限：{{project.selected.projectUsePeriod}}</span>
-                <span class="col-md-8 col-sm-4">土地用途：{{project.selected.projectLandType}}</span>
-                <span class="col-md-4 col-sm-4"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 房屋用途：{{project.selected.projectUseType}}</span>
-                <span class="col-md-8 col-sm-4">开发商：{{project.selected.developers}}</span>
+                <span class="col-md-4 col-sm-4"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 区域：{{project.detail.projectRegion}}</span>
+                <span class="col-md-8 col-sm-4">地址：{{project.detail.projectAddress}}</span>
+                <span class="col-md-4 col-sm-4"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 批地时间：{{project.detail.transferDate.split(" ")[0]}}</span>
+                <span class="col-md-8 col-sm-4">土地出让合同：{{project.detail.transferNo}}</span>
+                <span class="col-md-4 col-sm-4"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 预售总套数：{{project.detail.projectCount}}</span>
+                <span class="col-md-8 col-sm-4">房产证编号：{{project.detail.housePropertyCard}}</span>
+                <span class="col-md-4 col-sm-4"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 使用年限：{{project.detail.projectUsePeriod}}</span>
+                <span class="col-md-8 col-sm-4">土地用途：{{project.detail.projectLandType}}</span>
+                <span class="col-md-4 col-sm-4"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 房屋用途：{{project.detail.houseUseType}}</span>
+                <span class="col-md-8 col-sm-4">开发商：{{project.detail.developers}}</span>
             </div>
         </div>
-        <div uib-accordion-group class="panel-default" is-open="sales.open">
+
+        <div uib-accordion-group class="panel-default" is-open="true">
             <uib-accordion-heading>
-                <div ng-click="querySales()"><i class="fa fa-line-chart" aria-hidden="true"></i> 成交详情 <i class="pull-right glyphicon"
-                                                                            ng-class="{'glyphicon-chevron-down': sales.open, 'glyphicon-chevron-right': !sales.open}"></i>
+                <div ><i class="fa fa-line-chart" aria-hidden="true"></i> 备案价格表 <i class="pull-right glyphicon"
+                                                                                                         ng-class="{'glyphicon-chevron-down': sales.open, 'glyphicon-chevron-right': !sales.open}"></i>
                 </div>
             </uib-accordion-heading>
-            <div ng-include="'../../../tpl/project_list/project/sales_list.html'"></div>
+            <div ng-include="'../../../../tpl/project/new_project/detail/chart.html'"></div>
 
 
         </div>
 
         <div uib-accordion-group class="panel-default" is-open="houses.open">
             <uib-accordion-heading>
-                <div ng-click="houses.selectFloor()"><i class="fa fa-print" aria-hidden="true"></i> 签约户型详情 <i
+                <div ng-click="houses.selectFloor()"><i class="fa fa-print" aria-hidden="true"></i> 户型详情 <i
                         class="pull-right glyphicon"
                         ng-class="{'glyphicon-chevron-down': houses.open, 'glyphicon-chevron-right': !houses.open}"></i>
                 </div>
@@ -77,19 +63,13 @@
             </div><!-- /.row -->
             <hr />
             <uib-tabset active="houses.activeForm">
-                <uib-tab  index="0">
+
+                <uib-tab  index="$index" select="queryHouseList(item.useType)" ng-repeat="item in project.useType">
                     <uib-tab-heading>
-                        已签约 <span class="badge">{{houses.signedCount}}</span>
+                        {{item.useType }}<span ng-show="houses.activeForm==$index" class="badge">{{house_list.page.totalItems}}</span>
                     </uib-tab-heading>
                     <div class="project-detail-house-list"
-                         ng-include="'../../../tpl/project_list/project/house_list.html'"></div>
-                </uib-tab>
-                <uib-tab index="1" select="queryNoSignHouse()">
-                    <uib-tab-heading>
-                        待签约 <span class="badge">{{houses.signCount}}</span>
-                    </uib-tab-heading>
-                    <div ng-include="'../../../tpl/project_list/project/no_sign_house_list.html'"
-                         class="project-detail-house-list"></div>
+                         ng-include="'../../../../tpl/project/new_project/detail/house_list.html'"></div>
                 </uib-tab>
             </uib-tabset>
 

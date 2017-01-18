@@ -701,7 +701,9 @@
 .house-charts-top{
     margin-top: 430px;
 }
-
+.price-charts-top{
+    margin-top: 378px;
+}
 .comment-list-label{
     color:rgb(162, 162, 179);
     float: right;
