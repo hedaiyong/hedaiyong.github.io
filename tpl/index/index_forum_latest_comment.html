@@ -1,4 +1,6 @@
+
 <div class="col-sm-6">
+    <header></header><section></section><nav></nav>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title index-inline-block">最新评论</h3>
@@ -19,12 +21,12 @@
                                     {{item.articleTitle}}
                             </a>
                         </dt>
-                        <dd style="color:rgb(162, 162, 179);">
+                        <p style="color:rgb(162, 162, 179);">
                             by <a href="/news/submitted.php?uid=953" target="_blank">@{{item.userName}}</a>
                             {{dateUtil.timeUtil.elapsedTime(item.commentDate)}}
                             <a href="/news/item.php?id=4653">评论
                             </a>
-                        </dd>
+                        </p>
                         <div class="list-comment-num">
                             <a href="#" title="评论数"><span class="badge">{{item.commentCount}}</span></a>
                         </div>
