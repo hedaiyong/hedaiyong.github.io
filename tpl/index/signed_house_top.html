@@ -1,5 +1,8 @@
 <table ng-controller="NewHouseYestSignCtrl" class="table">
-    <div class="index-new-house-more-detail"><a class="btn btn-primary" href="html/project/new_project/project_list.html">更多信息</a></div>
+    <div class="comment-list-label">
+        <div class="index-new-house-more-detail"><a class="btn btn-primary"
+                                                    href="html/project/new_project/project_list.html">更多信息</a></div>
+    </div>
     <thead>
     <tr>
         <th ng-repeat="(objName, item) in signed_house_tbl.theadConfig">
@@ -13,7 +16,7 @@
     <!-- 楼盘成交top10数据-->
     <tr ng-repeat="item in signed_house_tbl.data"
         ng-if="signed_house_tbl.data.length>0">
-        <td>{{$index  + 1 + signed_house_tbl.page.pageSize * (signed_house_tbl.page.curPage-1)}}</td>
+        <td>{{$index + 1 + signed_house_tbl.page.pageSize * (signed_house_tbl.page.curPage-1)}}</td>
         <td ng-bind="item.projectName"></td>
         <td ng-bind="item.signCount"></td>
         <!--<td ng-bind="item.openDate | dateFilter:'yyyy-MM-dd'"></td>-->
