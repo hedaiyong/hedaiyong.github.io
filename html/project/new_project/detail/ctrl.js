@@ -199,7 +199,7 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
                 $scope.house_list.theadConfig.price.clickState = 'asc';
             }
 
-            $scope.queryHouseList('');
+            $scope.queryHouseList();
         },
         page: {
             useType:'',
@@ -249,9 +249,9 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
                 name: '户内面积'
             }
         },
-        queryHouseList: function (pageSize, curPage, projectID,useType) {
+        queryHouseList: function (pageSize, curPage, projectID) {
             $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/queryHouseListOpen?pageSize=' +  $scope.house_list.page.pageSize
-                + '&useType=' + useType
+                + '&useType=' +  $scope.house_list.page.useType
                 + '&curPage=' +  $scope.house_list.page.curPage
                 + '&order=' + $scope.house_list.theadConfig.price.clickState
                 + '&buildingID=' + $scope.houses.record.selected.buildingID
@@ -295,7 +295,8 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
     $scope.houses.selectFloor();
 
     $scope.queryHouseList = function (useType) {
-        $scope.house_list.queryHouseList($scope.house_list.page.pageSize, $scope.house_list.page.curPage, $scope.projectID, useType)
+        if (arguments.length > 0) $scope.house_list.page.useType = useType;
+        $scope.house_list.queryHouseList($scope.house_list.page.pageSize, $scope.house_list.page.curPage, $scope.projectID)
     };
 
 });

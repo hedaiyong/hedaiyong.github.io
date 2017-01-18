@@ -17,12 +17,7 @@ stao_project_list_app.controller('stao_project_list_ctrl', function ($scope, $ro
         previous_text: '上页'
 
     };
-
-    $scope.pageInit = function (result) {
-        $scope.page.pageSize = $scope.pageSize;
-        $scope.page.totalItems = result.totalItems;
-        $scope.page.curPage = result.curPage;
-    };
+    
     $scope.project_list = {
         getProjectList: function (name, region,  pageSize, curPage) {
             $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/queryProjectListOpen?pageSize=' + pageSize
@@ -33,7 +28,7 @@ stao_project_list_app.controller('stao_project_list_ctrl', function ($scope, $ro
                 .success(function (ret) {
                     if (ret.code == '000') {
                         $scope.project_list.data = ret.data.data;
-                        $scope.pageInit(ret.data);
+                        $scope.page.totalItems =  ret.data.totalItems;
                     }
                 }).error(function (msg) {
                 console.log("Fail! " + msg);
