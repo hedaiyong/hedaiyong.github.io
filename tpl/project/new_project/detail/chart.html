@@ -15,21 +15,21 @@
     <ng-echarts class="article-ds-replybox col-md-12 echarts" ec-config="house_price_1.charts.config"
                 ec-option="house_price_1.charts.option"></ng-echarts>
 </div>
-<div ng-if="project.useType.length > 2">
+<div class="price-charts-top" ng-if="project.useType.length > 2">
     <h4>{{project.useType[2].useType}} <small>{{project.useType[2].count}}套</small> <small>均价：{{project.useType[2].area}} 元/平米</small></h4>
     <hr>
 
     <ng-echarts class="article-ds-replybox col-md-12 echarts" ec-config="house_price_2.charts.config"
                 ec-option="house_price_2.charts.option"></ng-echarts>
 </div>
-<div ng-if="project.useType.length > 3">
+<div class="price-charts-top" ng-if="project.useType.length > 3">
     <h4>{{project.useType[3].useType}} <small>{{project.useType[3].count}}套</small> <small>均价：{{project.useType[3].area}} 元/平米</small></h4>
     <hr>
 
     <ng-echarts class="article-ds-replybox col-md-12 echarts" ec-config="house_price_3.charts.config"
                 ec-option="house_price_3.charts.option"></ng-echarts>
 </div>
-<div ng-if="project.useType.length > 4">
+<div class="price-charts-top" ng-if="project.useType.length > 4">
     <h4>{{project.useType[4].useType}} <small >{{project.useType[4].count}}套</small> <small>均价：{{project.useType[4].area}} 元/平米</small></h4>
     <hr>
 
