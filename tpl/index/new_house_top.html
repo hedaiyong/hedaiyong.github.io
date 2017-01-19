@@ -23,7 +23,7 @@
         <tr ng-repeat="item in newHouse_tbl.top10"
             ng-if="newHouse_tbl.top10.length>0">
             <td>{{$index + 1 + newHouse_tbl.page.pageSize * (newHouse_tbl.page.curPage-1)}}</td>
-            <td><a ng-href="{{'html/projectList/projectDetail/projectDetail.html?projectSaleID=' + item.projectSaleID}}">{{item.projectName}}</a></td>
+            <td><a ng-href="{{'html/projectList/projectDetail/projectDetail.html?projectSalesID=' + item.projectSalesID}}">{{item.projectName}}</a></td>
             <td ng-bind="item.projectRegion"></td>
             <td ng-bind="item.saleCountByTime"></td>
             <td ng-bind="item.salePriceByTime"></td>
