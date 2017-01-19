@@ -17,7 +17,7 @@
     <tr ng-repeat="item in signed_house_tbl.data"
         ng-if="signed_house_tbl.data.length>0">
         <td>{{$index + 1 + signed_house_tbl.page.pageSize * (signed_house_tbl.page.curPage-1)}}</td>
-        <td ng-bind=""><a ng-href="{{'html/project/new_project/detail/detail.html?projectID=' + item.projectID}}">{{item.projectName}}</a></td>
+        <td><a ng-href="{{'html/project/new_project/detail/detail.html?projectID=' + item.projectID}}">{{item.projectName}}</a></td>
         <td ng-bind="item.signCount"></td>
         <!--<td ng-bind="item.openDate | dateFilter:'yyyy-MM-dd'"></td>-->
         <!--<td ng-bind="item.managers.length>0?(item.managers.join('，')):'- -'"-->
