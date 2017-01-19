@@ -6,6 +6,7 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
     
     $scope.projectSalesID = UtilService.getUrlParameter('projectSalesID');
     $scope.project = {
+        useType:[],
         noSelectText:'未选择项目',
         open: true
     };
@@ -58,8 +59,24 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
         $scope.querySales();
         $scope.queryHouseDay();
         $scope.houses.selectFloor();
+        //房屋用途列表
+        $scope.getProjectUseType();
+        //获取房屋数据
+        $scope.getHouseData();
     };
 
+    $scope.getProjectUseType = function () {
+        $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/getUseTypeListOpen?projectID=' + $scope.project.selected.projectID
+        )
+            .success(function (ret) {
+                if (ret.code == '000') {
+                    $scope.project.useType = ret.data;
+                }
+            }).error(function (msg) {
+            console.log("Fail! " + msg);
+        });
+    };
+    
     $scope.sales = {
         page: {
             pageSize: 10,
@@ -261,7 +278,7 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
 
     $scope.house_tbl = {
         data: '',
-        stateList:["期房待售","已售","已签预售合同","已备案","已签认购书","初始登记","管理局锁定","自动锁定","安居型商品房","未知状态"],
+        stateList:["期房待售","已售","已签预售合同","已备案","已签认购书","初始登记","管理局锁定","自动锁定","安居型商品房","司法查封","未知状态"],
         theadConfig: {
             updateDate: {
                 name: '签约时间'
@@ -502,6 +519,107 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
 
     $scope.queryAnJuHouseList = function () {
         $scope.anju_house_list.queryAnJuHouseList($scope.anju_house_list.page.pageSize, $scope.anju_house_list.page.curPage, $scope.project.selected.projectID)
+    };
+
+
+    //---------house-chart-------------------------
+
+    $scope.chart={
+        charts: {
+            config: {
+                theme: 'vintage',
+                dataLoaded: true
+            },
+            option: {
+                title: {
+                    subtext: '来自住建局'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['备案价格']
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        dataView: {show: true, readOnly: false},
+                        magicType: {show: true, type: ['line','bar']},
+                        restore: {show: true},
+                        saveAsImage: {show: true}
+                    }
+                },
+                calculable: true,
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: []
+
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        axisLabel: {
+                            formatter: '{value} 平米/元'
+                        }
+                    }
+                ],
+                series: [
+                    {
+                        name: '备案价格',
+                        type: 'line',
+                        data: []
+                    }
+                ]
+            }
+        }
+    };
+
+    $scope.house_price_0  = angular.copy($scope.chart);
+    $scope.house_price_1  = angular.copy($scope.chart);
+    $scope.house_price_2  = angular.copy($scope.chart);
+    $scope.house_price_3  = angular.copy($scope.chart);
+    $scope.house_price_4 = angular.copy($scope.chart);
+
+    //获取表数据
+    $scope.getHouseData = function () {
+        $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/queryHouseDataOpen?projectID=' + $scope.project.selected.projectID
+        )
+            .success(function (ret) {
+                if (ret.code == '000') {
+
+                    for (var i = 0; i < ret.data.length; i++){
+                        switch (i){
+                            case 0:
+                                $scope.house_price_0.charts.option.series[0].data=ret.data[i].price;
+
+                                $scope.house_price_0.charts.option.xAxis[0].data = ret.data[i].name;
+                                break;
+                            case 1:
+                                $scope.house_price_1.charts.option.series[0].data=ret.data[i].price;
+                                $scope.house_price_1.charts.option.xAxis[0].data = ret.data[i].name;
+                                break;
+                            case 2:
+                                $scope.house_price_2.charts.option.series[0].data=ret.data[i].price;
+                                $scope.house_price_2.charts.option.xAxis[0].data = ret.data[i].name;
+                                break;
+                            case 3:
+                                $scope.house_price_3.charts.option.series[0].data=ret.data[i].price;
+                                $scope.house_price_3.charts.option.xAxis[0].data = ret.data[i].name;
+                                break;
+                            case 4:
+                                $scope.house_price_4.charts.option.series[0].data=ret.data[i].price;
+                                $scope.house_price_4.charts.option.xAxis[0].data = ret.data[i].name;
+                                break;
+                        }
+                    }
+
+                }
+            }).error(function (msg) {
+            console.log("Fail! " + msg);
+        });
     };
 });
 

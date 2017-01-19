@@ -780,3 +780,7 @@
     opacity: 0;
     filter: alpha(opacity=0);
 }
+
+.uib-margin-top{
+    margin-top: 20px;
+}

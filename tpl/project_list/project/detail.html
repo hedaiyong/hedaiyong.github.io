@@ -33,7 +33,7 @@
                 <span class="col-md-8 col-sm-4">开发商：{{project.selected.developers}}</span>
             </div>
         </div>
-        <div uib-accordion-group class="panel-default" is-open="sales.open">
+        <div uib-accordion-group class="panel-default uib-margin-top" is-open="sales.open">
             <uib-accordion-heading>
                 <div ng-click="querySales()"><i class="fa fa-line-chart" aria-hidden="true"></i> 成交详情 <i class="pull-right glyphicon"
                                                                             ng-class="{'glyphicon-chevron-down': sales.open, 'glyphicon-chevron-right': !sales.open}"></i>
@@ -44,7 +44,18 @@
 
         </div>
 
-        <div uib-accordion-group class="panel-default" is-open="houses.open">
+        <div uib-accordion-group class="panel-default uib-margin-top" is-open="true">
+            <uib-accordion-heading>
+                <div ><i class="fa fa-line-chart" aria-hidden="true"></i> 备案价格表 <i class="pull-right glyphicon"
+                                                                                   ng-class="{'glyphicon-chevron-down': sales.open, 'glyphicon-chevron-right': !sales.open}"></i>
+                </div>
+            </uib-accordion-heading>
+            <div ng-include="'../../../tpl/project/new_project/detail/chart.html'"></div>
+
+
+        </div>
+
+        <div uib-accordion-group class="panel-default uib-margin-top" is-open="houses.open">
             <uib-accordion-heading>
                 <div ng-click="houses.selectFloor()"><i class="fa fa-print" aria-hidden="true"></i> 签约户型详情 <i
                         class="pull-right glyphicon"

@@ -44,8 +44,6 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
     
     
     //---------house-chart-------------------------
-    
-    $scope.house_price = [];
 
     $scope.chart={
         charts: {
