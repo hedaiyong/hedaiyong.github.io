@@ -1,0 +1,47 @@
+<div name="sale-table">
+    <!--户型签约详情-->
+    <table class="table">
+        <thead>
+        <tr>
+            <th ng-repeat="(objName, item) in anju_house_list.theadConfig">
+                <div>
+                    <span ng-bind="item.name"></span> <i ng-if="item.isStore"  aria-hidden="true" ng-class="{'fa':true, ' fa-sort':(item.clickState=='noClick'), 'fa-sort-asc':(item.clickState=='asc'), ' fa-sort-desc':(item.clickState=='desc')}" ng-click="anju_house_list.priceSort()"></i>
+
+                </div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in anju_house_list.data"
+            ng-if="anju_house_list.data.length>0">
+            <td><a  ng-href="{{'http://ris.szpl.gov.cn/bol/building.aspx?id=' + item.buildingID}}" >{{item.projectDetail}}</a></td>
+            <td ng-bind="item.buildNO"></td>
+            <td ><a ng-href="{{'http://ris.szpl.gov.cn/bol/housedetail.aspx?id=' + item.id}}">{{item.houseNo}}</a></td>
+            <td ng-bind="item.useType"></td>
+            <td ng-bind="item.type"></td>
+            <td ng-bind="item.price"></td>
+            <td ng-bind="item.buildArea"></td>
+            <td ng-bind="item.indoorArea"></td>
+        </tr>
+        <tr ng-if="anju_house_list.data.length==0">
+            <td class="table-empty" colspan="8">
+                <span>暂无相关信息</span>
+            </td>
+        </tr>
+        <tr ng-if="anju_house_list.data.length!=0">
+            <td colspan="8">
+                <div class="stao-project-page">
+                    <ul uib-pagination total-items="anju_house_list.page.totalItems"
+                        ng-model="anju_house_list.page.curPage" max-size="anju_house_list.page.maxSize"
+                        items-per-page="anju_house_list.page.pageSize" last-text="{{anju_house_list.page.last_text}}"
+                        next-text="{{anju_house_list.page.next_text}}"
+                        previous-text="{{anju_house_list.page.previous_text}}"
+                        class="pagination-sm pull-right" boundary-links="true"
+                        ng-change="queryAnJuHouseList()" first-text="{{anju_house_list.page.first_text}}"></ul>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>

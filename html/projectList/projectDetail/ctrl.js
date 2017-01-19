@@ -2,22 +2,20 @@
  * Created by hedy02 on 2016/9/19.
  */
 'use strict';
-project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams, $http, $filter, GLOBAL_CONFIG, $rootScope, UtilService) {
+project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams, $http, $filter, GLOBAL_CONFIG, UtilService) {
     
-    $rootScope.ip = GLOBAL_CONFIG.url.ip;
-    $rootScope.port = GLOBAL_CONFIG.url.port;
     $scope.projectSalesID = UtilService.getUrlParameter('projectSalesID');
-    $scope.projectName = UtilService.getUrlParameter('projectName');
     $scope.project = {
         noSelectText:'未选择项目',
         open: true
     };
     $scope.open_project = function (projectSalesID) {
-        $http.get('http://' + $rootScope.ip + ':' + $rootScope.port + '/api/getProjectDetailOpen?projectSalesID=' + projectSalesID
+        $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/getProjectDetailOpen?projectSalesID=' + projectSalesID
         )
             .success(function (ret) {
                 if (ret.code == '000') {
                     $scope.project.list = ret.data;
+                    $scope.projectName = ret.data.projectName;
                     $scope.projectInit(ret.data[0]);
 
                 }
@@ -162,7 +160,7 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
         },
         queryProjectDaySale: function (startDate, key, endDate, pageSize, curPage, projectSalesID) {
             var self = this;
-            $http.get('http://' + $rootScope.ip + ':' + $rootScope.port + '/api/queryProjectDaySaleOpen?startDate=' + startDate
+            $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/queryProjectDaySaleOpen?startDate=' + startDate
                 + '&pageSize=' + pageSize
                 + '&curPage=' + curPage
                 + '&endDate=' + endDate
@@ -220,6 +218,8 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
         },
         signedCount: 0,
         signCount: 0,
+        //安居房套数
+        anjuCount:0,
         record: {
             selected: {
                 buildingID: 0,
@@ -261,7 +261,7 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
 
     $scope.house_tbl = {
         data: '',
-        stateList:["期房待售","已售","已签预售合同","已备案","已签认购书","初始登记","管理局锁定","未知状态"],
+        stateList:["期房待售","已售","已签预售合同","已备案","已签认购书","初始登记","管理局锁定","自动锁定","安居型商品房","未知状态"],
         theadConfig: {
             updateDate: {
                 name: '签约时间'
@@ -296,7 +296,7 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
         },
         queryHouseDay: function (startDate, key, endDate, pageSize, curPage, projectID) {
             var self = this;
-            $http.get('http://' + $rootScope.ip + ':' + $rootScope.port + '/api/querySaleHousesOpen?startDate=' + startDate
+            $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/querySaleHousesOpen?startDate=' + startDate
                 + '&pageSize=' + pageSize
                 + '&curPage=' + curPage
                 + '&endDate=' + endDate
@@ -314,12 +314,13 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
         },
         queryHouseSignCount: function (projectID) {
 
-            $http.get('http://' + $rootScope.ip + ':' + $rootScope.port + '/api/queryHouseSignCountOpen?projectID=' + projectID
+            $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/queryHouseSignCountOpen?projectID=' + projectID
                 + '&buildingID=' + $scope.houses.record.selected.buildingID
             ).success(function (ret) {
                 if (ret.code == '000') {
                     $scope.houses.signCount = ret.data.signCount;
                     $scope.houses.signedCount = ret.data.signedCount;
+                    $scope.houses.anjuCount = ret.data.anjuCount;
                     $scope.houses.record.recordPrice = ret.data.recordPrice;
 
                     if ($scope.houses.record.selected.buildingID == 0 && $scope.houses.record.floors.length == 0) {
@@ -340,10 +341,6 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
     };
 
     // -----------未签约房子-------------
-    $scope.houseNoSignPageInit = function (result) {
-        $scope.house_no_sign.page.totalItems = result.totalItems;
-        $scope.house_no_sign.page.curPage = result.curPage;
-    };
     $scope.house_no_sign = {
         priceSort:function () {
             if ($scope.house_no_sign.theadConfig.price.clickState == 'noClick'){
@@ -404,15 +401,16 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
             }
         },
         queryNoSignHouse: function (pageSize, curPage, projectID) {
-            $http.get('http://' + $rootScope.ip + ':' + $rootScope.port + '/api/queryNoSignHouseOpen?pageSize=' + pageSize
+            $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/queryHouseListByStateOpen?pageSize=' + pageSize
                 + '&curPage=' + curPage
+                + '&state=' + GLOBAL_CONFIG.house.SELLING
                 + '&order=' + $scope.house_no_sign.theadConfig.price.clickState
                 + '&buildingID=' + $scope.houses.record.selected.buildingID
                 + '&projectID=' + projectID)
                 .success(function (ret) {
                     if (ret.code == '000') {
                         $scope.house_no_sign.data = ret.data.data;
-                        $scope.houseNoSignPageInit(ret.data);
+                        $scope.house_no_sign.page.totalItems = ret.data.totalItems;
                     }
                 }).error(function (msg) {
                 console.log("Fail! " + msg);
@@ -422,6 +420,88 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
 
     $scope.queryNoSignHouse = function () {
         $scope.house_no_sign.queryNoSignHouse($scope.house_no_sign.page.pageSize, $scope.house_no_sign.page.curPage, $scope.project.selected.projectID)
+    };
+
+    //------------------------安居型商品房------------------------------------------
+    $scope.anju_house_list = {
+        priceSort:function () {
+            if ($scope.anju_house_list.theadConfig.price.clickState == 'noClick'){
+                $scope.anju_house_list.theadConfig.price.clickState = 'asc';
+            }else if ($scope.anju_house_list.theadConfig.price.clickState == 'asc'){
+                $scope.anju_house_list.theadConfig.price.clickState = 'desc';
+            }else {
+                $scope.anju_house_list.theadConfig.price.clickState = 'asc';
+            }
+
+            $scope.queryAnJuHouseList();
+        },
+        page: {
+            pageSize: 10,
+            curPage: 1,
+            totalPage: 1,
+            totalItems: 1,
+            maxSize: 5,
+            first_text: '首页',
+            last_text: '尾页',
+            next_text: '下页',
+            previous_text: '上页'
+        },
+        data: '',
+        theadConfig: {
+            projectDetail: {
+                isStore:false,
+                name: '楼栋'
+            },
+            buildNO: {
+                isStore:false,
+                name: '座号'
+            },
+            houseNo: {
+                isStore:false,
+                name: '房号'
+            },
+            useType: {
+                isStore:false,
+                name: '用途'
+            },
+            type: {
+                isStore:false,
+                name: '户型'
+            },
+            price: {
+                clickState:'noClick',
+                isStore: true,
+                name: '价格(备案)'
+            },
+            buildArea: {
+                isStore:false,
+                name: '建筑面积'
+            },
+            indoorArea: {
+                isStore:false,
+                name: '户内面积'
+            }
+        },
+        queryAnJuHouseList: function (pageSize, curPage, projectID) {
+            $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/queryHouseListByStateOpen?pageSize=' + pageSize
+                + '&curPage=' + curPage
+                + '&state=' + GLOBAL_CONFIG.house.ANJU_HOUSE
+                + '&order=' + $scope.anju_house_list.theadConfig.price.clickState
+                + '&buildingID=' + $scope.houses.record.selected.buildingID
+                + '&projectID=' + projectID)
+                .success(function (ret) {
+                    if (ret.code == '000') {
+                        $scope.anju_house_list.data = ret.data.data;
+                        $scope.anju_house_list.page.totalItems = ret.data.totalItems;
+                    }
+                }).error(function (msg) {
+                console.log("Fail! " + msg);
+            });
+        }
+    };
+
+    $scope.queryAnJuHouseList = function () {
+        $scope.anju_house_list.queryAnJuHouseList($scope.anju_house_list.page.pageSize, $scope.anju_house_list.page.curPage, $scope.project.selected.projectID)
     };
 });
 

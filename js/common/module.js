@@ -7,6 +7,10 @@ staoModule.constant('GLOBAL_CONFIG', {
         STATUS_DRAFT: 1,   //草稿
         STATUS_PUBLISHED: 2   //已发布
     },
+    house:{
+        SELLING:1,
+        ANJU_HOUSE:9
+    },
     user:{
         jobs:['内部管理员','论坛管理员','普通用户','房产中介','房产销售','房屋装修','贷款专员','律师'],
         status:['未认证','认证中','已认证','认证失败']
@@ -555,7 +559,7 @@ staoModule.constant('AUTH_EVENTS', {
     })
 
 
-    .controller('LoginController', function ($scope, $window, $http, $rootScope,$interval, AUTH_EVENTS, AuthService, GLOBAL_CONFIG, Session, Md5, GLOBAL_VALUE,ngDialog) {
+    .controller('LoginController', function ($scope, $window, $http, $rootScope,$interval, AUTH_EVENTS, AuthService, GLOBAL_CONFIG, Session, Md5, GLOBAL_VALUE,ngDialog,UtilService) {
         var signIn =  '<p style="color: #337ab7"><i class="fa fa-check-square  fa-lg" aria-hidden="true"></i> 登录成功</p>';
         var signUp =  '<p style="color: #337ab7"><i class="fa fa-check-square  fa-lg" aria-hidden="true"></i> 注册成功</p>';
         

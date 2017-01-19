@@ -91,6 +91,13 @@
                     <div ng-include="'../../../tpl/project_list/project/no_sign_house_list.html'"
                          class="project-detail-house-list"></div>
                 </uib-tab>
+                <uib-tab index="2" ng-show="houses.anjuCount > 0" select="queryAnJuHouseList()">
+                    <uib-tab-heading>
+                        安居房 <span class="badge">{{houses.anjuCount}}</span>
+                    </uib-tab-heading>
+                    <div ng-include="'../../../tpl/project_list/project/anju_house_list.html'"
+                         class="project-detail-house-list"></div>
+                </uib-tab>
             </uib-tabset>
 
         </div>

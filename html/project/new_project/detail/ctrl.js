@@ -5,7 +5,6 @@
 all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stateParams, $http, $filter, GLOBAL_CONFIG, $rootScope, UtilService) {
 
     $scope.projectID = UtilService.getUrlParameter('projectID');
-    $scope.projectName = UtilService.getUrlParameter('projectName');
     $scope.project = {
         useType:[],
         noSelectText:'未选择项目',
@@ -20,7 +19,7 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
             .success(function (ret) {
                 if (ret.code == '000') {
                     $scope.project.detail = ret.data;
-
+                    $scope.projectName = ret.data.projectName;
                 }
             }).error(function (msg) {
             console.log("Fail! " + msg);
