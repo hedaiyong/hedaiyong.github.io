@@ -187,8 +187,9 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
 
 
     $scope.house_list = {
+        stateList:GLOBAL_CONFIG.house.stateList,
         priceSort:function () {
-            if ($scope.house_list.theadConfig.price.clickState == 'noClick'){
+            if ($scope.house_list.theadConfig.price.clickState == 'update'){
                 $scope.house_list.theadConfig.price.clickState = 'asc';
             }else if ($scope.house_list.theadConfig.price.clickState == 'asc'){
                 $scope.house_list.theadConfig.price.clickState = 'desc';
@@ -233,7 +234,7 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
                 name: '户型'
             },
             price: {
-                clickState:'noClick',
+                clickState:'update',
                 isStore: true,
                 name: '价格(备案)'
             },
@@ -244,6 +245,10 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
             indoorArea: {
                 isStore:false,
                 name: '户内面积'
+            },
+            state: {
+                isStore:false,
+                name: '状态'
             }
         },
         queryHouseList: function (pageSize, curPage, projectID) {

@@ -278,7 +278,7 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
 
     $scope.house_tbl = {
         data: '',
-        stateList:["期房待售","已售","已签预售合同","已备案","已签认购书","初始登记","管理局锁定","自动锁定","安居型商品房","司法查封","未知状态"],
+        stateList:GLOBAL_CONFIG.house.stateList,
         theadConfig: {
             updateDate: {
                 name: '签约时间'

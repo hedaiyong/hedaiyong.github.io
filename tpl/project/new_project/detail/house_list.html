@@ -22,14 +22,15 @@
             <td ng-bind="item.price"></td>
             <td ng-bind="item.buildArea"></td>
             <td ng-bind="item.indoorArea"></td>
+            <td >{{house_list.stateList[item.state - 1]}}<small ng-if="!(item.state ==1 || item.state==9)">{{item.updateDate | limitTo:10}}</small></td>
         </tr>
         <tr ng-if="house_list.data.length==0">
-            <td class="table-empty" colspan="8">
+            <td class="table-empty" colspan="9">
                 <span>暂无相关信息</span>
             </td>
         </tr>
         <tr ng-if="house_list.data.length!=0">
-            <td colspan="8">
+            <td colspan="9">
                 <div class="stao-project-page">
                     <ul uib-pagination total-items="house_list.page.totalItems"
                         ng-model="house_list.page.curPage" max-size="house_list.page.maxSize"
