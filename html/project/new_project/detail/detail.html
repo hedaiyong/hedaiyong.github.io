@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="detail_app" ng-controller="AllProjectDetailCtl">
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=1200px,initial-scale=1.0,minimum-scale=0.1,user-scalable=yes">
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0.1,user-scalable=yes">
     <!-- 启用360浏览器的极速模式(webkit) -->
     <meta name="renderer" content="webkit">
     <!--uc浏览器-->
@@ -41,7 +41,7 @@
 <body >
 <!--头部-->
 <ng-include src="'../../../../tpl/index/index_head.html'"></ng-include>
-<div class="container theme-showcase stao-index-container" role="main">
+<div ng-class="{'container':!isMobile}" class="theme-showcase stao-index-container" role="main">
     <div class="stao-project-detail row">
         <ng-include class="col-sm-12 col-sm-offset-1" src="'../../../../tpl/project/new_project/detail/detail.html'"></ng-include>
         <!--<ng-include  src="'../../../tpl/project_list/project/nav.html'"></ng-include>-->

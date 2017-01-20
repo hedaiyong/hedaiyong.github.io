@@ -3,7 +3,8 @@
  */
 'use strict';
 project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams, $http, $filter, GLOBAL_CONFIG, UtilService) {
-    
+    $scope.isMobile = UtilService.isMobile();
+
     $scope.projectSalesID = UtilService.getUrlParameter('projectSalesID');
     $scope.project = {
         useType:[],

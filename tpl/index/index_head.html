@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top" ng-controller="LoginController">
 
-    <div class="container">
+    <div ng-class="{'container':!isMobile}">
         <div class="navbar-header">
             <a class="stao-navbar-brand" ng-href="{{'http://' + common.domain}}">
                 <img alt="Brand" height="32" width="32" src="http://114.55.42.174:9090/api/cdn?fileName=ico.png">

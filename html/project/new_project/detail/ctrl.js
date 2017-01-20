@@ -3,6 +3,7 @@
  */
 'use strict';
 all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stateParams, $http, $filter, GLOBAL_CONFIG, $rootScope, UtilService) {
+    $scope.isMobile = UtilService.isMobile();
 
     $scope.projectID = UtilService.getUrlParameter('projectID');
     $scope.project = {

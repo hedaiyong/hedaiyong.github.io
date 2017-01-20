@@ -2,10 +2,10 @@
  * Created by hedy02 on 2016/9/19.
  */
 'use strict';
-stao_project_app.controller('stao_project_ctrl', function ($scope, $rootScope, $http, GLOBAL_CONFIG, GLOBAL_VALUE) {
+stao_project_app.controller('stao_project_ctrl', function ($scope,UtilService, $http, GLOBAL_CONFIG, GLOBAL_VALUE) {
     $scope.isLogin = GLOBAL_VALUE.isLogin;
-    $rootScope.ip = GLOBAL_CONFIG.url.ip;
-    $rootScope.port = GLOBAL_CONFIG.url.port;
+    $scope.isMobile = UtilService.isMobile();
+
     $scope.pageSize = 12;
 
 
@@ -30,7 +30,7 @@ stao_project_app.controller('stao_project_ctrl', function ($scope, $rootScope, $
     };
     $scope.project_list = {
         getProjectList: function (name, region,  pageSize, curPage) {
-            $http.get('http://' + $rootScope.ip + ':' + $rootScope.port + '/api/qProjectSalesListOpen?pageSize=' + pageSize
+            $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/qProjectSalesListOpen?pageSize=' + pageSize
                 + '&region=' + region
                 + '&curPage=' + curPage
                 + '&name=' + name

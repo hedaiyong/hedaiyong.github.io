@@ -2,7 +2,8 @@
  * Created by hedy02 on 2016/9/19.
  */
 'use strict';
-stao_project_list_app.controller('stao_project_list_ctrl', function ($scope, $rootScope, $http, GLOBAL_CONFIG, GLOBAL_VALUE) {
+stao_project_list_app.controller('stao_project_list_ctrl', function ($scope, UtilService,$rootScope, $http, GLOBAL_CONFIG, GLOBAL_VALUE) {
+    $scope.isMobile = UtilService.isMobile();
 
     $scope.page = {
         name:'',

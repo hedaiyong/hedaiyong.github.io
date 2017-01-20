@@ -24,8 +24,8 @@ RegionChartApp
 
         return msgBus;
     })
-    .controller('RegionChartCtrl', function ($scope, $rootScope, $http, GLOBAL_CONFIG, GLOBAL_VALUE) {
-
+    .controller('RegionChartCtrl', function ($scope, UtilService) {
+        $scope.isMobile = UtilService.isMobile();
     })
     //新房数据图表
     .controller('NewHouseChartCtrl', function ($scope, $filter, $rootScope, $http, GLOBAL_CONFIG, GLOBAL_VALUE) {

@@ -18,6 +18,12 @@
             </uib-tab-heading>
             <div ng-include="'tpl/index/signed_house_top.html'" class="project-detail-house-list"></div>
         </uib-tab>
+        <uib-tab index="3" select="querySignHouseTop()">
+            <uib-tab-heading>
+                最新备案项目
+            </uib-tab-heading>
+            <div ng-include="'tpl/index/record_project_list.html'" class="project-detail-house-list"></div>
+        </uib-tab>
     </uib-tabset>
 
 </div>

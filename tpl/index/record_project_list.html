@@ -1,0 +1,42 @@
+<table ng-controller="RecordProjectListCtrl" class="table">
+    <div class="comment-list-label">
+        <div class="index-new-house-more-detail"><a class="btn btn-primary"
+                                                    href="html/project/new_project/project_list.html">更多信息</a></div>
+    </div>
+    <thead>
+    <tr>
+        <th ng-repeat="(objName, item) in project_list.theadConfig">
+            <div>
+                <span ng-bind="item.name"></span>
+            </div>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- 楼盘成交top10数据-->
+    <tr ng-repeat="item in project_list.data"
+        ng-if="project_list.data.length>0">
+        <td><a ng-href="{{'html/project/new_project/detail/detail.html?projectID=' + item.id}}">{{item.name}}</a></td>
+        <td ng-bind="item.region"></td>
+        <td ng-bind="item.count"></td>
+        <td ng-bind="item.useType"></td>
+        <td ng-bind="item.usePeriod"></td>
+    </tr>
+    <tr ng-if="project_list.data.length==0">
+        <td class="table-empty" colspan="5">
+            <span>暂无相关信息</span>
+        </td>
+    </tr>
+    <tr ng-if="project_list.data.length!=0">
+        <td colspan="5">
+            <div class="stao-project-page">
+                <ul uib-pagination total-items="project_list.page.totalItems" ng-model="project_list.page.curPage" max-size="project_list.page.maxSize"
+                    items-per-page="project_list.page.pageSize" last-text="{{project_list.page.last_text}}" next-text="{{project_list.page.next_text}}"
+                    previous-text="{{project_list.page.previous_text}}"
+                    class="pagination-sm pull-right" boundary-links="true" ng-change="pageChanged('', '')"
+                    first-text="{{project_list.page.first_text}}"></ul>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

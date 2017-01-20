@@ -3,6 +3,8 @@
  */
 'use strict';
 article_show_app.controller('article_show_ctrl', function ($scope,$window, $location, $http, $timeout, GLOBAL_CONFIG,UtilService,$interval) {
+    $scope.isMobile = UtilService.isMobile();
+
     $scope.comment = {
         likeCollect:{},
         id:UtilService.getUrlParameter('articleID')

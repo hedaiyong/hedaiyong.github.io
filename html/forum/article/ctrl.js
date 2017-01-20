@@ -4,13 +4,13 @@
 'use strict';
 article_app.config(function ($httpProvider) {
     $httpProvider.defaults.withCredentials = true;
-}).controller('article_ctrl', function ($scope,$window, $rootScope, $http, $timeout, GLOBAL_CONFIG, UtilService,ngDialog) {
+}).controller('article_ctrl', function ($scope,$window,  $http, $timeout, GLOBAL_CONFIG, UtilService,ngDialog) {
     var saveDraftText =  '<p style="color: #337ab7"><i class="fa fa-check-square  fa-lg" aria-hidden="true"></i> 保存成功</p>';
     var releaseText =  '<p style="color: #337ab7"><i class="fa fa-check-square  fa-lg" aria-hidden="true"></i> 发布成功</p>';
     var failText =  '<p style="color: #b71223"><i class="fa fa-times-circle  fa-lg" aria-hidden="true"></i>失败了..</p>';
 
-    $rootScope.ip = GLOBAL_CONFIG.url.ip;
-    $rootScope.port = GLOBAL_CONFIG.url.port;
+    $scope.isMobile = UtilService.isMobile();
+
     $scope.article = {
         isShowTitleNoEmpty:false,
         showTitleNoEmptyMsg:'标题不能为空哦...',
@@ -73,7 +73,7 @@ article_app.config(function ($httpProvider) {
                 transFn = function(params) {
                     return $.param(params);
                 },
-                url = 'http://' + $rootScope.ip + ':' + $rootScope.port + '/api/addArticleWeb',
+                url = 'http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/addArticleWeb',
                 postCfg = {
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
                     transformRequest: transFn
@@ -142,7 +142,7 @@ article_app.config(function ($httpProvider) {
     $scope.communities = [];
     $scope.queryCommunities = function (regionID) {
 
-        $http.get('http://' + $rootScope.ip + ':' + $rootScope.port + '/api/queryCommunityWeb?regionID=' + regionID)
+        $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/queryCommunityWeb?regionID=' + regionID)
             .success(function (ret) {
                 if (ret.code=='000') {
                     $scope.communities = ret.data;

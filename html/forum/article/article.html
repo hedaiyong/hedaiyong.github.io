@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="article-app">
 <head>
-    <meta charset="UTF-8" name="viewport"  content="width=1200px,initial-scale=1.0,minimum-scale=0.1,user-scalable=yes">
+    <meta charset="UTF-8" name="viewport"  content="width=device-width,initial-scale=1.0,minimum-scale=0.1,user-scalable=yes">
     <!-- 启用360浏览器的极速模式(webkit) -->
     <meta name="renderer" content="webkit">
     <!--uc浏览器-->
@@ -83,7 +83,7 @@
 <body >
 <!--头部-->
 <ng-include src="'../../../tpl/index/index_head.html'"></ng-include>
-<div class="container theme-showcase stao-index-container" ng-controller="article_ctrl" role="main">
+<div ng-class="{'container':!isMobile}" class="theme-showcase stao-index-container" ng-controller="article_ctrl" role="main">
     <div class="forum-article-content">
         <div ng-include="'../../../tpl/forum/article/article_select.html'"></div>
         <textarea froala="article.froalaOptions" ng-model="article.content"></textarea>

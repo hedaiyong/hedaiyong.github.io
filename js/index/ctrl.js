@@ -5,6 +5,7 @@
 stao_index_app
     .controller('stao_contain_ctrl', function ($scope, $rootScope, $http, GLOBAL_CONFIG, GLOBAL_VALUE, UtilService) {
     $scope.dateUtil = UtilService;
+    $scope.isMobile = UtilService.isMobile();
 
     $rootScope.ip = GLOBAL_CONFIG.url.ip;
     $rootScope.port = GLOBAL_CONFIG.url.port;
@@ -310,5 +311,63 @@ stao_index_app
         $scope.querySignHouseTop = function () {
             $scope.signed_house_tbl.querySignHouseTop($scope.signed_house_tbl.page.pageSize, $scope.signed_house_tbl.page.curPage);
         };
+    })
+    //新房昨日签约排名
+    .controller('RecordProjectListCtrl', function ($scope, $http, GLOBAL_CONFIG) {
+        $scope.project_list = {
+            theadConfig: {
+                projectName: {
+                    name: '项目名称'
+                },
+                region: {
+                    name: '区域'
+                },
+                soldCount: {
+                    name: '预售总套数'
+                },
+                HouseUse: {
+                    name: '房屋用途'
+                },
+                usePeriod: {
+                    name: '产权'
+                }
+            },
+            page:{
+                name:'',
+                totalPage: 1,
+                totalItems: 1,
+                pageSize: 10,
+                curPage: 1,
+                maxSize: 5,
+                first_text: '首页',
+                last_text: '尾页',
+                next_text: '下页',
+                previous_text: '上页'
+            },
+            getProjectList: function (name, region,  pageSize, curPage) {
+                $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/queryProjectListOpen?pageSize=' + pageSize
+                    + '&region=' + region
+                    + '&curPage=' + curPage
+                    + '&name=' + name
+                )
+                    .success(function (ret) {
+                        if (ret.code == '000') {
+                            $scope.project_list.data = ret.data.data;
+                            $scope.project_list.page.totalItems =  ret.data.totalItems;
+                        }
+                    }).error(function (msg) {
+                    console.log("Fail! " + msg);
+                });
+            }
+
+        };
+
+
+
+        $scope.pageChanged = function (name, region) {
+            $scope.project_list.getProjectList(name, region, $scope.project_list.page.pageSize, $scope.project_list.page.curPage);
+        };
+
+        $scope.pageChanged('', '');
     })
 ;
