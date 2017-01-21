@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="signUp-project-app">
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0.1,user-scalable=yes">
+    <meta charset="UTF-8" name="viewport" content="width=1200px,initial-scale=1.0,minimum-scale=0.1,user-scalable=yes">
     <!-- 启用360浏览器的极速模式(webkit) -->
     <meta name="renderer" content="webkit">
     <!--uc浏览器-->
@@ -29,7 +29,7 @@
 <body ng-controller="signUp_project_ctrl" class="simply-background">
 <!--头部-->
 <nav class="navbar navbar-default navbar-fixed-top" ng-controller="LoginController">
-    <div ng-class="{'container':!isMobile}">
+    <div class="container">
         <div class="navbar-header">
             <a class="stao-navbar-brand" href="#">
                 <img alt="Brand" height="32" width="32" src="../../ico.png">
@@ -44,7 +44,7 @@
         </div>
     </div>
 </nav>
-<div ng-class="{'container':!isMobile}" class="theme-showcase stao-index-container background-white" role="main" >
+<div class="container theme-showcase stao-index-container background-white" role="main" >
     <div class="col-sm-12" style="padding-top: 35px">
         <div class="col-sm-3">
             <form style="margin-top: 31px" name="loginForm"
