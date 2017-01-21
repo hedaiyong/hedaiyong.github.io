@@ -22,7 +22,7 @@
             <td ng-bind="item.price"></td>
             <td ng-bind="item.buildArea"></td>
             <td ng-bind="item.indoorArea"></td>
-            <td >{{house_list.stateList[item.state - 1]}}<small ng-if="!(item.state ==1 || item.state==9)">{{item.updateDate | limitTo:10}}</small></td>
+            <td >{{house_list.stateList[item.state - 1]}}<small ng-if="!(item.state ==1)">{{item.updateDate | limitTo:10}}</small></td>
         </tr>
         <tr ng-if="house_list.data.length==0">
             <td class="table-empty" colspan="9">
