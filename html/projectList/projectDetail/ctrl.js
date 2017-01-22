@@ -372,7 +372,7 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
             $scope.queryNoSignHouse();
         },
         page: {
-            pageSize: 10,
+            pageSize: 20,
             curPage: 1,
             totalPage: 1,
             totalItems: 1,
@@ -454,7 +454,7 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
             $scope.queryAnJuHouseList();
         },
         page: {
-            pageSize: 10,
+            pageSize: 20,
             curPage: 1,
             totalPage: 1,
             totalItems: 1,

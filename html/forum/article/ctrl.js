@@ -17,10 +17,10 @@ article_app.config(function ($httpProvider) {
         isShowPlateNoSelect:false,
         showPlateNoSelectMsg:'需要选择板块哦...',
         froalaOptions: {
-            // toolbarButtons: ["fontFamily","fontSize","strikeThrough","subscript","superscript",
-            //     "color","emoticons","paragraphStyle","paragraphFormat","outdent","indent","insertLink","quote","insertHR","insertImage","insertVideo",
-            //     "insertFile","insertTable","clearFormatting","bold","italic","underline","align","formatOL","formatUL"
-            //     ,"html","selectAll","undo","redo","fullscreen"]
+            toolbarButtons: ["quote","insertHR","fontSize","strikeThrough","subscript","superscript",
+                "color","emoticons","paragraphStyle","paragraphFormat","outdent","indent","insertLink","insertImage",
+                "insertFile","insertTable","clearFormatting","bold","italic","underline","align","formatOL","formatUL"
+                ,"selectAll","undo","redo","fullscreen"]
         },
         title: undefined,
         content: '',

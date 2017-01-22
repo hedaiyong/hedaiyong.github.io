@@ -202,7 +202,7 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
         },
         page: {
             useType:'',
-            pageSize: 10,
+            pageSize: 20,
             curPage: 1,
             totalPage: 1,
             totalItems: 1,
@@ -298,7 +298,10 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
     $scope.houses.selectFloor();
 
     $scope.queryHouseList = function (useType) {
-        if (arguments.length > 0) $scope.house_list.page.useType = useType;
+        if (arguments.length > 0) {
+            $scope.house_list.page.useType = useType;
+            $scope.house_list.page.curPage = 1;
+        }
         $scope.house_list.queryHouseList($scope.house_list.page.pageSize, $scope.house_list.page.curPage, $scope.projectID)
     };
 
