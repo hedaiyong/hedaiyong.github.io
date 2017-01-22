@@ -30,7 +30,7 @@
         </p>
     </div>
     <div class="col-md-1">
-        <button type="button" class="btn  btn-primary" ng-click="queryHouseDay()">查询</button>
+        <button type="button" class="btn  btn-primary" ng-click="queryHouseDay(true)">查询</button>
     </div>
     <div name="sale-table">
         <!--户型签约详情-->
@@ -72,7 +72,7 @@
                             next-text="{{houses.page.next_text}}"
                             previous-text="{{houses.page.previous_text}}"
                             class="pagination-sm pull-right" boundary-links="true"
-                            ng-change="queryHouseDay()" first-text="{{houses.page.first_text}}"></ul>
+                            ng-change="queryHouseDay(false)" first-text="{{houses.page.first_text}}"></ul>
                     </div>
                 </td>
             </tr>

@@ -32,7 +32,7 @@
         </p>
     </div>
     <div class="col-md-1">
-        <button type="button" class="btn  btn-primary" ng-click="querySales()">查询</button>
+        <button type="button" class="btn  btn-primary" ng-click="querySales(true)">查询</button>
     </div>
     <div name="sale-table">
         <!--销售详情-->
@@ -74,7 +74,7 @@
                             next-text="{{sales.page.next_text}}"
                             previous-text="{{sales.page.previous_text}}"
                             class="pagination-sm pull-right" boundary-links="true"
-                            ng-change="querySales()" first-text="{{sales.page.first_text}}"></ul>
+                            ng-change="querySales(false)" first-text="{{sales.page.first_text}}"></ul>
                     </div>
                 </td>
             </tr>
