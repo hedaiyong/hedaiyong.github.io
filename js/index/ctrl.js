@@ -19,6 +19,7 @@ stao_index_app
     };
 
     $scope.newHouse_region_tbl = {
+        timeText:'',
         theadConfig: {
             sortBuffer: {
                 region: {
@@ -66,7 +67,8 @@ stao_index_app
                 + '&key=' + key)
                 .success(function (ret) {
                     if (ret.code == '000') {
-                        $scope.newHouse_region_tbl.sales = ret.data.data;
+                        $scope.newHouse_region_tbl.sales = ret.data;
+                        $scope.newHouse_region_tbl.timeText = ret.data[0].staticDate;
                         // $scope.tblPagination.initPagination(ret);
                     }
                 }).error(function (msg) {
@@ -76,6 +78,7 @@ stao_index_app
     };
 
     $scope.second_hand_house_tbl = {
+        timeText:'',
         theadConfig: {
             sortBuffer: {
                 region: {
@@ -109,7 +112,8 @@ stao_index_app
                 + '&key=' + key)
                 .success(function (ret) {
                     if (ret.code == '000') {
-                        $scope.second_hand_house_tbl.sales = ret.data.data;
+                        $scope.second_hand_house_tbl.sales = ret.data;
+                        $scope.second_hand_house_tbl.timeText = ret.data[0].staticDate;
                         // $scope.tblPagination.initPagination(ret);
                     }
                 }).error(function (msg) {
@@ -120,8 +124,8 @@ stao_index_app
 
 
     $scope.getRegionHouse = function () {
-        $scope.second_hand_house_tbl.getSHHouseRegionList('day', 7, 1);
-        $scope.newHouse_region_tbl.getNewHouseRegionList('day', 7, 1);
+        $scope.second_hand_house_tbl.getSHHouseRegionList();
+        $scope.newHouse_region_tbl.getNewHouseRegionList();
     };
 
     $scope.top = {

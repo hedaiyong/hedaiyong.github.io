@@ -2,7 +2,7 @@
     <div class="col-sm-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title index-inline-block">二手房</h3>
+                <h3 class="panel-title index-inline-block">{{second_hand_house_tbl.timeText | limitTo:10 }} 二手房</h3>
                 <a class="stao-index-house-detail"
                    href="html/house/data/region_chart.html">成交走势</a>
             </div>
@@ -40,7 +40,7 @@
     <div class="col-sm-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title index-inline-block">新房</h3>
+                <h3 class="panel-title index-inline-block">{{newHouse_region_tbl.timeText | limitTo:10 }} 新房</h3>
                 <a class="stao-index-house-detail"
                    href="html/house/data/region_chart.html">成交/房价走势</a>
             </div>
