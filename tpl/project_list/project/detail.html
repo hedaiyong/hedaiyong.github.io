@@ -35,11 +35,30 @@
         </div>
         <div uib-accordion-group class="panel-default uib-margin-top" is-open="sales.open">
             <uib-accordion-heading>
-                <div ng-click="querySales(false)"><i class="fa fa-line-chart" aria-hidden="true"></i> 成交详情 <i class="pull-right glyphicon"
+                <div ng-click="queryDaySaleChart()"><i class="fa fa-line-chart" aria-hidden="true"></i> 成交详情 <i class="pull-right glyphicon"
                                                                             ng-class="{'glyphicon-chevron-down': sales.open, 'glyphicon-chevron-right': !sales.open}"></i>
                 </div>
             </uib-accordion-heading>
-            <div ng-include="'../../../tpl/project_list/project/sales_list.html'"></div>
+
+            <uib-tabset active="sale_tbl.activeForm">
+                <uib-tab  index="0">
+                    <uib-tab-heading>
+                        图表
+                    </uib-tab-heading>
+                    <div class="project-detail-house-list"
+                         ng-include="'../../../tpl/project_list/project/day_sale_chart.html'"></div>
+                </uib-tab>
+                <uib-tab index="1" select="querySales(true)">
+                    <uib-tab-heading>
+                       表格
+                    </uib-tab-heading>
+                    <div ng-include="'../../../tpl/project_list/project/sales_list.html'"
+                         class="project-detail-house-list"></div>
+                </uib-tab>
+
+            </uib-tabset>
+
+
 
 
         </div>
@@ -113,15 +132,5 @@
 
         </div>
 
-        <!--暂时不实现-->
-        <!--<div uib-accordion-group class="panel-default" is-open="houses.open">-->
-            <!--<uib-accordion-heading>-->
-                <!--<div><i class="fa fa-braille" aria-hidden="true"></i> 销控表 <i class="pull-right glyphicon"-->
-                                                                             <!--ng-class="{'glyphicon-chevron-down': houses.open, 'glyphicon-chevron-right': !houses.open}"></i>-->
-                <!--</div>-->
-            <!--</uib-accordion-heading>-->
-            <!--销控表(图片中显示户型、面积、是否签约、预售价格)-->
-
-        <!--</div>-->
     </uib-accordion>
 </div>

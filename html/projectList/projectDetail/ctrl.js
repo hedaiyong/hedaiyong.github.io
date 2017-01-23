@@ -57,8 +57,8 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
         $scope.project.open= true;
         $scope.houses.open = true;
         $scope.houses.page.curPage = 1;
-        $scope.querySales();
-        $scope.queryHouseDay();
+        $scope.queryDaySaleChart();
+        $scope.queryHouseDay(true);
         $scope.houses.selectFloor();
         //房屋用途列表
         $scope.getProjectUseType();
@@ -99,6 +99,23 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
             opened: false,
             date: ''
         }
+    };
+
+    $scope.daySaleChart = {
+        start: {
+            opened: false,
+            date: ''
+        },
+        end: {
+            opened: false,
+            date: ''
+        }
+    };
+    $scope.openDaySaleChartStart = function () {
+        $scope.daySaleChart.start.opened = true;
+    };
+    $scope.openDaySaleChartEnd = function () {
+        $scope.daySaleChart.end.opened = true;
     };
 
     $scope.startOptions = {
@@ -156,6 +173,14 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
 
     $scope.sale_tbl = {
         data: '',
+        activeForm:0,
+        chartData:{
+            dayPrice:[],
+            dayArea:[],
+            dayPriceAll:[],
+            time:[]
+        },
+
         theadConfig: {
             projectName: {
                 name: '时间'
@@ -177,7 +202,6 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
             }
         },
         queryProjectDaySale: function (startDate, key, endDate, pageSize, curPage, projectSalesID) {
-            var self = this;
             $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/queryProjectDaySaleOpen?startDate=' + startDate
                 + '&pageSize=' + pageSize
                 + '&curPage=' + curPage
@@ -192,9 +216,99 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
                 }).error(function (msg) {
                 console.log("Fail! " + msg);
             });
+        },
+
+        queryDaySaleChartData: function (startDate, key, endDate, projectSalesID) {
+            $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/queryProjectDaySaleChartDataOpen?startDate=' + startDate
+                + '&endDate=' + endDate
+                + '&projectSalesID=' + projectSalesID
+                + '&key=' + key)
+                .success(function (ret) {
+                    if (ret.code == '000') {
+                        $scope.sale_tbl.charts.option.series[0].data = ret.data.dayPrice;
+                        $scope.sale_tbl.charts.option.series[2].data = ret.data.dayArea;
+                        $scope.sale_tbl.charts.option.series[1].data = ret.data.dayPriceAll;
+                        $scope.sale_tbl.charts.option.xAxis[0].data = ret.data.time;
+                    }
+                }).error(function (msg) {
+                console.log("Fail! " + msg);
+            });
         }
     };
+    $scope.sale_tbl.charts= {
+        config: {
+            theme: 'vintage',
+            dataLoaded: true
+        },
+        option: {
+            title: {
+                subtext: '来自住建局'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['成交价格','总成交价格','成交面积']
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    dataView: {show: true, readOnly: false},
+                    magicType: {show: true, type: ['line','bar']},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },
+            calculable: true,
+            xAxis: [
+                {
+                    type: 'category',
+                    boundaryGap: true,
+                    data:[]
 
+                }
+            ],
+            yAxis: [
+                {
+                    name:"价格",
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value} 平米/元'
+                    }
+                },
+                {
+                    name:"面积",
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value} 平米'
+                    }
+                }
+            ],
+            series: [
+                {
+                    name: '成交价格',
+                    xAxisIndex:0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    data: []
+                },
+                {
+                    name: '总成交价格',
+                    xAxisIndex:0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    data: []
+                },
+                {
+                    name: '成交面积',
+                    xAxisIndex:0,
+                    yAxisIndex:1,
+                    type: 'bar',
+                    data: []
+                }
+            ]
+        }
+    };
     $scope.initSalesTime = function () {
         $scope.sales.end.date = new Date();
 
@@ -202,15 +316,35 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
         startTime.setDate(startTime.getDate() - 14);
         $scope.sales.start.date = startTime;
     };
+    //图表时间
+    $scope.initDaySaleChartTime = function () {
+        $scope.daySaleChart.end.date = new Date();
+
+        var startTime = new Date();
+        startTime.setDate(startTime.getDate() - 14);
+        $scope.daySaleChart.start.date = startTime;
+    };
+    //初始化图表时间
+    $scope.initDaySaleChartTime();
     //初始时间
     $scope.initSalesTime();
-
-    $scope.querySales = function () {
+    //表格数据
+    $scope.querySales = function (isInit) {
         $scope.sales.start.date = $filter('date')($scope.sales.start.date, 'yyyy-MM-dd');
         $scope.sales.end.date = $filter('date')($scope.sales.end.date , 'yyyy-MM-dd');
-
+        //从第一页开始查询
+        if (isInit) $scope.sales.page.curPage = 1;
+        
         $scope.sale_tbl.queryProjectDaySale($scope.sales.start.date, 'time',$scope.sales.end.date, $scope.sales.page.pageSize, $scope.sales.page.curPage, $scope.projectSalesID)
     };
+
+    //图表数据
+    $scope.queryDaySaleChart = function () {
+        $scope.daySaleChart.start.date = $filter('date')($scope.daySaleChart.start.date, 'yyyy-MM-dd');
+        $scope.daySaleChart.end.date = $filter('date')($scope.daySaleChart.end.date , 'yyyy-MM-dd');
+        $scope.sale_tbl.queryDaySaleChartData($scope.daySaleChart.start.date, 'time',$scope.daySaleChart.end.date, $scope.projectSalesID)
+    };
+
     //--------------houses---------------------
     $scope.houses = {
         activeForm:0,
@@ -351,9 +485,11 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
             });
         }
     };
-    $scope.queryHouseDay = function () {
+    $scope.queryHouseDay = function (isInit) {
         $scope.houses.start.date = $filter('date')($scope.houses.start.date, 'yyyy-MM-dd');
         $scope.houses.end.date = $filter('date')($scope.houses.end.date, 'yyyy-MM-dd');
+        //从第一页开始查询
+        if (isInit)$scope.houses.page.curPage = 1;
         
         $scope.house_tbl.queryHouseDay($scope.houses.start.date, 'time', $scope.houses.end.date, $scope.houses.page.pageSize, $scope.houses.page.curPage, $scope.project.selected.projectID)
     };
@@ -554,7 +690,7 @@ project_detail_app.controller("projectDetailCtl", function ($scope, $stateParams
                 xAxis: [
                     {
                         type: 'category',
-                        boundaryGap: false,
+                        boundaryGap: true,
                         data: []
 
                     }

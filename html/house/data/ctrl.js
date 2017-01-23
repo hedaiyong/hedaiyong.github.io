@@ -88,7 +88,7 @@ RegionChartApp
                     xAxis: [
                         {
                             type: 'category',
-                            boundaryGap: false,
+                            boundaryGap: true,
                             data: []
                         }
                     ],
@@ -351,7 +351,7 @@ RegionChartApp
                     xAxis: [
                         {
                             type: 'category',
-                            boundaryGap: false,
+                            boundaryGap: true,
                             data: []
                         }
                     ],

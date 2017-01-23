@@ -75,7 +75,7 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
                 xAxis: [
                     {
                         type: 'category',
-                        boundaryGap: false,
+                        boundaryGap: true,
                         data: []
 
                     }

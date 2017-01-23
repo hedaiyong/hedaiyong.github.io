@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="http://114.55.42.174:9090/api/src?fileName=html/house/data/app.css"/>
+<div>
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-4">
+        <p class="input-group">
+            <input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                   ng-model="daySaleChart.start.date"
+                   is-open="daySaleChart.start.opened" datepicker-options="startOptions" ng-required="true"
+                   close-on-date-selection="true"
+                   alt-input-formats="altInputFormats" show-button-bar="false" placeholder="{{daySaleChart.start.date}}"
+                   title="请选择时间"/>
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openDaySaleChartStart()"><i
+                                    class="glyphicon glyphicon-calendar"></i></button>
+                          </span>
+        </p>
+    </div>
+
+    <div class="col-md-4">
+        <p class="input-group">
+            <input type="text" class="form-control" uib-datepicker-popup ng-model="daySaleChart.end.date"
+                   is-open="daySaleChart.end.opened" datepicker-options="endOptions" ng-required="true"
+                   close-on-date-selection="true"
+                   alt-input-formats="altInputFormats" show-button-bar="false" placeholder="{{daySaleChart.end.date}}"
+                   title="请选择时间"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="openDaySaleChartEnd()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+    </div>
+    <div class="col-md-1">
+        <button type="button" class="btn  btn-primary" ng-click="queryDaySaleChart()">查询</button>
+    </div>
+
+    <ng-echarts class="article-ds-replybox col-md-12 echarts" ec-config="sale_tbl.charts.config"
+                ec-option="sale_tbl.charts.option"></ng-echarts>
+</div>
