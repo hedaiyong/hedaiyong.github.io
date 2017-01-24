@@ -25,7 +25,7 @@
                 <ul uib-pagination total-items="page.totalItems" ng-model="page.curPage" max-size="page.maxSize"
                     items-per-page="page.pageSize" last-text="{{page.last_text}}" next-text="{{page.next_text}}"
                     previous-text="{{page.previous_text}}"
-                    class="pagination-sm pull-right" boundary-links="true" ng-change="pageChanged('', '')"
+                    class="pagination-sm pull-right" boundary-links="true" ng-change="pageChanged()"
                     first-text="{{page.first_text}}"></ul>
             </div>
         </div>
