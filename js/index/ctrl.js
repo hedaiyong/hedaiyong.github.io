@@ -59,12 +59,10 @@ stao_index_app
                 }
             },
         },
-        getNewHouseRegionList: function (key, pageSize, curPage) {
+        getNewHouseRegionList: function () {
             var self = this;
-            $http.get('http://' + $rootScope.ip + ':' + $rootScope.port + '/api/queryNewHouseRegionOpen?'
-                + '&pageSize=' + pageSize
-                + '&curPage=' + curPage
-                + '&key=' + key)
+            $http.get('http://' + $rootScope.ip + ':' + $rootScope.port + '/api/queryNewHouseRegionOpen'
+                )
                 .success(function (ret) {
                     if (ret.code == '000') {
                         $scope.newHouse_region_tbl.sales = ret.data;
@@ -104,12 +102,10 @@ stao_index_app
                 }
             }
         },
-        getSHHouseRegionList: function (key, pageSize, curPage) {
+        getSHHouseRegionList: function () {
             var self = this;
-            $http.get('http://' + $rootScope.ip + ':' + $rootScope.port + '/api/querySHHouseRegionOpen?'
-                + '&pageSize=' + pageSize
-                + '&curPage=' + curPage
-                + '&key=' + key)
+            $http.get('http://' + $rootScope.ip + ':' + $rootScope.port + '/api/querySHHouseRegionOpen'
+                )
                 .success(function (ret) {
                     if (ret.code == '000') {
                         $scope.second_hand_house_tbl.sales = ret.data;

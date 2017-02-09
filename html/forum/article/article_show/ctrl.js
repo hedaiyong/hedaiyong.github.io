@@ -54,5 +54,4 @@ article_show_app.controller('article_show_ctrl', function ($scope,$window, $loca
         }, 4000, 1);
     }
     
-
 });

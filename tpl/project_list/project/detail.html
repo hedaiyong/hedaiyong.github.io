@@ -76,7 +76,7 @@
 
         <div uib-accordion-group class="panel-default uib-margin-top" is-open="houses.open">
             <uib-accordion-heading>
-                <div ng-click="houses.selectFloor()"><i class="fa fa-print" aria-hidden="true"></i> 签约户型详情 <i
+                <div ng-click="houses.selectFloor()"><i class="fa fa-print" aria-hidden="true"></i> 户型详情 <i
                         class="pull-right glyphicon"
                         ng-class="{'glyphicon-chevron-down': houses.open, 'glyphicon-chevron-right': !houses.open}"></i>
                 </div>
@@ -107,26 +107,14 @@
             </div><!-- /.row -->
             <hr />
             <uib-tabset active="houses.activeForm">
-                <uib-tab  index="0">
+
+                <uib-tab  index="$index" select="queryHouseList(item.useType)" ng-repeat="item in project.useType">
                     <uib-tab-heading>
-                        已签约 <span class="badge">{{houses.signedCount}}</span>
+                        {{item.useType }}<span ng-show="houses.activeForm==$index" class="badge"> {{house_list.totalItems}}</span>
                     </uib-tab-heading>
+
                     <div class="project-detail-house-list"
-                         ng-include="'../../../tpl/project_list/project/house_list.html'"></div>
-                </uib-tab>
-                <uib-tab index="1" select="queryNoSignHouse()">
-                    <uib-tab-heading>
-                        待签约 <span class="badge">{{houses.signCount}}</span>
-                    </uib-tab-heading>
-                    <div ng-include="'../../../tpl/project_list/project/no_sign_house_list.html'"
-                         class="project-detail-house-list"></div>
-                </uib-tab>
-                <uib-tab index="2" ng-show="houses.anjuCount > 0" select="queryAnJuHouseList()">
-                    <uib-tab-heading>
-                        安居房 <span class="badge">{{houses.anjuCount}}</span>
-                    </uib-tab-heading>
-                    <div ng-include="'../../../tpl/project_list/project/anju_house_list.html'"
-                         class="project-detail-house-list"></div>
+                         ng-include="'../../../tpl/project/new_project/detail/house_list.html'"></div>
                 </uib-tab>
             </uib-tabset>
 

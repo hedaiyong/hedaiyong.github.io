@@ -1,8 +1,17 @@
 <div name="sale-table">
+    <div class="col-sm-5">
+        <div class="btn-group " role="group" aria-label="...">
+            <button type="button" ng-show="house_list.totalItems > 0"  ng-click="switchTab(1)" ng-class="{'active':(house_list.page.tabIndex == 1)}" class="btn btn-default">全部 <span class="badge"> {{house_list.totalItems}}</span></button>
+            <button ng-show="houses.signedCount>0" type="button" ng-click="switchTab(2)"  ng-class="{'active':(house_list.page.tabIndex == 2)}" class="btn btn-default">已签约 <span class="badge"> {{houses.signedCount}}</span></button>
+            <button ng-show="houses.signCount>0" type="button" ng-click="switchTab(3)"  ng-class="{'active':(house_list.page.tabIndex == 3)}" class="btn btn-default">待签约 <span class="badge"> {{houses.signCount}}</span></button>
+            <button ng-show="houses.anjuCount>0" type="button" ng-click="switchTab(4)" ng-class="{'active':(house_list.page.tabIndex == 4)}" class="btn btn-default">安居房 <span class="badge"> {{houses.anjuCount}}</span></button>
+        </div>
+    </div>
     <!--户型签约详情-->
     <table class="table">
         <thead>
         <tr>
+            <th ng-show="house_list.page.tabIndex == 2">签约时间</th>
             <th ng-repeat="(objName, item) in house_list.theadConfig">
                 <div>
                     <span ng-bind="item.name"></span> <i ng-if="item.isStore"  aria-hidden="true" ng-class="{'fa':true, ' fa-sort':(item.clickState=='noClick'), 'fa-sort-asc':(item.clickState=='asc'), ' fa-sort-desc':(item.clickState=='desc')}" ng-click="house_list.priceSort()"></i>
@@ -14,6 +23,7 @@
         <tbody>
         <tr ng-repeat="item in house_list.data"
             ng-if="house_list.data.length>0">
+            <td ng-show="house_list.page.tabIndex == 2">{{item.updateDate | limitTo:10}}</td>
             <td><a  ng-href="{{'http://ris.szpl.gov.cn/bol/building.aspx?id=' + item.buildingID}}" >{{item.projectDetail}}</a></td>
             <td ng-bind="item.buildNO"></td>
             <td ><a ng-href="{{'http://ris.szpl.gov.cn/bol/housedetail.aspx?id=' + item.id}}">{{item.houseNo}}</a></td>
@@ -22,15 +32,15 @@
             <td ng-bind="item.price"></td>
             <td ng-bind="item.buildArea"></td>
             <td ng-bind="item.indoorArea"></td>
-            <td >{{house_list.stateList[item.state - 1]}}<small ng-if="!(item.state ==1)">{{item.updateDate | limitTo:10}}</small></td>
+            <td >{{house_list.stateList[item.state - 1]}}</td>
         </tr>
         <tr ng-if="house_list.data.length==0">
-            <td class="table-empty" colspan="9">
+            <td class="table-empty" colspan="{{(house_list.page.tabIndex == 2) ? 10 : 9}}">
                 <span>暂无相关信息</span>
             </td>
         </tr>
         <tr ng-if="house_list.data.length!=0">
-            <td colspan="9">
+            <td colspan="{{(house_list.page.tabIndex == 2) ? 10 : 9}}">
                 <div class="stao-project-page">
                     <ul uib-pagination total-items="house_list.page.totalItems"
                         ng-model="house_list.page.curPage" max-size="house_list.page.maxSize"

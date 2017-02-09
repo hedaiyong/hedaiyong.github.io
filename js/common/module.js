@@ -10,6 +10,7 @@ staoModule.constant('GLOBAL_CONFIG', {
     house:{
         SELLING:1,
         ANJU_HOUSE:9,
+        SIGNED_HOUSE:100,
         stateList:["期房待售","已售","已签预售合同","已备案","已签认购书","初始登记","管理局锁定","自动锁定","安居型商品房","司法查封","未知状态"],
     },
     user:{
@@ -20,9 +21,11 @@ staoModule.constant('GLOBAL_CONFIG', {
         domain:window.location.host,
         'ip': (function () {
             return '114.55.42.174';
+            // return 'localhost';
         })(),
         'port': (function () {
             return '9090';
+            // return '8080';
         })()
     }
 });
@@ -129,7 +132,7 @@ staoModule.constant('AUTH_EVENTS', {
             }
     }(Date);
     self.timeUtil.elapsedTime = function (e) {
-        var t = self.timeUtil.parseDate(e),
+        var t = self.timeUtil.parseDate(e.replace(/-/g, "/")),
             s = new Date,
             a = (s - t) / 1e3;
         return 10 > a ? "刚刚" : 60 > a ? Math.round(a) + "秒前" : 3600 > a ? Math.round(a / 60) + "分钟前" : 86400 > a ? Math.round(a / 3600) + "小时前" : (s.getFullYear() == t.getFullYear() ? "" : t.getFullYear() + "年") + (t.getMonth() + 1) + "月" + t.getDate() + "日"

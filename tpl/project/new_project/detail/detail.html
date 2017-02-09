@@ -66,8 +66,9 @@
 
                 <uib-tab  index="$index" select="queryHouseList(item.useType)" ng-repeat="item in project.useType">
                     <uib-tab-heading>
-                        {{item.useType }}<span ng-show="houses.activeForm==$index" class="badge">{{house_list.page.totalItems}}</span>
+                        {{item.useType }}<span ng-show="houses.activeForm==$index" class="badge"> {{house_list.totalItems}}</span>
                     </uib-tab-heading>
+
                     <div class="project-detail-house-list"
                          ng-include="'../../../../tpl/project/new_project/detail/house_list.html'"></div>
                 </uib-tab>

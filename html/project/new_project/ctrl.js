@@ -7,6 +7,7 @@ stao_project_list_app.controller('stao_project_list_ctrl', function ($scope, Uti
 
     $scope.page = {
         name:'',
+        region:'',
         totalPage: 1,
         totalItems: 1,
         pageSize: 12,
@@ -20,11 +21,11 @@ stao_project_list_app.controller('stao_project_list_ctrl', function ($scope, Uti
     };
     
     $scope.project_list = {
-        getProjectList: function (name, region,  pageSize, curPage) {
+        getProjectList: function ( pageSize, curPage) {
             $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/queryProjectListOpen?pageSize=' + pageSize
-                + '&region=' + region
+                + '&region=' + $scope.page.region
                 + '&curPage=' + curPage
-                + '&name=' + name
+                + '&name=' + $scope.page.name
                 )
                 .success(function (ret) {
                     if (ret.code == '000') {
@@ -38,10 +39,15 @@ stao_project_list_app.controller('stao_project_list_ctrl', function ($scope, Uti
     };
     
     $scope.pageChanged = function (name, region) {
-        $scope.project_list.getProjectList(name, region, $scope.page.pageSize, $scope.page.curPage);
+        if (arguments.length > 1){
+            $scope.page.name = encodeURI(encodeURI(name));
+            $scope.page.region = encodeURI(encodeURI(region));
+            $scope.page.curPage = 1;
+        }
+        $scope.project_list.getProjectList($scope.page.pageSize, $scope.page.curPage);
     };
     
-    $scope.pageChanged('', '');
+    $scope.pageChanged();
 
 });
 

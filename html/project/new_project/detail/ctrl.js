@@ -174,6 +174,8 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
         },
         signedCount: 0,
         signCount: 0,
+        //安居房套数
+        anjuCount:0,
         record: {
             selected: {
                 buildingID: 0,
@@ -183,6 +185,7 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
             floors: [],
             recordPrice: 0
         }
+
 
     };
 
@@ -202,6 +205,9 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
         },
         page: {
             useType:'',
+            //1全部，2，已签约 3，待签约 4，安居房
+            tabIndex:1,
+            state:'',
             pageSize: 20,
             curPage: 1,
             totalPage: 1,
@@ -252,10 +258,11 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
                 name: '状态'
             }
         },
-        queryHouseList: function (pageSize, curPage, projectID) {
+        queryHouseList: function (pageSize, curPage, projectID,useType) {
             $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/queryHouseListOpen?pageSize=' +  $scope.house_list.page.pageSize
                 + '&useType=' +  $scope.house_list.page.useType
                 + '&curPage=' +  $scope.house_list.page.curPage
+                + '&state=' +  $scope.house_list.page.state
                 + '&order=' + $scope.house_list.theadConfig.price.clickState
                 + '&buildingID=' + $scope.houses.record.selected.buildingID
                 + '&projectID=' + projectID)
@@ -264,8 +271,28 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
                         $scope.house_list.data = ret.data.data;
                         $scope.house_list.page.totalItems = ret.data.totalItems;
                         $scope.house_list.page.curPage = ret.data.curPage;
+
+                        if (!((useType==undefined)||(useType==null)||(useType=='null'))) {
+                            $scope.house_list.totalItems = ret.data.totalItems;
+                        }
                     }
                 }).error(function (msg) {
+                console.log("Fail! " + msg);
+            });
+        },
+        queryHouseCountByUserType: function (projectID) {
+
+            $http.get('http://' + GLOBAL_CONFIG.url.ip + ':' + GLOBAL_CONFIG.url.port + '/api/queryHouseCountOpen?projectID=' + projectID
+                + '&buildingID=' + $scope.houses.record.selected.buildingID
+                + '&useType=' +  $scope.house_list.page.useType
+            ).success(function (ret) {
+                if (ret.code == '000') {
+                    $scope.houses.signCount = ret.data.signCount;
+                    $scope.houses.signedCount = ret.data.signedCount;
+                    $scope.houses.anjuCount = ret.data.anjuCount;
+
+                }
+            }).error(function (msg) {
                 console.log("Fail! " + msg);
             });
         }
@@ -278,7 +305,6 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
         ).success(function (ret) {
             if (ret.code == '000') {
                 $scope.houses.record.recordPrice = ret.data.recordPrice;
-
                 if ($scope.houses.record.selected.buildingID == 0 && $scope.houses.record.floors.length == 0) {
                     $scope.houses.record.floors = ret.data.floors;
                 }
@@ -292,19 +318,56 @@ all_project_detail_app.controller("AllProjectDetailCtl", function ($scope, $stat
     $scope.houses.selectFloor = function () {
         $scope.queryHouseCount($scope.projectID);
         $scope.house_list.page.curPage = 1;
-        $scope.houses.activeForm = 0;
+        $scope.switchTab(1);
+        $scope.house_list.queryHouseCountByUserType($scope.projectID);
+        //$scope.house_list.queryHouseList($scope.house_list.page.pageSize, $scope.house_list.page.curPage, $scope.projectID,"useType");
     };
 
-    $scope.houses.selectFloor();
 
     $scope.queryHouseList = function (useType) {
         if (arguments.length > 0) {
-            $scope.house_list.page.useType = useType;
+            $scope.house_list.page.useType = encodeURI(encodeURI(useType));
             $scope.house_list.page.curPage = 1;
+            $scope.house_list.page.tabIndex = 1;
+            $scope.house_list.page.state = '';
+            $scope.house_list.theadConfig.price.clickState = 'noClick';
+            $scope.house_list.queryHouseCountByUserType($scope.projectID);
+            $scope.house_list.queryHouseList($scope.house_list.page.pageSize, $scope.house_list.page.curPage, $scope.projectID,useType);
+        }else {
+            $scope.house_list.queryHouseList($scope.house_list.page.pageSize, $scope.house_list.page.curPage, $scope.projectID)
         }
-        $scope.house_list.queryHouseList($scope.house_list.page.pageSize, $scope.house_list.page.curPage, $scope.projectID)
     };
 
+    $scope.switchTab = function (tabIndex) {
+        $scope.house_list.page.tabIndex = tabIndex;
+        $scope.house_list.page.curPage = 1;
+
+        switch (tabIndex){
+            case 1:
+                $scope.house_list.theadConfig.price.clickState = 'noClick';
+                $scope.house_list.page.state = '';
+                $scope.house_list.queryHouseList($scope.house_list.page.pageSize, $scope.house_list.page.curPage, $scope.projectID,"useType");
+                break;
+            case 2:
+                $scope.house_list.theadConfig.price.clickState = 'noClick';
+                $scope.house_list.page.state = GLOBAL_CONFIG.house.SIGNED_HOUSE;
+                $scope.house_list.queryHouseList($scope.house_list.page.pageSize, $scope.house_list.page.curPage, $scope.projectID);
+                break;
+            case 3:
+                $scope.house_list.theadConfig.price.clickState = 'noClick';
+                $scope.house_list.page.state = GLOBAL_CONFIG.house.SELLING;
+                $scope.house_list.queryHouseList($scope.house_list.page.pageSize, $scope.house_list.page.curPage, $scope.projectID);
+                break;
+            case 4:
+                $scope.house_list.theadConfig.price.clickState = 'noClick';
+                $scope.house_list.page.state = GLOBAL_CONFIG.house.ANJU_HOUSE;
+                $scope.house_list.queryHouseList($scope.house_list.page.pageSize, $scope.house_list.page.curPage, $scope.projectID);
+                break;
+        }
+    };
+
+    $scope.houses.selectFloor();
+    
 });
 
 

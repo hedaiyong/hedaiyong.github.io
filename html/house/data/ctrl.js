@@ -146,7 +146,7 @@ RegionChartApp
             $scope.new_house.time.endTime = new Date();
 
             var startTime = new Date();
-            startTime.setDate(startTime.getDate() - 14);
+            startTime.setDate(startTime.getDate() - 21);
             $scope.new_house.time.startTime = startTime;
         };
 
@@ -409,7 +409,7 @@ RegionChartApp
             $scope.second_hand_house.time.endTime = new Date();
 
             var startTime = new Date();
-            startTime.setDate(startTime.getDate() - 14);
+            startTime.setDate(startTime.getDate() - 21);
             $scope.second_hand_house.time.startTime = startTime;
         };
 
